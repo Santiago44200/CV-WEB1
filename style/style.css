@@ -1,0 +1,254 @@
+/* Variables CSS para colores y tipografía */
+:root {
+    --purple-color: #732689;
+    /* Púrpura */
+    --yellow: #FFFB8B;
+    /* Amarillo vibrante */
+    --text-color-light: #f0f0f0;
+    --text-color-dark: #141414;
+    --background-dark: #141414;
+    --grid-line-color: #4C4C4C;
+    --font-primary: 'Montserrat', sans-serif;
+    /* Puedes importar una fuente */
+    --font-secondary: 'Oswald', sans-serif;
+    /* Para títulos grandes */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-color-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Evitar scroll horizontal */
+}
+
+
+
+/*----------------------*/
+/*----------------------*/
+@media (min-width: 576px){
+/*----------------------*/
+/*----------------------*/
+
+
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    position: fixed;
+}
+
+.hero-container {
+    margin: 0 auto;
+    /* Necesitas una altura para que el centrado vertical funcione */
+    min-height: 80vh; 
+    padding: 0 20px; 
+    display: grid; 
+}
+
+.hero-text,
+.image-wrapper {
+    grid-column: 1 / 2; /* De la línea 1 a la 2 (ocupa 1 columna) */
+    grid-row: 1 / 2;    /* De la línea 1 a la 2 (ocupa 1 fila) */
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Alinea la imagen a la derecha */
+    align-items: center; 
+    padding-right: 5%;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column; 
+
+    /* CLAVE para centrar verticalmente: */
+    align-items: flex-start; /* Asegura que el texto se alinee a la izquierda dentro del contenedor Flex */
+    justify-content: center; /* Centra todo el contenido (el bloque de texto) verticalmente */
+    
+    padding-left: 5%; 
+
+    z-index: 2; 
+}
+
+/* Estilo de la imagen de Santiago */
+.santiago-photo {
+   /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
+       pero nunca será más ancha que 30rem */
+    width: clamp(15rem, 30%, 30rem);
+    background-color: #5b21b6;
+    /* Ajusta según el diseño */
+    display: flex;
+    z-index: 1;
+    /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
+}
+
+.hero-text .greeting {
+    margin-bottom: 1rem;
+    font-size: 2.5vw;
+    font-family: montserrat;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--yellow);
+}
+
+.hero-text .main-title {
+    font-size: 7vw;
+    line-height: 6vw;
+    font-family: montserrat;
+    font-style: italic;
+    font-weight: 900;
+    color: var(--purple-color);
+}
+
+.hero-text .subtitle {
+    padding-top: 1.5rem;
+    font-family: montserrat;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.6vw;
+    line-height: 2vw;
+}
+}
+
+
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+@media (min-width: 768px){
+
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    position: fixed;
+}
+
+.hero-container {
+    max-width: 90%;
+    margin: 0 auto;
+    /* Necesitas una altura para que el centrado vertical funcione */ 
+    padding-left: 20px; 
+    padding-right: 20px;
+    padding-top: 70px;
+    display: grid; 
+}
+
+.hero-text,
+.image-wrapper {
+    grid-column: 1 / 2; /* De la línea 1 a la 2 (ocupa 1 columna) */
+    grid-row: 1 / 2;    /* De la línea 1 a la 2 (ocupa 1 fila) */
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Alinea la imagen a la derecha */
+    align-items: center; 
+    padding-right: 5%;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column; 
+
+    /* CLAVE para centrar verticalmente: */
+    align-items: flex-start; /* Asegura que el texto se alinee a la izquierda dentro del contenedor Flex */
+    justify-content: center; /* Centra todo el contenido (el bloque de texto) verticalmente */
+    
+    padding-left: 5%; 
+
+    z-index: 2; 
+}
+
+/* Estilo de la imagen de Santiago */
+.santiago-photo {
+   /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
+       pero nunca será más ancha que 30rem */
+    width: clamp(20rem, 50%, 40rem);
+    background-color: #5b21b6;
+    /* Ajusta según el diseño */
+    display: flex;
+    z-index: 1;
+    /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
+}
+
+.hero-text .greeting {
+    margin-bottom: 1rem;
+    font-size: 2.5vw;
+    font-family: montserrat;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--yellow);
+}
+
+.hero-text .main-title {
+    font-size: 7vw;
+    line-height: 6vw;
+    font-family: montserrat;
+    font-style: italic;
+    font-weight: 900;
+    color: var(--purple-color);
+}
+
+.hero-text .subtitle {
+    padding-top: 1.5rem;
+    font-family: montserrat;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.6vw;
+    line-height: 2vw;
+}
+
+.section2 {
+    margin: auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.place1, 
+.place2,
+.place3,
+.place4 {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /* border: #4C4C4C solid; -> Cambiado a 1px para mejor visualización */
+    border: var(--grid-line-color) solid 1px;
+    
+    /* CLAVE: Centra el CONTENIDO (el h2) en el flujo */
+    display: flex;
+    justify-content: center; /* Centrado horizontal del h2 */
+    align-items: center;    /* Centrado vertical del h2 */
+}
+
+.place1 h2{
+    display: flex;
+    z-index: 2;
+}
+
+.place1 .circle{
+    display: flex;
+    z-index: 1;
+    width:70%;
+    height: 70%;
+    border-radius: 200px;
+    border: #FFFB8B solid 10px;
+}
+
+}
+
