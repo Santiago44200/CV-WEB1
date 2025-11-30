@@ -12,6 +12,15 @@
     /* Puedes importar una fuente */
     --font-secondary: 'Oswald', sans-serif;
     /* Para títulos grandes */
+    /*--h2-font-family-dkt: 'Montserrat', sans-serif;
+    --h2-font-style-dkt: italic;
+    --h2-font-size-dkt: 2.5vw;
+    --h2-font-color-dkt: white;*/
+}
+
+@font-face{
+ font-family: 'Mango Grotesque Web';
+ src: url(../fonts/MangoGrotesque-ExtBdIta.ttf)
 }
 
 /* Reset básico */
@@ -136,10 +145,11 @@ header {
     height: 70px;
     background-color: black;
     position: fixed;
+    z-index: 1000;
 }
 
 .hero-container {
-    max-width: 90%;
+    max-width: 80%;
     margin: 0 auto;
     /* Necesitas una altura para que el centrado vertical funcione */ 
     padding-left: 20px; 
@@ -196,7 +206,7 @@ header {
 }
 
 .hero-text .main-title {
-    font-size: 7vw;
+    font-size: 5.5vw;
     line-height: 6vw;
     font-family: montserrat;
     font-style: italic;
@@ -215,6 +225,7 @@ header {
 
 .section2 {
     margin: auto;
+    margin-top: -100px;
     width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -248,7 +259,13 @@ header {
     justify-content: center; /* Centrado horizontal del h2 */
     align-items: center;    /* Centrado vertical del h2 */
 }
-
+.place3{
+    border: none;
+}
+.place4 {
+    align-items: flex-start;
+    padding-top: 10%;
+}
 
 
 .place1 .circle{
@@ -268,7 +285,8 @@ header {
     padding: 15px; /* Grosor del borde */
     background: linear-gradient(
         to left,
-        #141414,
+        #141414 0%,
+         #141414 20%,
         #732689
     );
     -webkit-mask:
@@ -277,6 +295,53 @@ header {
     -webkit-mask-composite: xor; /* Para recortar el centro */
             mask-composite: exclude; 
     z-index: -1;
+}
+
+.place4 h2{
+   font-size: 2.5vw;
+   font-style: italic;
+
+}
+
+.big-text-web .websites{
+    font-family: mango grotesque web;
+    font-size: 41.5vw;
+    margin-left: -3%;
+    margin-top: -31%;
+    position: relative;
+    line-height: 41vw;
+    color: var(--purple-color);
+}
+
+.carrousel-words-container{
+    margin-top: -20%;
+    width:100%;
+    overflow: hidden; /*ocultar todo lo que se sale*/
+    white-space: nowrap; /*evita saltos de línea dentro del carrusel*/
+}
+.carrousel-words{
+    display: flex;
+    animation: scroll-loop 15s linear infinite;
+    width: max-content; 
+}
+}
+.carrousel-words p{
+    display: inline-block;
+    padding-right: 25px; /*espacio entre cada palabra*/
+    font-style: italic;
+    color: white;
+    font-size: 3vw;
+    line-height: 3vw;
+    color: var(--yellow)
+}
+
+@keyframes scroll-loop {
+    0% {
+        transform: translateX(0%); /* Inicia en la posición normal */
+    }
+    100% {
+        transform: translateX(-50%); /* Se mueve el ancho de la primera copia */
+    }
 }
 
 }
