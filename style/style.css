@@ -235,6 +235,12 @@ header {
     grid-template-rows: auto;
     background-color: var(--grid-line-color);
     padding: 1px;
+    -webkit-mask-image: linear-gradient(
+        to bottom, 
+        white 0%,
+        white 65%,
+        transparent 100%
+    );
 }
 
 .section2 .estlame{
@@ -345,5 +351,130 @@ header {
     }
 }
 
+.section3 {
+
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1px;
+    padding: 1px;
+
 }
 
+.section3 .container-left{
+    background-color: #5b21b6;
+    width: 50%;
+}
+.section3 .container-right{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.intro-text,
+.tools-card,
+.tech-card,
+.backend-card{
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    padding: 20%;
+}
+
+.tools-card p, .tech-card p, .backend-card p{
+    font-style: italic;
+    font-size: 1.7vw;
+    line-height: 1.7vw;
+
+}
+.tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
+    padding: 10%;
+}
+
+.intro-text p{
+    font-size: 1.8vw;
+    font-style: italic;
+}
+
+.tools-card .card-color{
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 8%;
+    border-top-right-radius: 8%;
+    border-bottom-left-radius: 40%;
+    border-bottom-right-radius: 0%;
+       background-image: linear-gradient(
+    
+        to top left, 
+        #141414 5%, 
+        #732689 100%       
+    );
+}
+
+.tools-card .card-color div{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /*apilar*/
+    justify-content: center; /*abajo*/
+    align-items: flex-end; /*derecha*/
+}
+
+.tech-card .card-color{
+        width: 100%;
+        height: 100%;
+    background-image: linear-gradient(
+        
+        /* 1. Definir el Ángulo Diagonal */
+        to bottom right, /* Va de abajo a la izquierda hacia arriba a la derecha (45 grados) */
+        
+        /* 2. Primer Color (Mitad Inferior-Izquierda) */
+        #732689 0%, 
+        #FFFB8B 50%,        /* El color Rojo se mantiene sólido hasta el 50% de la diagonal */
+        
+        /* 3. Segundo Color (Mitad Superior-Derecha) */
+        #141414 50%,       /* El color Azul comienza inmediatamente en el 50% */
+       #141414 100%       /* Y se mantiene sólido hasta el final */
+    );
+}
+
+.tech-card .card-color div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.backend-card{
+    position: relative;
+   
+}
+.backend-card div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    z-index: 1;
+}
+.backend-card .card-color{
+    position: absolute;
+    margin-top: -55%;
+    margin-left: 5%;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    z-index: -1;
+
+    background-image: linear-gradient(
+    
+        to top, 
+        #141414 0%, 
+        #732689 100%       
+    );
+}
