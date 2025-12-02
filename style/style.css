@@ -20,7 +20,8 @@
 
 @font-face{
  font-family: 'Mango Grotesque Web';
- src: url(../fonts/MangoGrotesque-ExtBdIta.ttf)
+ src: url(../fonts/MangoGrotesque-ExtBdIta.ttf);
+ src: url(../fonts/MangoGrotesque-BoldItalic.ttf)
 }
 
 /* Reset básico */
@@ -40,104 +41,6 @@ body {
 }
 
 
-
-/*----------------------*/
-/*----------------------*/
-@media (min-width: 576px){
-/*----------------------*/
-/*----------------------*/
-
-
-header {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background-color: black;
-    position: fixed;
-}
-
-.hero-container {
-    margin: 0 auto;
-    /* Necesitas una altura para que el centrado vertical funcione */
-    min-height: 80vh; 
-    padding: 0 20px; 
-    display: grid; 
-}
-
-.hero-text,
-.image-wrapper {
-    grid-column: 1 / 2; /* De la línea 1 a la 2 (ocupa 1 columna) */
-    grid-row: 1 / 2;    /* De la línea 1 a la 2 (ocupa 1 fila) */
-}
-
-.image-wrapper {
-    display: flex;
-    justify-content: flex-end; /* Alinea la imagen a la derecha */
-    align-items: center; 
-    padding-right: 5%;
-}
-
-.hero-text {
-    display: flex;
-    flex-direction: column; 
-
-    /* CLAVE para centrar verticalmente: */
-    align-items: flex-start; /* Asegura que el texto se alinee a la izquierda dentro del contenedor Flex */
-    justify-content: center; /* Centra todo el contenido (el bloque de texto) verticalmente */
-    
-    padding-left: 5%; 
-
-    z-index: 2; 
-}
-
-/* Estilo de la imagen de Santiago */
-.santiago-photo {
-   /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
-       pero nunca será más ancha que 30rem */
-    width: clamp(15rem, 30%, 30rem);
-    background-color: #5b21b6;
-    /* Ajusta según el diseño */
-    display: flex;
-    z-index: 1;
-    /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
-}
-
-.hero-text .greeting {
-    margin-bottom: 1rem;
-    font-size: 2.5vw;
-    font-family: montserrat;
-    font-style: italic;
-    font-weight: 700;
-    color: var(--yellow);
-}
-
-.hero-text .main-title {
-    font-size: 7vw;
-    line-height: 6vw;
-    font-family: montserrat;
-    font-style: italic;
-    font-weight: 900;
-    color: var(--purple-color);
-}
-
-.hero-text .subtitle {
-    padding-top: 1.5rem;
-    font-family: montserrat;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 1.6vw;
-    line-height: 2vw;
-}
-}
-
-
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-@media (min-width: 768px){
-
 header {
     top: 0;
     left: 0;
@@ -149,6 +52,44 @@ header {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
+
+.header-content{
+    display: flex;
+    align-items: end;
+    justify-content: right;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.header-content p{
+    font-size: 1.1vw;
+    padding: 0 0.5%;
+    line-height: 70px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.header-content p a{
+    color: #fff;
+    text-decoration: none;
+    opacity: 75%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    transition-duration: 0.2s;
+}
+
+.header-content p a:hover{
+    opacity: 100%;
+    transition-duration: 0.2s;
+    text-shadow: 
+       
+        0 0 15px var(--purple-color); /* Sombra más difusa (el glow) */}
+
+
+/*----------------------------------------------------------*/
+/*----------------------------HERO--------------------------*/
+/*----------------------------------------------------------*/
+
 
 .hero-container {
     max-width: 80%;
@@ -224,6 +165,11 @@ header {
     font-size: 1.6vw;
     line-height: 2vw;
 }
+
+/*----------------------------------------------------------*/
+/*---------------sección l'ame- WEBSITES--------------------*/
+/*----------------------------------------------------------*/
+
 
 .section2 {
     margin: auto;
@@ -307,13 +253,13 @@ header {
 .place4 h2{
    font-size: 2.5vw;
    font-style: italic;
-
 }
 
 .big-text-web .websites{
     font-family: mango grotesque web;
-    font-size: 41.5vw;
-    margin-left: -3%;
+    font-weight:900;
+    font-size: 42.5vw;
+    margin-left: -3.4%;
     margin-top: -31%;
     position: relative;
     line-height: 41vw;
@@ -331,7 +277,7 @@ header {
     animation: scroll-loop 15s linear infinite;
     width: max-content; 
 }
-}
+
 .carrousel-words p{
     display: inline-block;
     padding-right: 25px; /*espacio entre cada palabra*/
@@ -342,7 +288,7 @@ header {
     color: var(--yellow)
 }
 
-@keyframes scroll-loop {
+@keyframes scroll-loop { /*carrusel*/
     0% {
         transform: translateX(0%); /* Inicia en la posición normal */
     }
@@ -351,8 +297,13 @@ header {
     }
 }
 
-.section3 {
 
+/*----------------------------------------------------------*/
+/*---------------sección tools / tech-----------------------*/
+/*----------------------------------------------------------*/
+
+
+.section3 {
     margin-top: 10%;
     margin-left: 10%;
     width: 80%;
@@ -361,18 +312,30 @@ header {
     align-items: flex-start;
     gap: 1px;
     padding: 1px;
-
 }
 
-.section3 .container-left{
-    background-color: #5b21b6;
+.section3 .container-left {
     width: 50%;
+    padding-top: 10%;
 }
-.section3 .container-right{
+
+.container-left h2{
+    font-size: 2.5vw;
+    font-style: italic;
+    line-height: 2.5vw;
+    font-weight: 800;
+}
+
+.container-left .competences{
+    margin-left: 10%;
+}
+
+.section3 .container-right {
     width: 50%;
     display: flex;
     flex-direction: column;
 }
+
 .intro-text,
 .tools-card,
 .tech-card,
@@ -382,19 +345,26 @@ header {
     padding: 20%;
 }
 
-.tools-card p, .tech-card p, .backend-card p{
-    font-style: italic;
-    font-size: 1.7vw;
-    line-height: 1.7vw;
-
-}
-.tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
-    padding: 10%;
+.intro-text{
+    padding: 20%;
+    display: flex;
+    align-items: center;
 }
 
 .intro-text p{
     font-size: 1.8vw;
     font-style: italic;
+}
+
+.tools-card p, .tech-card p, .backend-card p{
+    font-style: italic;
+    font-size: 1.7vw;
+    line-height: 1.7vw;
+    font-weight: 400;
+}
+
+.tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
+    padding: 10%;
 }
 
 .tools-card .card-color{
@@ -422,17 +392,34 @@ header {
     align-items: flex-end; /*derecha*/
 }
 
+.tech-card{
+    position: relative;
+}
+
 .tech-card .card-color{
         width: 100%;
         height: 100%;
+        z-index: 3;
+        background-image: linear-gradient(
+            to top right,
+            var(--purple-color) 0%,
+            var(--yellow) 60%
+        );
+}
+
+.tech-card .triangulo{
+    position: absolute;
+    top:20.05%;
+    width: 60%;
+    height: 60%;
+    z-index: 4;
     background-image: linear-gradient(
         
         /* 1. Definir el Ángulo Diagonal */
         to bottom right, /* Va de abajo a la izquierda hacia arriba a la derecha (45 grados) */
         
-        /* 2. Primer Color (Mitad Inferior-Izquierda) */
-        #732689 0%, 
-        #FFFB8B 50%,        /* El color Rojo se mantiene sólido hasta el 50% de la diagonal */
+       rgba(255, 255, 255, 0) 0%, /* #732689 con transparencia total (0) */
+        rgba(255, 251, 139, 0) 50%, /* #FFFB8B con transparencia total (0) */
         
         /* 3. Segundo Color (Mitad Superior-Derecha) */
         #141414 50%,       /* El color Azul comienza inmediatamente en el 50% */
@@ -447,12 +434,34 @@ header {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    z-index: 5;
+}
+
+.tech-card .card-color p{
+    color: #141414;
+}
+
+.tech-card .circulo-tech{
+    position: absolute;
+    left: 57%;
+    top:57%;
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    z-index: 5;
+        background-image: linear-gradient(
+        60deg,
+        #141414 20%, 
+        #732689 100%       
+    );
+    
 }
 
 .backend-card{
     position: relative;
    
 }
+
 .backend-card div{
     width: 100%;
     height: 100%;
@@ -462,6 +471,7 @@ header {
     align-items: flex-start;
     z-index: 1;
 }
+
 .backend-card .card-color{
     position: absolute;
     margin-top: -55%;
@@ -470,11 +480,422 @@ header {
     height: 20vw;
     border-radius: 50%;
     z-index: -1;
-
     background-image: linear-gradient(
-    
         to top, 
         #141414 0%, 
         #732689 100%       
     );
 }
+
+/*----------------------------------------------------------*/
+/*---------------CV CV CV CV CV CV CV-----------------------*/
+/*----------------------------------------------------------*/
+
+.section4{
+    width: 80%;
+    background-color: #161616;
+    margin-right: 10%;
+    margin-left: 10%;
+    padding-bottom: 10%;
+}
+
+.section4 h2{
+    font-size: 2.5vw;
+    font-style: italic;
+    line-height: 2.5vw;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+}
+
+.container-universities{
+    margin-top: 2%;
+    padding-left: 10%;
+}
+
+.section4 .year{
+    font-size: 1vw;
+    line-height: 1vw;
+    padding-bottom: 1%;
+}
+.univ-country{
+    display: flex;
+    align-items: baseline;
+}
+.univ-country .university{
+    margin-bottom: 0.5%;
+    font-size: 1.4vw;
+    line-height: 1.4vw;
+    font-weight: 300;
+    font-style: italic;
+    color: #FFFB8B;
+}
+.univ-country .country{
+    font-size: 0.8vw;
+    padding-left: 1%;
+}
+.studies{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.7vw;
+    line-height: 1.7vw;
+    margin-bottom: 1,5%;
+}
+
+
+/*----------------------------------------------------------*/
+/*---------------------------MEME---------------------------*/
+/*----------------------------------------------------------*/
+
+
+.section5{
+    width: 100%;
+    height: 70vw;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: var(--purple-color);
+}
+
+.photo-bjork{
+    width:40%;
+    overflow: hidden;
+}
+
+.photo-bjork img{
+    width: 100%;
+}
+
+.text-bjork{
+    width: 21%;
+}
+
+.text-bjork p{
+    margin-left: 20%;
+    font-family: mango grotesque web;
+    font-size: 3vw;
+    line-height: 3vw;
+    letter-spacing: 0.2vw;
+    font-weight:500;
+    color: #FFFB8B;
+}
+
+/*----------------------------------------------------------*/
+/*--------------------------FOOTER--------------------------*/
+/*----------------------------------------------------------*/
+
+footer{
+    width: 100%;
+    background-color: #FFFB8B;
+    height: 30vw;
+    background-image: linear-gradient(
+        60deg, 
+        #141414 0%, 
+        #471853 70%, 
+        #FFFB8B 150% 
+    );
+    display: flex;
+    align-items: center;
+}
+.footer-content{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+}
+.me-info{
+    width: 50%;
+
+}
+.contact{
+    width:30%;
+    /*background-color: #161616;*/
+}
+.me-info p{
+   font-family: mango grotesque web;
+   font-weight: 200;
+   font-size: 2.5vw;
+   line-height: 2.5vw;
+   letter-spacing: 0.1vw;
+   text-align: end;
+   margin-right: 20%;
+}
+.me-info .me{
+    color: #FFFB8B; 
+    font-size: 3vw;   
+    line-height: 3vw;
+}
+.contact, .media{
+    font-style: italic;
+    font-size: 1.2vw;
+    line-height: 2vw;
+    text-align: end;
+    margin-right: 5vw;
+}
+.contact .title-contact{
+    margin-bottom: 0.5vw;
+    color: var(--yellow);
+}
+.media{
+    width: 20%;
+}
+.linkedin a, .behance a{
+    color: #f0f0f0;
+}
+.media .title-media{
+    margin-bottom: 0.5vw;
+    color: var(--yellow);
+}
+.media .prochainement{
+    font-size: 0.9vw;
+    line-height: 0.6vw;
+    color: #c7c7c7;
+
+}
+
+
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*//*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*//*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+@media (max-width: 950px){
+
+.header-content p{
+    font-size: 1.5vw;
+    padding: 0 0.5%;
+    line-height: 70px;
+    font-style: italic;
+}
+
+.santiago-photo {
+   /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
+       pero nunca será más ancha que 30rem */
+    width: clamp(15rem, 45%, 30rem);
+    height: auto;
+    background-color: #5b21b6;
+    /* Ajusta según el diseño */
+    display: flex;
+    z-index: 1;
+    /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
+}
+
+.hero-text .subtitle {
+    padding-top: 1.5rem;
+    font-family: montserrat;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.7vw;
+    line-height: 2vw;
+}
+/**/
+.container-left h2{
+    font-size: 3vw;
+    line-height: 3vw;
+}
+/**/
+.intro-text,
+.tools-card,
+.tech-card,
+.backend-card{             
+    padding: 10%;
+}
+/**/
+.intro-text{                
+    padding: 10%;
+    display: flex;
+    align-items: center;
+}
+/**/
+.intro-text p{             
+    font-size: 2.2vw;
+    font-style: italic;
+}
+/**/
+.tools-card p, .tech-card p, .backend-card p{   
+    font-size: 2.2vw;
+    line-height: 2.2vw;
+    font-weight: 400;
+}
+/**/
+.tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
+    padding: 10%;
+}
+/**/
+.tech-card .triangulo{
+    top:10.05%;
+    width: 80%;
+    height: 80%;
+}
+/**/
+.tech-card .circulo-tech{
+    position: absolute;
+    left: 57%;
+    top:57%;
+    width: 28%;
+    height: 28%;
+    border-radius: 50%;
+    z-index: 5;
+        background-image: linear-gradient(
+        60deg,
+        #141414 20%, 
+        #732689 100%       
+    );
+    
+}
+
+/**/
+.backend-card .card-color{
+    position: absolute;
+    margin-top: -73%;
+    margin-left: 6%;
+    width: 27vw;
+    height: 27vw;
+    border-radius: 50%;
+    z-index: -1;
+    background-image: linear-gradient(
+        to top, 
+        #141414 0%, 
+        #732689 100%       
+    );
+}
+
+
+/*----------------------------------------------------------*/
+/*---------------CV CV CV CV CV CV CV-----------------------*/
+/*----------------------------------------------------------*/
+
+.section4 h2{
+    font-size: 3vw;
+    line-height: 3vw;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+}
+
+.container-universities{
+    margin-top: 2%;
+    padding-left: 10%;
+}
+
+.section4 .year{
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+    padding-bottom: 1%;
+}
+
+.univ-country .university{
+    margin-bottom: 0.5%;
+    font-size: 1.8vw;
+    line-height: 1.8vw;
+}
+.univ-country .country{
+    font-size: 1.2vw;
+    padding-left: 1%;
+}
+.studies{
+    font-size: 2vw;
+    line-height: 2vw;
+    margin-bottom: 1,5%;
+}
+
+
+/*----------------------------------------------------------*/
+/*---------------------------MEME---------------------------*/
+/*----------------------------------------------------------*/
+
+
+.section5{
+    width: 100%;
+    height: 70vw;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: var(--purple-color);
+}
+
+.photo-bjork{
+    width:40%;
+    overflow: hidden;
+}
+
+.photo-bjork img{
+    width: 100%;
+}
+
+.text-bjork{
+    width: 23%;
+}
+
+.text-bjork p{;
+    font-size: 4.2vw;
+    line-height: 4.2vw;
+    letter-spacing: 0.2vw;
+    font-weight:500;
+    color: #FFFB8B;
+}
+/*----------------------------------------------------------*/
+/*--------------------------FOOTER--------------------------*/
+/*----------------------------------------------------------*/
+
+footer{
+    height: 620px;
+}
+.footer-content{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.me-info p{
+   font-size: 3.5vw;
+   line-height: 3.5vw;
+   letter-spacing: 0.2vw;
+   margin-right: 20%;
+}
+.me-info .me{
+    font-size: 4.5vw;   
+    line-height: 4.5vw;
+}
+.contact, .media{
+    font-style: italic;
+    font-size: 1.7vw;
+    line-height: 2.3vw;
+    text-align: end;
+    margin-right: 5vw;
+}
+.contact .title-contact{
+    margin-bottom: 0.7vw;
+    color: var(--yellow);
+}
+.media{
+    width: 20%;
+}
+.media .title-media{
+    margin-bottom: 0.5vw;
+}
+.media .prochainement{
+    font-size: 1.1vw;
+    line-height: 0.6vw;
+}
+
+}
+
+
+
