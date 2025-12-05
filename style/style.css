@@ -135,9 +135,9 @@ body {
     display: flex;
     align-items: center; /* Alineación vertical */
     justify-content: flex-end; /* Alinear a la derecha */
-    width: 40%;
+    width: 50%;
     height: 100%;
-    margin-right: 10%;
+    margin-right: 5%;
 }
 
 /* Estilos para la lista de navegación (desktop) */
@@ -145,14 +145,16 @@ body {
     display: flex; 
     list-style: none;
     padding: 0;
-    margin: 0;
     height: 100%; /* Para que los enlaces ocupen toda la altura */
+
+
 }
 
 .nav-list li {
+    height: 100%;
     font-style: italic;
     font-weight: 500;
-    padding: 0 0.5%;
+    padding:0;
     /* Centrar texto verticalmente con line-height igual a la altura del header */
     line-height: 70px; 
     white-space: nowrap; /* Evita que los enlaces se rompan */
@@ -160,10 +162,12 @@ body {
 
 /* Estilos de los separadores "/" */
 .nav-list li:not(:last-child)::after {
-    content: "/";
+    content: "|";
     color: #fff;
     opacity: 50%;
-    margin-left: 0.5%;
+    margin: 0 0.5%;
+    font-style: normal;
+    font-size: 1.2vw;
 }
 
 .nav-list a {
@@ -173,12 +177,69 @@ body {
     text-decoration: none;
     opacity: 75%;
     transition: opacity 0.2s, text-shadow 0.2s;
+    padding: 0 10px;
+    height: 100%;
 }
 
 .nav-list a:hover {
     opacity: 100%;
     text-shadow: 0 0 15px var(--purple-color);
 }
+.lang {
+    display: flex;
+    align-items: center;
+    margin-left: 15px; 
+    height: auto; 
+    line-height: normal; 
+    padding: 0;
+    /* El separador siempre debe estar dentro del <a> para que parezca un botón */
+}
+
+/* Contenedor del Botón de Idioma */
+.lang a {
+    display: flex;
+    align-items: center;
+    border: var(--yellow-border) solid 2px;
+    border-radius: 9999px; 
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: 700;
+    padding: 8px 12px; 
+    opacity: 100%; /* El contenedor general no debe tener opacidad variable */
+    color: var(--text-color); /* Color del texto dentro del botón */
+    text-shadow: none; /* Aseguramos que no tenga la sombra por defecto */
+    transition: none; /* Quitamos la transición del hover de los enlaces principales */
+}
+
+/* Estilos para los códigos de idioma */
+.lang span {
+    padding: 0 2px;
+    cursor: pointer;
+    opacity: 75%; /* Opacidad por defecto, igual que los enlaces */
+    transition: opacity 0.2s, text-shadow 0.2s, background-color 0.2s, color 0.2s;
+    line-height: 1; /* Para que el fondo amarillo quede ajustado al texto */
+    display: inline-block; /* Necesario para que el padding y line-height funcionen bien */
+}
+
+/* Estilo para el idioma ACTIVO */
+.lang .active-lang {
+    color: var(--purple-color); /* Texto morado */
+    background-color: var(--yellow-border); /* Fondo amarillo */
+    padding: 2px 4px;
+    border-radius: 9999px; /* Esquinas muy redondeadas para el "active" */
+    margin: 0;
+    font-weight: 900;
+    opacity: 100%; /* El activo siempre es 100% visible */
+}
+
+/* Estilo HOVER para los idiomas (solo el que no está activo) */
+.lang span:not(.active-lang):hover {
+    opacity: 100%;
+    text-shadow: 0 0 10px var(--yellow-border); /* Sombra amarilla sutil en el texto */
+}
+        
+
+
 
 /* OCULTAR ELEMENTOS MÓVILES POR DEFECTO (Desktop) */
 .burger-container, .nav-mobile-overlay {
