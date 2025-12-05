@@ -39,9 +39,8 @@ body {
     overflow-x: hidden;
     /* Evitar scroll horizontal */
 }
-
-
-header {
+/*
+.header{
     top: 0;
     left: 0;
     width: 100%;
@@ -52,7 +51,11 @@ header {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
-
+*//*
+.header-mob{
+    display: none;
+}
+*//*
 .header-content{
     display: flex;
     align-items: end;
@@ -60,7 +63,7 @@ header {
     width: 80%;
     margin-left: 10%;
 }
-
+*//*
 .header-content p{
     font-size: 1.1vw;
     padding: 0 0.5%;
@@ -69,6 +72,7 @@ header {
     font-weight: 500;
 }
 
+*//*
 .header-content p a{
     color: #fff;
     text-decoration: none;
@@ -77,13 +81,111 @@ header {
     padding-bottom: 25px;
     transition-duration: 0.2s;
 }
-
+*//*
 .header-content p a:hover{
     opacity: 100%;
     transition-duration: 0.2s;
     text-shadow: 
        
-        0 0 15px var(--purple-color); /* Sombra más difusa (el glow) */}
+        0 0 15px var(--purple-color); /* Sombra más difusa (el glow) */
+ /*  }*/
+
+ .header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(69, 6, 84, 0.8);
+    position: fixed;
+    z-index: 1000;
+    /* Efecto de desenfoque solicitado para el header de escritorio */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+
+}
+
+.logo{
+    width: 150px;
+    margin-left: 5%;
+    display: flex; 
+    justify-content: left;
+}
+
+.logo .logo-title{
+    padding-top: 5px;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: 600;
+    font-style: italic;    
+}
+
+.logo .logo-subtitle{
+    font-size: 1.13rem;
+    line-height: 1.8rem;
+    font-weight: 400;
+    font-style: italic;    
+}
+
+/* Contenedor del contenido principal del header */
+.header-content {
+    display: flex;
+    align-items: center; /* Alineación vertical */
+    justify-content: flex-end; /* Alinear a la derecha */
+    width: 40%;
+    height: 100%;
+    margin-right: 10%;
+}
+
+/* Estilos para la lista de navegación (desktop) */
+.nav-list {
+    display: flex; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%; /* Para que los enlaces ocupen toda la altura */
+}
+
+.nav-list li {
+    font-style: italic;
+    font-weight: 500;
+    padding: 0 0.5%;
+    /* Centrar texto verticalmente con line-height igual a la altura del header */
+    line-height: 70px; 
+    white-space: nowrap; /* Evita que los enlaces se rompan */
+}
+
+/* Estilos de los separadores "/" */
+.nav-list li:not(:last-child)::after {
+    content: "/";
+    color: #fff;
+    opacity: 50%;
+    margin-left: 0.5%;
+}
+
+.nav-list a {
+    /* Usamos 'clamp' para tener un tamaño flexible pero limitado entre 14px y 18px */
+    font-size: clamp(14px, 1.1vw, 18px); 
+    color: #fff;
+    text-decoration: none;
+    opacity: 75%;
+    transition: opacity 0.2s, text-shadow 0.2s;
+}
+
+.nav-list a:hover {
+    opacity: 100%;
+    text-shadow: 0 0 15px var(--purple-color);
+}
+
+/* OCULTAR ELEMENTOS MÓVILES POR DEFECTO (Desktop) */
+.burger-container, .nav-mobile-overlay {
+    display: none;
+}
+
+
 
 
 /*----------------------------------------------------------*/
@@ -678,12 +780,114 @@ footer{
 /*------------------------------------*/
 @media (max-width: 950px){
 
-.header-content p{
-    font-size: 1.5vw;
-    padding: 0 0.5%;
-    line-height: 70px;
-    font-style: italic;
-}
+
+            /* OCULTAR LA NAVEGACIÓN DE ESCRITORIO */
+            .header-content {
+                display: none;
+            }
+
+            /* HABILITAR EL DISPLAY PARA MOSTRAR EL LOGO Y LA HAMBURGUESA */
+            .header {
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 5%;
+                display: flex; /* Para alinear el logo y el botón de la hamburguesa */
+            }
+
+            /* LOGO/TÍTULO EN MÓVIL */
+            .header .logo-title {
+                color: white;
+                font-size: 1.2rem;
+                font-weight: 600;
+                text-decoration: none;
+                line-height: 70px;
+                opacity: 75%;
+            }
+
+            /* BOTÓN HAMBURGUESA (Contenedor y SVG) */
+            .burger-container {
+                display: block;
+                cursor: pointer;
+                padding: 10px;
+                width: 50px; 
+                height: 50px;
+                /* El CSS de la animación del SVG se agregará aquí más tarde */
+            }
+            
+            .burger-icon {
+                width: 100%;
+                height: 100%;
+                /* Asegura que el SVG herede el color si está configurado en el contenedor */
+                fill: white; 
+            }
+
+            /* MENÚ DESPLEGABLE (Overlay) */
+            .nav-mobile-overlay {
+                /* MOSTRAR EN MÓVIL (Aunque inicialmente oculto por JS) */
+                display: block; 
+                position: fixed;
+                top: 70px; /* Debajo del header fijo */
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 70px); 
+                background-color: rgba(69, 6, 84, 0.9); 
+                z-index: 999; 
+                
+                /* EFECTO BLUR SOLICITADO */
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                
+                /* Estado inicial: OCULTO (fuera de la vista) */
+                visibility: hidden;
+                opacity: 0;
+                transform: translateY(-100%);
+                /* Transiciones para la animación suave (aunque no sea JS) */
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            /* Contenido del menú desplegable */
+            .nav-mobile-overlay nav {
+                /* Centrado para la lista de enlaces */
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                height: 100%;
+                padding-top: 50px;
+            }
+
+            .nav-mobile-overlay .nav-list {
+                flex-direction: column; 
+                align-items: center;
+                text-align: center;
+                /* Resetear estilos de desktop */
+                height: auto; 
+            }
+
+            .nav-mobile-overlay .nav-list li {
+                width: 100%;
+                line-height: normal; 
+                padding: 15px 0;
+            }
+            
+            /* Ocultar los separadores en la vista móvil */
+            .nav-mobile-overlay .nav-list li:not(:last-child)::after {
+                content: none;
+            }
+
+            .nav-mobile-overlay .nav-list a {
+                font-size: 1.5rem; 
+                display: block;
+                width: 100%;
+                padding: 10px 0;
+            }
+            
+            /* ESTADO ABIERTO (Clase que pondrá el JS en el BODY) */
+            body.menu-open .nav-mobile-overlay {
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0); /* Desplegar hacia abajo */
+            }
+        }
 
 .santiago-photo {
    /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
@@ -710,6 +914,12 @@ footer{
     font-size: 3vw;
     line-height: 3vw;
 }
+
+.section2 {
+    margin: auto;
+    margin-top: -10%;
+}
+
 /**/
 .intro-text,
 .tools-card,
@@ -844,7 +1054,7 @@ footer{
     width: 23%;
 }
 
-.text-bjork p{;
+.text-bjork p{
     font-size: 4.2vw;
     line-height: 4.2vw;
     letter-spacing: 0.2vw;
@@ -894,8 +1104,62 @@ footer{
     font-size: 1.1vw;
     line-height: 0.6vw;
 }
+}
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*//*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*//*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+@media (max-width: 700px){
+
+
 
 }
 
 
 
+
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*//*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*//*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+@media (max-width: 440px){
+
+
+
+}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Responsivo - Desktop y Mobile</title>
+    <!-- Incluimos Tailwind CSS para estilos de base y facilidad de uso, 
+         aunque usaremos tu CSS específico para el header. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Definición de la variable de color, si la usas en el CSS */
+        :root {
+            --purple-color: #7b2c91; /* Un color morado para el glow */
+        }
+
+        /* ------------------------------------ */
+        /* ESTILOS BASE Y ESCRITORIO (>= 951px) */
+        /* ------------------------------------ */
+        .header {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: rgba(69, 6, 84, 0.8);
+            position: fixed;
+            z-index: 1000;
+            /* Efecto de desenfoque solicitado para el header de escritorio */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Contenedor del contenido principal del header */
+        .header-content {
+            display: flex;
+            align-items: center; /* Alineación vertical */
+            justify-content: flex-end; /* Alinear a la derecha */
+            width: 80%;
+            height: 100%;
+            margin-left: 10%;
+        }
+
+        /* Estilos para la lista de navegación (desktop) */
+        .nav-list {
+            display: flex; 
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 100%; /* Para que los enlaces ocupen toda la altura */
+        }
+
+        .nav-list li {
+            font-style: italic;
+            font-weight: 500;
+            padding: 0 0.5%;
+            /* Centrar texto verticalmente con line-height igual a la altura del header */
+            line-height: 70px; 
+            white-space: nowrap; /* Evita que los enlaces se rompan */
+        }
+
+        /* Estilos de los separadores "/" */
+        .nav-list li:not(:last-child)::after {
+            content: "/";
+            color: #fff;
+            opacity: 50%;
+            margin-left: 0.5%;
+        }
+
+        .nav-list a {
+            /* Usamos 'clamp' para tener un tamaño flexible pero limitado entre 14px y 18px */
+            font-size: clamp(14px, 1.1vw, 18px); 
+            color: #fff;
+            text-decoration: none;
+            opacity: 75%;
+            transition: opacity 0.2s, text-shadow 0.2s;
+        }
+
+        .nav-list a:hover {
+            opacity: 100%;
+            text-shadow: 0 0 15px var(--purple-color);
+        }
+
+        /* OCULTAR ELEMENTOS MÓVILES POR DEFECTO (Desktop) */
+        .burger-container, .nav-mobile-overlay {
+            display: none;
+        }
+
+
+        /* ------------------------------------ */
+        /* MEDIA QUERY: MÓVIL (<= 950px) */
+        /* ------------------------------------ */
+        @media (max-width: 950px) {
+            
+            /* OCULTAR LA NAVEGACIÓN DE ESCRITORIO */
+            .header-content {
+                display: none;
+            }
+
+            /* HABILITAR EL DISPLAY PARA MOSTRAR EL LOGO Y LA HAMBURGUESA */
+            .header {
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 5%;
+                display: flex; /* Para alinear el logo y el botón de la hamburguesa */
+            }
+
+            /* LOGO/TÍTULO EN MÓVIL */
+            .header .logo-title {
+                color: white;
+                font-size: 1.2rem;
+                font-weight: 600;
+                text-decoration: none;
+                line-height: 70px;
+                opacity: 75%;
+            }
+
+            /* BOTÓN HAMBURGUESA (Contenedor y SVG) */
+            .burger-container {
+                display: block;
+                cursor: pointer;
+                padding: 10px;
+                width: 50px; 
+                height: 50px;
+                /* El CSS de la animación del SVG se agregará aquí más tarde */
+            }
+            
+            .burger-icon {
+                width: 100%;
+                height: 100%;
+                /* Asegura que el SVG herede el color si está configurado en el contenedor */
+                fill: white; 
+            }
+
+            /* MENÚ DESPLEGABLE (Overlay) */
+            .nav-mobile-overlay {
+                /* MOSTRAR EN MÓVIL (Aunque inicialmente oculto por JS) */
+                display: block; 
+                position: fixed;
+                top: 70px; /* Debajo del header fijo */
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 70px); 
+                background-color: rgba(69, 6, 84, 0.9); 
+                z-index: 999; 
+                
+                /* EFECTO BLUR SOLICITADO */
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                
+                /* Estado inicial: OCULTO (fuera de la vista) */
+                visibility: hidden;
+                opacity: 0;
+                transform: translateY(-100%);
+                /* Transiciones para la animación suave (aunque no sea JS) */
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            /* Contenido del menú desplegable */
+            .nav-mobile-overlay nav {
+                /* Centrado para la lista de enlaces */
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                height: 100%;
+                padding-top: 50px;
+            }
+
+            .nav-mobile-overlay .nav-list {
+                flex-direction: column; 
+                align-items: center;
+                text-align: center;
+                /* Resetear estilos de desktop */
+                height: auto; 
+            }
+
+            .nav-mobile-overlay .nav-list li {
+                width: 100%;
+                line-height: normal; 
+                padding: 15px 0;
+            }
+            
+            /* Ocultar los separadores en la vista móvil */
+            .nav-mobile-overlay .nav-list li:not(:last-child)::after {
+                content: none;
+            }
+
+            .nav-mobile-overlay .nav-list a {
+                font-size: 1.5rem; 
+                display: block;
+                width: 100%;
+                padding: 10px 0;
+            }
+            
+            /* ESTADO ABIERTO (Clase que pondrá el JS en el BODY) */
+            body.menu-open .nav-mobile-overlay {
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0); /* Desplegar hacia abajo */
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+    <header class="header">
+        <!-- Título/Logo para la versión móvil (Asegúrate de cambiar 'Mon Portfolio' por tu título real) -->
+        <a href="index.html" class="logo-title">Mon Portfolio</a>
+        
+        <!-- Icono Hamburguesa (visible sólo en <950px) -->
+        <div class="burger-container" id="burger-toggle">
+            <!-- Carga del SVG. Asegúrate de que esta ruta sea correcta: img/burger.svg -->
+            <img src="img/burger.svg" alt="Menú" class="burger-icon" />
+        </div>
+
+        <!-- NAVEGACIÓN PRINCIPAL (VISIBLE EN DESKTOP) -->
+        <nav class="header-content" aria-label="Navegación Principal Desktop">
+            <ul class="nav-list">
+                <li><a href="index.html">ce que j'aime faire</a></li>
+                <li><a href="index.html">competénces</a></li>
+                <li><a href="index.html">études</a></li>
+                <li><a href="index.html">méme</a></li>
+                <li><a href="index.html">contacte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MENÚ DESPLEGABLE (Mobile Overlay - se muestra en <950px) -->
+    <div class="nav-mobile-overlay" id="mobile-menu">
+        <nav aria-label="Navegación Móvil Desplegada">
+            <!-- Usamos la misma lista de enlaces para evitar duplicidad de contenido -->
+            <ul class="nav-list">
+                <li><a href="index.html">ce que j'aime faire</a></li>
+                <li><a href="index.html">competénces</a></li>
+                <li><a href="index.html">études</a></li>
+                <li><a href="index.html">méme</a></li>
+                <li><a href="index.html">contacte</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Contenido de ejemplo -->
+    <main class="pt-24 px-6 md:px-12 text-gray-300">
+        <h1 class="text-4xl font-bold mb-4">Contenido de la Página</h1>
+        <p class="mb-4">
+            ¡Redimensiona la ventana a menos de 950px para ver el menú hamburguesa! Al hacer clic, 
+            verás el menú desplegable con el efecto de desenfoque en el fondo.
+        </p>
+        <div class="h-[150vh] bg-gray-800 p-8 rounded-lg shadow-xl">
+            <p>Este es el contenido para probar el scroll.</p>
+        </div>
+    </main>
+
+    <script>
+        // Lógica de Toggle BÁSICA para abrir y cerrar el menú
+        const burgerButton = document.getElementById('burger-toggle');
+        const body = document.body;
+
+        if (burgerButton) {
+            burgerButton.addEventListener('click', () => {
+                // Alterna la clase 'menu-open' en el body.
+                // El CSS con 'backdrop-filter' y 'transform' hace la magia visual.
+                body.classList.toggle('menu-open');
+            });
+        }
+        
+        // Cierra el menú al hacer clic en un enlace (Mejora la UX en móvil)
+        const mobileLinks = document.querySelectorAll('.nav-mobile-overlay a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Solo si el menú está abierto, lo cierra
+                if (body.classList.contains('menu-open')) {
+                    body.classList.remove('menu-open');
+                }
+            });
+        });
+
+        // Asegura que el menú móvil se oculte si el usuario agranda la ventana a desktop
+        function handleResize() {
+            if (window.innerWidth > 950) {
+                if (body.classList.contains('menu-open')) {
+                    body.classList.remove('menu-open');
+                }
+            }
+        }
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('load', handleResize);
+    </script>
+</body>
+</html>
