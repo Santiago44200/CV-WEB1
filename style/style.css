@@ -18,6 +18,16 @@
     --h2-font-color-dkt: white;*/
 }
 
+ ::selection {
+    background-color: #e09625; /* Amarillo muy claro */
+    color: #450654;
+}
+
+::-moz-selection {
+    background-color: #e09625;
+    color: #450654;
+}
+
 @font-face{
  font-family: 'Mango Grotesque Web';
  src: url(../fonts/MangoGrotesque-ExtBdIta.ttf);
@@ -95,96 +105,104 @@ body {
     left: 0;
     width: 100%;
     height: 70px;
-    background-color: rgba(69, 6, 84, 0.8);
+    background-color: rgba(69, 6, 84, 0.65);
     position: fixed;
     z-index: 1000;
-    /* Efecto de desenfoque solicitado para el header de escritorio */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    
     display: flex;
-    flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
-
 }
 
-.logo{
-    width: 150px;
-    margin-left: 5%;
-    display: flex; 
-    justify-content: left;
+/* --- LOGO --- */
+.logo {
+    margin-left: 5%; 
+    line-height: 1.2;
 }
 
-.logo .logo-title{
-    padding-top: 5px;
+.logo a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.logo .logo-title {
     font-size: 1.4rem;
     line-height: 1.4rem;
     font-weight: 600;
     font-style: italic;    
 }
 
-.logo .logo-subtitle{
-    font-size: 1.13rem;
-    line-height: 1.8rem;
+.logo .logo-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.1rem;
     font-weight: 400;
     font-style: italic;    
 }
 
-/* Contenedor del contenido principal del header */
+/* --- NAVEGACIÓN DESKTOP --- */
 .header-content {
     display: flex;
-    align-items: center; /* Alineación vertical */
-    justify-content: flex-end; /* Alinear a la derecha */
-    width: 50%;
-    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    
+    width: 70%; 
     margin-right: 5%;
+    height: 100%;
 }
 
-/* Estilos para la lista de navegación (desktop) */
 .nav-list {
     display: flex; 
     list-style: none;
     padding: 0;
-    height: 100%; /* Para que los enlaces ocupen toda la altura */
-
-
+    margin: 0;
+    height: 100%;
+    align-items: center; 
 }
 
 .nav-list li {
-    height: 100%;
     font-style: italic;
     font-weight: 500;
-    padding:0;
-    /* Centrar texto verticalmente con line-height igual a la altura del header */
-    line-height: 70px; 
-    white-space: nowrap; /* Evita que los enlaces se rompan */
+    padding: 0; 
+    /* Se elimina line-height: 70px; para usar solo Flexbox para el centrado vertical */
+    white-space: nowrap; 
+    display: flex; 
+    align-items: center; /* Centra verticalmente el contenido (el <a>) */
+    height: 100%; /* Ocupa los 70px de alto */
 }
 
-/* Estilos de los separadores "/" */
-.nav-list li:not(:last-child)::after {
-    content: "|";
-    color: #fff;
-    opacity: 50%;
-    margin: 0 0.5%;
-    font-style: normal;
-    font-size: 1.2vw;
-}
-
+/* Enlaces de Navegación Estándar */
 .nav-list a {
-    /* Usamos 'clamp' para tener un tamaño flexible pero limitado entre 14px y 18px */
+    padding: 0 0.5em; 
     font-size: clamp(14px, 1.1vw, 18px); 
-    color: #fff;
+    color: var(--text-color);
     text-decoration: none;
     opacity: 75%;
     transition: opacity 0.2s, text-shadow 0.2s;
-    padding: 0 10px;
-    height: 100%;
+    
+    /* Clave para que el área de clic cubra toda la altura del LI (y por ende, del header) */
+    display: flex; /* Usamos flex para centrar el texto dentro del 'a' */
+    align-items: center; /* Centra el texto verticalmente */
+    height: 100%; 
+    line-height: normal; /* Aseguramos que no interfiera */
 }
 
+/* RESTAURAMOS LA REGLA: Hover independiente para cada enlace principal */
 .nav-list a:hover {
     opacity: 100%;
     text-shadow: 0 0 15px var(--purple-color);
 }
+
+/* Ajustes para el espaciado de los separadores - Solo para LI que no son el botón 'lang' */
+.nav-list li:not(.lang):not(:last-child)::after {
+    content: "/";
+    color: var(--text-color);
+    opacity: 50%;
+    margin: 0 0.6em; 
+}
+
+/* --- ESTILOS DEL BOTÓN DE LENGUAJE --- */
 .lang {
     display: flex;
     align-items: center;
@@ -192,7 +210,6 @@ body {
     height: auto; 
     line-height: normal; 
     padding: 0;
-    /* El separador siempre debe estar dentro del <a> para que parezca un botón */
 }
 
 /* Contenedor del Botón de Idioma */
@@ -205,10 +222,14 @@ body {
     font-size: 0.9em;
     font-weight: 700;
     padding: 8px 12px; 
-    opacity: 100%; /* El contenedor general no debe tener opacidad variable */
-    color: var(--text-color); /* Color del texto dentro del botón */
-    text-shadow: none; /* Aseguramos que no tenga la sombra por defecto */
-    transition: none; /* Quitamos la transición del hover de los enlaces principales */
+    opacity: 100%; 
+    color: var(--text-color);
+    text-shadow: none; 
+    transition: none; 
+    cursor: default;
+    /* Estos enlaces ya no necesitan ocupar toda la altura del header, solo el padding vertical de 8px */
+    height: auto; 
+    line-height: normal;
 }
 
 /* Estilos para los códigos de idioma */
@@ -216,26 +237,31 @@ body {
     padding: 0 2px;
     cursor: pointer;
     opacity: 75%; /* Opacidad por defecto, igual que los enlaces */
-    transition: opacity 0.2s, text-shadow 0.2s, background-color 0.2s, color 0.2s;
-    line-height: 1; /* Para que el fondo amarillo quede ajustado al texto */
-    display: inline-block; /* Necesario para que el padding y line-height funcionen bien */
+    transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+    line-height: 1;
+    display: inline-block; 
+    text-shadow: none !important; 
 }
 
-/* Estilo para el idioma ACTIVO */
-.lang .active-lang {
-    color: var(--purple-color); /* Texto morado */
-    background-color: var(--yellow-border); /* Fondo amarillo */
-    padding: 2px 4px;
-    border-radius: 9999px; /* Esquinas muy redondeadas para el "active" */
-    margin: 0;
+/* Estilo para el idioma ACTIVO (sin cambios) */
+.lang span.active {
+    color: var(--yellow); /* Texto morado */
     font-weight: 900;
-    opacity: 100%; /* El activo siempre es 100% visible */
+    opacity: 100%; 
+    cursor: default; 
 }
 
-/* Estilo HOVER para los idiomas (solo el que no está activo) */
-.lang span:not(.active-lang):hover {
+/* RESTAURAMOS LA REGLA: Hover independiente para el idioma inactivo */
+.lang span:not(.active):not(.separator):hover {
     opacity: 100%;
-    text-shadow: 0 0 10px var(--yellow-border); /* Sombra amarilla sutil en el texto */
+}
+
+/* Estilo del separador dentro del botón */
+.lang a .separator {
+    content: "·";
+    color: var(--text-color);
+    opacity: 75%;
+    margin: 0 4px;
 }
         
 
@@ -572,9 +598,10 @@ body {
 
 .tech-card .triangulo{
     position: absolute;
-    top:20.05%;
-    width: 60%;
-    height: 60%;
+    top:-0.95%;
+    left:10.05%;
+    width: 90%;
+    height: 90%;
     z-index: 4;
     background-image: linear-gradient(
         
@@ -1165,7 +1192,7 @@ footer{
     font-size: 1.1vw;
     line-height: 0.6vw;
 }
-}
+
 /*------------------------------------*/
 /*------------------------------------*/
 /*------------------------------------*/
