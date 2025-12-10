@@ -45,28 +45,39 @@
                 </li>
             </ul>
         </nav>
+
+    <!-- Ícono Hamburguesa (v<950px) -->
+    <div class="burger-container" id="burger-toggle">
+            <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 18L20 18" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 12L20 12" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 6L20 6" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+    </div>
+
     </header>
 
-  <!-- Icono Hamburguesa (visible sólo en <950px) -->
-    <div class="burger-container" id="burger-toggle">
-        <!-- Carga del SVG. Asegúrate de que esta ruta sea correcta: img/burger.svg -->
-        <img src="img/burger.svg" alt="Menú" class="burger-icon" />
-    </div>
+        <!-- MENÚ DESPLEGABLE (Mobile Overlay - se muestra en <950px) -->
+            <div class="nav-mobile-overlay" id="mobile-menu">
+                <nav aria-label="Navegación Móvil Desplegada">
+                    <!-- Usamos la misma lista de enlaces para evitar duplicidad de contenido -->
+                    <ul class="nav-list">
+                        <li><a href="index.html">ce que j'aime faire</a></li>
+                        <li><a href="index.html">competénces</a></li>
+                        <li><a href="index.html">études</a></li>
+                        <li><a href="index.html">méme</a></li>
+                        <li><a href="index.html">contacte</a></li>
+                        <li class="lang">
+                            <a href="#" aria-label="Cambiar Idioma" id="lang-switch">
+                                <span id="lang-fr" class="active" data-lang="fr">FR</span>
+                                <span class="separator">·</span>
+                                <span id="lang-es" data-lang="es">ES</span>
+                    </ul>
+                </nav>
+            </div>
 
-    <!-- MENÚ DESPLEGABLE (Mobile Overlay - se muestra en <950px) -->
-    <div class="nav-mobile-overlay" id="mobile-menu">
-        <nav aria-label="Navegación Móvil Desplegada">
-            <!-- Usamos la misma lista de enlaces para evitar duplicidad de contenido -->
-            <ul class="nav-list">
-                <li><a href="index.html">ce que j'aime faire</a></li>
-                <li><a href="index.html">competénces</a></li>
-                <li><a href="index.html">études</a></li>
-                <li><a href="index.html">méme</a></li>
-                <li><a href="index.html">contacte</a></li>
-                <li class="lang"><a href="index.html">lang</a></li>
-            </ul>
-        </nav>
-    </div>
+
 
     <script>
         // Lógica de Toggle BÁSICA para abrir y cerrar el menú

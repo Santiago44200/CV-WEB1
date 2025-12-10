@@ -521,8 +521,7 @@ body {
 
 .section3 .container-right {
     width: 50%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
 }
 
 .intro-text,
@@ -695,6 +694,7 @@ body {
     line-height: 2.5vw;
     padding-top: 5%;
     padding-bottom: 5%;
+    font-weight: 800;
 
 }
 
@@ -708,11 +708,11 @@ body {
     line-height: 1vw;
     padding-bottom: 1%;
 }
-.univ-country{
+.section4 .univ-country{
     display: flex;
     align-items: baseline;
 }
-.univ-country .university{
+.section4 .univ-country .university{
     margin-bottom: 0.5%;
     font-size: 1.4vw;
     line-height: 1.4vw;
@@ -720,11 +720,11 @@ body {
     font-style: italic;
     color: #FFFB8B;
 }
-.univ-country .country{
+.section4 .univ-country .country{
     font-size: 0.8vw;
     padding-left: 1%;
 }
-.studies{
+.section4 .studies{
     font-style: italic;
     font-weight: 400;
     font-size: 1.7vw;
@@ -882,14 +882,8 @@ footer{
                 display: flex; /* Para alinear el logo y el botón de la hamburguesa */
             }
 
-            /* LOGO/TÍTULO EN MÓVIL */
-            .header .logo-title {
-                color: white;
-                font-size: 1.2rem;
-                font-weight: 600;
-                text-decoration: none;
-                line-height: 70px;
-                opacity: 75%;
+            .logo {
+                margin-left: 2%; 
             }
 
             /* BOTÓN HAMBURGUESA (Contenedor y SVG) */
@@ -897,16 +891,14 @@ footer{
                 display: block;
                 cursor: pointer;
                 padding: 10px;
-                width: 50px; 
-                height: 50px;
+                width: 70px; 
+                height: 70px;
                 /* El CSS de la animación del SVG se agregará aquí más tarde */
             }
             
-            .burger-icon {
+            .burger-container svg {
                 width: 100%;
                 height: 100%;
-                /* Asegura que el SVG herede el color si está configurado en el contenedor */
-                fill: white; 
             }
 
             /* MENÚ DESPLEGABLE (Overlay) */
@@ -914,21 +906,21 @@ footer{
                 /* MOSTRAR EN MÓVIL (Aunque inicialmente oculto por JS) */
                 display: block; 
                 position: fixed;
-                top: 70px; /* Debajo del header fijo */
-                left: 0;
-                width: 100%;
+                top: 69px; /* Debajo del header fijo */
+                left: 60%;
+                width: 40%;
                 height: calc(100vh - 70px); 
                 background-color: rgba(69, 6, 84, 0.9); 
                 z-index: 999; 
                 
-                /* EFECTO BLUR SOLICITADO */
+                /* EFECTO BACKGROUND BLUR HEADER*/
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
                 
                 /* Estado inicial: OCULTO (fuera de la vista) */
                 visibility: hidden;
                 opacity: 0;
-                transform: translateY(-100%);
+                transform: translateX(100%);
                 /* Transiciones para la animación suave (aunque no sea JS) */
                 transition: opacity 0.4s ease, transform 0.4s ease;
             }
@@ -954,18 +946,29 @@ footer{
             .nav-mobile-overlay .nav-list li {
                 width: 100%;
                 line-height: normal; 
-                padding: 15px 0;
+                padding: 0px 0;
+                
             }
             
-            /* Ocultar los separadores en la vista móvil */
+            .nav-mobile-overlay .nav-list li:hover {
+                width: 100%;
+                line-height: normal; 
+                color: #FFFB8B;
+            }
+            
+            /* Ocultar los separadores en móvil */
             .nav-mobile-overlay .nav-list li:not(:last-child)::after {
                 content: none;
+            }
+
+            .nav-mobile-overlay .nav-list .lang{
+                margin-top: 25%;
+                margin-left: 0;
             }
 
             .nav-mobile-overlay .nav-list a {
                 font-size: 1.5rem; 
                 display: block;
-                width: 100%;
                 padding: 10px 0;
             }
             
@@ -975,7 +978,18 @@ footer{
                 opacity: 1;
                 transform: translateY(0); /* Desplegar hacia abajo */
             }
-        }
+        
+
+
+.hero-container{
+    padding-left: 0; 
+    padding-right: 0;
+    padding-top: 70px;
+}
+
+.image-wrapper{
+    padding-right: 3.1%;
+}
 
 .santiago-photo {
    /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
@@ -1074,7 +1088,7 @@ footer{
         #732689 100%       
     );
 }
-
+}
 
 /*----------------------------------------------------------*/
 /*---------------CV CV CV CV CV CV CV-----------------------*/
@@ -1085,10 +1099,11 @@ footer{
     line-height: 3vw;
     padding-top: 5%;
     padding-bottom: 5%;
+    font-weight: 800;
 
 }
 
-.container-universities{
+.section4 .container-universities{
     margin-top: 2%;
     padding-left: 10%;
 }
@@ -1099,16 +1114,16 @@ footer{
     padding-bottom: 1%;
 }
 
-.univ-country .university{
+.section4 .university{
     margin-bottom: 0.5%;
-    font-size: 1.8vw;
-    line-height: 1.8vw;
+    font-size: 3vw;
+    line-height: 2vw;
 }
-.univ-country .country{
+.section4 .country{
     font-size: 1.2vw;
     padding-left: 1%;
 }
-.studies{
+.section4 .studies{
     font-size: 2vw;
     line-height: 2vw;
     margin-bottom: 1,5%;
@@ -1194,6 +1209,104 @@ footer{
 }
 
 /*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*//*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*//*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+/*------------------------------------*/
+@media (max-width: 768px){
+
+
+/*----------------------------------------------------------*/
+/*---------------------------ETUDES 768px---------------------------*/
+/*----------------------------------------------------------*/
+
+    .section4 h2{
+        font-size: 3vw;
+        line-height: 3vw;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        font-weight: 800;
+    
+    }
+    
+    .container-universities{
+        margin-top: 4%;
+    }
+    
+    .section4 .year{
+        font-size: 1.8vw;
+        line-height: 1.8vw;
+    }
+    
+    .section4 .university{
+        font-size: 2.4vw;
+        line-height: 2.4vw;
+    }
+    .section4 .country{
+        font-size: 1.5vw;
+    }
+    .section4 .studies{
+        font-size: 2.4vw;
+        line-height: 2.4vw;
+    }
+
+
+/*----------------------------------------------------------*/
+/*---------------------------MEME 768px---------------------------*/
+/*----------------------------------------------------------*/
+
+
+.section5{
+    width: 100%;
+    height: 90vw;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: var(--purple-color);
+}
+
+.photo-bjork{
+    width:50%;
+    overflow: hidden;
+}
+
+.photo-bjork img{
+    width: 100%;
+}
+
+.text-bjork{
+    width: 25%;
+}
+
+.text-bjork p{
+    font-size: 5.1vw;
+    line-height: 5.1vw;
+    letter-spacing: 0.2vw;
+    font-weight:500;
+    color: #FFFB8B;
+    margin-left: 10%;
+}
+
+
+
+}/*------------------------------------*/
 /*------------------------------------*/
 /*------------------------------------*/
 /*------------------------------------*/
