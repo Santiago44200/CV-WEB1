@@ -704,8 +704,8 @@ body {
 }
 
 .section4 .year{
-    font-size: 1vw;
-    line-height: 1vw;
+    font-size: 1.4vw;
+    line-height: 1.4vw;
     padding-bottom: 1%;
 }
 .section4 .univ-country{
@@ -792,23 +792,23 @@ footer{
     margin-left: 10%;
     margin-right: 10%;
     display: flex;
+    justify-content: space-between;
 }
 .me-info{
-    width: 50%;
-
+    width: 40%;
+    padding-right: 18%;
 }
 .contact{
-    width:30%;
+    width:40%;
     /*background-color: #161616;*/
 }
 .me-info p{
    font-family: mango grotesque web;
    font-weight: 200;
-   font-size: 2.5vw;
+   font-size: 2vw;
    line-height: 2.5vw;
    letter-spacing: 0.1vw;
    text-align: end;
-   margin-right: 20%;
 }
 .me-info .me{
     color: #FFFB8B; 
@@ -820,11 +820,10 @@ footer{
     font-size: 1.2vw;
     line-height: 2vw;
     text-align: end;
-    margin-right: 5vw;
+    margin: 0;
 }
 .contact .title-contact{
-    margin-bottom: 0.5vw;
-    color: var(--yellow);
+    color:#FFFB8B;
 }
 .media{
     width: 20%;
@@ -1011,11 +1010,15 @@ footer{
     font-size: 1.7vw;
     line-height: 2vw;
 }
-/**/
+
 .container-left h2{
     font-size: 3vw;
     line-height: 3vw;
 }
+
+/*----------------------------------------------------------*/
+/*-----------COMPETENCES COMPETENCES 950px------------------*/
+/*----------------------------------------------------------*/
 
 .section2 {
     margin: auto;
@@ -1088,10 +1091,10 @@ footer{
         #732689 100%       
     );
 }
-}
+
 
 /*----------------------------------------------------------*/
-/*---------------CV CV CV CV CV CV CV-----------------------*/
+/*---------------CV CV CV CV CV CV CV 950px-----------------------*/
 /*----------------------------------------------------------*/
 
 .section4 h2{
@@ -1109,17 +1112,17 @@ footer{
 }
 
 .section4 .year{
-    font-size: 1.5vw;
+    font-size: (0.7rem, 1.5vw, 2rem);
     line-height: 1.5vw;
     padding-bottom: 1%;
 }
 
-.section4 .university{
+.section4 .univ-country .university{
     margin-bottom: 0.5%;
-    font-size: 3vw;
+    font-size: 2vw;
     line-height: 2vw;
 }
-.section4 .country{
+.section4 .container-universities .country{
     font-size: 1.2vw;
     padding-left: 1%;
 }
@@ -1131,7 +1134,7 @@ footer{
 
 
 /*----------------------------------------------------------*/
-/*---------------------------MEME---------------------------*/
+/*---------------------------MEME 950 PX--------------------*/
 /*----------------------------------------------------------*/
 
 
@@ -1165,49 +1168,60 @@ footer{
     color: #FFFB8B;
 }
 /*----------------------------------------------------------*/
-/*--------------------------FOOTER--------------------------*/
+/*--------------------------FOOTER 950 PX-------------------*/
 /*----------------------------------------------------------*/
 
 footer{
     height: 620px;
 }
 .footer-content{
+    display: grid;
     width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    grid-template-columns: repeat (6, 1fr);
+}
+.me-info{
+    width: 80vw;
+    padding-right: 10vw;
 }
 .me-info p{
    font-size: 3.5vw;
    line-height: 3.5vw;
    letter-spacing: 0.2vw;
-   margin-right: 20%;
 }
+
 .me-info .me{
     font-size: 4.5vw;   
     line-height: 4.5vw;
 }
+
 .contact, .media{
     font-style: italic;
     font-size: 1.7vw;
     line-height: 2.3vw;
     text-align: end;
-    margin-right: 5vw;
 }
+
+.contact{
+    grid-column: 1/ span 2;
+}
+.media{
+    grid-column: 4/ span 2;
+}
+
 .contact .title-contact{
     margin-bottom: 0.7vw;
     color: var(--yellow);
 }
-.media{
-    width: 20%;
-}
+
 .media .title-media{
     margin-bottom: 0.5vw;
 }
+
 .media .prochainement{
     font-size: 1.1vw;
     line-height: 0.6vw;
 }
-
+}
 /*------------------------------------*/
 /*------------------------------------*/
 /*------------------------------------*/
@@ -1255,13 +1269,17 @@ footer{
         line-height: 1.8vw;
     }
     
-    .section4 .university{
-        font-size: 2.4vw;
-        line-height: 2.4vw;
+    .section4 .univ-country .university{
+        margin-bottom: 0.5%;
+        font-size: 2.3vw;
+        line-height: 2vw;
     }
-    .section4 .country{
-        font-size: 1.5vw;
+
+
+    .section4 .univ-country .country{
+        font-size: 1.4vw;
     }
+
     .section4 .studies{
         font-size: 2.4vw;
         line-height: 2.4vw;
@@ -1271,7 +1289,6 @@ footer{
 /*----------------------------------------------------------*/
 /*---------------------------MEME 768px---------------------------*/
 /*----------------------------------------------------------*/
-
 
 .section5{
     width: 100%;
@@ -1303,6 +1320,11 @@ footer{
     color: #FFFB8B;
     margin-left: 10%;
 }
+
+/*----------------------------------------------------------*/
+/*----------------------FOOTER 768px------------------------*/
+/*----------------------------------------------------------*/
+
 
 
 
