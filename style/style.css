@@ -740,16 +740,20 @@ body {
 
 .section5{
     width: 100%;
-    height: 70vw;
     display: flex;
     justify-content:center;
     align-items: center;
     background-color: var(--purple-color);
 }
 
+.text-bjork-mob{
+    display: none;
+}
+
 .photo-bjork{
     width:40%;
     overflow: hidden;
+    margin: 13% 0;
 }
 
 .photo-bjork img{
@@ -1144,26 +1148,17 @@ footer{
 /*----------------------------------------------------------*/
 
 
-.section5{
-    width: 100%;
-    height: 70vw;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    background-color: var(--purple-color);
-}
-
 .photo-bjork{
     width:40%;
     overflow: hidden;
 }
 
-.photo-bjork img{
-    width: 100%;
+.text-bjork-mob{
+    display: none;
 }
 
 .text-bjork{
-    width: 23%;
+    width: 26%;
 }
 
 .text-bjork p{
@@ -1301,27 +1296,17 @@ footer{
 /*---------------------------MEME 768px---------------------------*/
 /*----------------------------------------------------------*/
 
-.section5{
-    width: 100%;
-    height: 90vw;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    background-color: var(--purple-color);
-}
 
 .photo-bjork{
     width:50%;
     overflow: hidden;
+    margin: 13% 0;
 }
 
-.photo-bjork img{
-    width: 100%;
+.text-bjork-mob{
+    display: none;
 }
 
-.text-bjork{
-    width: 25%;
-}
 
 .text-bjork p{
     font-size: 5.1vw;
@@ -1406,35 +1391,323 @@ footer{
 
 
 
+/*----------------------------------------------------------*/
+/*---------------------------ETUDES 600px---------------------------*/
+/*----------------------------------------------------------*/
+.section4{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.section4 .container-universities{
+    padding-left:5%;
+    padding-right: 5%;
+}
+
+.section4 h2{
+    font-size: clamp(2rem, 4vw, 5rem) ;
+    line-height: 3vw;
+    margin: 10vw 0;
+    font-weight: 800;
+    text-align: center;
+}
+
+.section4 .year{
+    font-size: clamp(.8rem, 3vw, 5rem) ;
+    line-height: 1;
+}
+
+.section4 .univ-country .university{
+    font-size: clamp(0.9rem, 3vw, 5rem) ;
+    line-height: 1;
+    margin: 1.2vw 0;
+}
+
+
+.section4 .univ-country .country{
+    font-size: clamp(0.6rem, 2vw, 5rem) ;
+}
+
+.section4 .studies{
+    font-size: clamp(1rem, 3.5vw, 5rem) ;
+    line-height: 1;
+    margin-bottom: 10vw;
+}
+
+
+
+/*----------------------------------------------------------------*/
+/*---------------------------MEME 600px---------------------------*/
+/*----------------------------------------------------------------*/
+
+
+
+
+
+
+/*----------------------------------------------------------*/
+/*---------------sección tools / tech-----------------------*/
+/*----------------------------------------------------------*/
+
+
+.section3 {
+    margin-left: 5%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section3 .container-left {
+    width: 100%;
+    padding-top: 10%;
+}
+
+.container-left h2{
+    font-size: 2.5vw;
+    font-style: italic;
+    line-height: 2.5vw;
+    font-weight: 800;
+}
+
+.container-left .competences{
+    margin-left: 10%;
+}
+
+.section3 .container-right {
+    width: 100%;
+    display: grid;
+}
+
+.intro-text,
+.tools-card,
+.tech-card,
+.backend-card{
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    padding: 20%;
+}
+
+.intro-text{
+    padding: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.intro-text p{
+    font-size: 1.8vw;
+    font-style: italic;
+}
+
+.tools-card p, .tech-card p, .backend-card p{
+    font-style: italic;
+    font-size: 1.7vw;
+    line-height: 1.7vw;
+    font-weight: 400;
+}
+
+.tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
+    padding: 10%;
+}
+
+.tools-card .card-color{
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 8%;
+    border-top-right-radius: 8%;
+    border-bottom-left-radius: 40%;
+    border-bottom-right-radius: 0%;
+       background-image: linear-gradient(
+    
+        to top left, 
+        #141414 5%, 
+        #732689 100%       
+    );
+}
+
+.tools-card .card-color div{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /*apilar*/
+    justify-content: center; /*abajo*/
+    align-items: flex-end; /*derecha*/
+}
+
+.tech-card{
+    position: relative;
+}
+
+.tech-card .card-color{
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        background-image: linear-gradient(
+            to top right,
+            var(--purple-color) 0%,
+            var(--yellow) 60%
+        );
+}
+
+.tech-card .triangulo{
+    position: absolute;
+    top:-0.95%;
+    left:10.05%;
+    width: 90%;
+    height: 90%;
+    z-index: 4;
+    background-image: linear-gradient(
+        
+        /* 1. Definir el Ángulo Diagonal */
+        to bottom right, /* Va de abajo a la izquierda hacia arriba a la derecha (45 grados) */
+        
+       rgba(255, 255, 255, 0) 0%, /* #732689 con transparencia total (0) */
+        rgba(255, 251, 139, 0) 50%, /* #FFFB8B con transparencia total (0) */
+        
+        /* 3. Segundo Color (Mitad Superior-Derecha) */
+        #141414 50%,       /* El color Azul comienza inmediatamente en el 50% */
+       #141414 100%       /* Y se mantiene sólido hasta el final */
+    );
+}
+
+.tech-card .card-color div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    z-index: 5;
+}
+
+.tech-card .card-color p{
+    color: #141414;
+}
+
+.tech-card .circulo-tech{
+    position: absolute;
+    left: 57%;
+    top:57%;
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    z-index: 5;
+        background-image: linear-gradient(
+        60deg,
+        #141414 20%, 
+        #732689 100%       
+    );
+    
+}
+
+.backend-card{
+    position: relative;
+   
+}
+
+.backend-card div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    z-index: 1;
+}
+
+.backend-card .card-color{
+    position: absolute;
+    margin-top: -55%;
+    margin-left: 5%;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    z-index: -1;
+    background-image: linear-gradient(
+        to top, 
+        #141414 0%, 
+        #732689 100%       
+    );
 }
 
 
 
 
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*//*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*//*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-/*------------------------------------*/
-@media (max-width: 440px){
 
+/*-------------------------------------------------------------------*/
+/*-------------------------------------------------------------------*/
+/*-------------------------------------------------------------------*/
+
+    .section5{
+        flex-direction: column;
+    }
+    
+    .photo-bjork{
+        width:80%;
+        overflow: hidden;
+        margin-top: 20%;
+        margin-bottom: 5%;
+    }
+    
+    .text-bjork{
+        display: none;
+    }
+
+    .text-bjork-mob{
+        display:contents;
+        text-align: center;
+        color: #FFFB8B;
+        font-family: mango grotesque web;
+        font-size: clamp(2.2rem, 10vw, 3rem);
+        line-height: 1;
+        letter-spacing: 0.3vw;
+    }
+    .text-bjork-mob p{
+        margin-bottom: 16%;
+    }
+
+/*----------------------------------------------------------------*/
+/*---------------------------FOOTER 600px---------------------------*/
+/*----------------------------------------------------------------*/
+
+.me-info{
+    grid-column: 1 / 13;
+}
+
+.me-info .me{
+    font-size: clamp(3rem, 10vw, 6rem);
+}
+
+.me-info .profile{
+    font-size: clamp(2.2rem, 7vw, 6rem);
+}
+
+.contact{
+    grid-column: 1 / 13;
+}
+.media{
+    grid-column: 1 / 13;
+    margin-top: 10%;
+}
+
+.contact, .media{
+    font-size: clamp(1rem, 3vw, 6rem);
+    line-height: 1.8;
+    width: 100%;
+}
+
+.contact .title-contact{
+    margin-bottom: 0.7vw;
+}
+
+.media .title-media{
+    margin-bottom: 0.5vw;
+}
+
+.media .prochainement{
+    font-size: clamp(0.5rem, 2.2vw, 6rem);
+    line-height: 0.6vw;
+}
 
 
 }
