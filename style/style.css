@@ -277,7 +277,45 @@ body {
     display: none;
 }
 
+/*----------------------------------------------------------*/
+/*-------------distancias al header, navegación-------------*/
+/*----------------------------------------------------------*/
+#ceQueJaimeFaire{
+    scroll-margin-top: 115px; /* Distancia personalizada para Proyectos */
+}
+#mesCompetences{
+    scroll-margin-top: 200px; /* Distancia personalizada para Proyectos */
+}
+#etudes{
+    scroll-margin-top: -200px; /* Distancia personalizada para Proyectos */
+}
+#memeBjork{
+    scroll-margin-top: 0px; /* Distancia personalizada para Proyectos */
+}
+#contacte{
+    scroll-margin-top: 50px; /* Distancia personalizada para Proyectos */
+}
+/* 1. Desactivamos el smooth scroll global para que el salto sea limpio */
+html {
+    scroll-behavior: auto !important;
+}
 
+/* 2. Definimos la animación de 0.5s */
+@keyframes microSlide {
+    from {
+        opacity: 0.8;
+        transform: translateY(20px); /* Empieza un poco más abajo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);    /* Llega a su sitio */
+    }
+}
+
+/* 3. Clase que activa el efecto */
+.section-active-anim {
+    animation: microSlide 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
 
 
 /*----------------------------------------------------------*/
@@ -293,6 +331,7 @@ body {
     padding-right: 20px;
     padding-top: 70px;
     display: grid; 
+    z-index: 10;
 }
 
 .hero-text,
@@ -449,6 +488,7 @@ body {
 .place4 h2{
    font-size: 2.5vw;
    font-style: italic;
+   font-weight: 800;
 }
 
 .big-text-web .websites{
@@ -518,6 +558,11 @@ body {
 .section3 .container-left {
     width: 50%;
     padding-top: 10%;
+    position: -webkit-sticky; /* Soporte para Safari */
+    position: sticky;
+    top: 180px; /* Se detendrá a 120px del borde superior */
+    height: fit-content; /* Asegura que solo ocupe el espacio de su contenido */
+
 }
 
 .container-left h2{
@@ -534,6 +579,10 @@ body {
 .section3 .container-right {
     width: 50%;
     display: grid;
+}
+
+.mes-competences{
+    height: 20vw;
 }
 
 .intro-text,
@@ -693,8 +742,8 @@ body {
 /*----------------------------------------------------------*/
 
 .section4{
+    padding-top:20vw;
     width: 80%;
-    background-color: #161616;
     margin-right: 10%;
     margin-left: 10%;
     padding-bottom: 10%;
@@ -862,6 +911,13 @@ footer{
     line-height: 0.2vw;
     color: #c7c7c7;
 
+}
+
+
+@media (max-width: 1200px){
+#memeBjork{
+    scroll-margin-top: 7vw; /* Distancia personalizada para Proyectos */
+}
 }
 
 
@@ -1582,6 +1638,8 @@ footer{
     text-align: center;
     display: flex;
     align-items: center;
+    position: relative; /* Cambia de 'sticky' a 'relative' */
+    top: 0 !important;   /* Ignora los 120px que pusimos antes */
 }
 
 .container-left .mes-competences{

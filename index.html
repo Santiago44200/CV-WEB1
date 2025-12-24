@@ -24,7 +24,7 @@
 <body>
     <header class="header">
         <!-- Título/Logo para la versión móvil (Asegúrate de cambiar 'Mon Portfolio' por tu título real) -->
-        <div class="logo"> <a href="index.html">
+        <div class="logo"> <a href="#heroContainer">
             <p class="logo-title">SANTIAGO</p>
             <p class="logo-subtitle">DEV et UX/UI</p> </a>
         </div>
@@ -32,11 +32,11 @@
         <!-- NAVEGACIÓN PRINCIPAL (VISIBLE EN DESKTOP) -->
         <nav class="header-content" aria-label="Navegación Principal Desktop">
             <ul class="nav-list">
-                <li><a href="index.html">ce que j'aime faire</a></li>
-                <li><a href="index.html">competénces</a></li>
-                <li><a href="index.html">études</a></li>
-                <li><a href="index.html">méme</a></li>
-                <li><a href="index.html">contacte</a></li>
+                <li><a href="#ceQueJaimeFaire">ce que j'aime faire</a></li>
+                <li><a href="#mesCompetences">competénces</a></li>
+                <li><a href="#etudes">études</a></li>
+                <li><a href="#memeBjork">méme</a></li>
+                <li><a href="#contacte">contacte</a></li>
                 <li class="lang">
                     <a href="#" aria-label="Cambiar Idioma" id="lang-switch">
                         <span id="lang-fr" class="active" data-lang="fr">FR</span>
@@ -60,104 +60,25 @@
     </header>
 
         <!-- MENÚ DESPLEGABLE (Mobile Overlay - se muestra en <950px) -->
-            <div class="nav-mobile-overlay" id="mobile-menu">
-                <nav aria-label="Navegación Móvil Desplegada">
-                    <!-- Usamos la misma lista de enlaces para evitar duplicidad de contenido -->
-                    <ul class="nav-list">
-                        <li><a href="index.html">ce que j'aime faire</a></li>
-                        <li><a href="index.html">competénces</a></li>
-                        <li><a href="index.html">études</a></li>
-                        <li><a href="index.html">méme</a></li>
-                        <li><a href="index.html">contacte</a></li>
-                        <li class="lang">
-                            <a href="#" aria-label="Cambiar Idioma" id="lang-switch">
-                                <span id="lang-fr" class="active" data-lang="fr">FR</span>
-                                <span class="separator">·</span>
-                                <span id="lang-es" data-lang="es">ES</span>
-                            </a>
-                    </ul>
-                </nav>
-            </div>
-
-
-
-    <script>
-        // Aseguramos que el DOM esté listo
-    document.addEventListener('DOMContentLoaded', () => {
-        const burgerButton = document.getElementById('burger-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const body = document.body;
-        let startX = 0;
-        let currentX = 0;
-
-        function closeMenu() {
-            if (body.classList.contains('menu-open')) {
-                mobileMenu.style.transition = ''; 
-                mobileMenu.style.transform = '';
-                body.classList.remove('menu-open');
-            }
-        }
-
-        // 1. Toggle del botón con STOP PROPAGATION
-        burgerButton?.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita que el clic llegue al document
-            body.classList.toggle('menu-open');
-        });
-
-        // 2. Clic en enlaces
-        document.querySelectorAll('.nav-mobile-overlay a').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-
-        // 3. Clic fuera: Solo si el clic NO es el menú ni el botón
-        document.addEventListener('click', (e) => {
-            if (body.classList.contains('menu-open')) {
-                const isClickInside = mobileMenu.contains(e.target);
-                const isClickOnBurger = burgerButton.contains(e.target);
-                
-                if (!isClickInside && !isClickOnBurger) {
-                    closeMenu();
-                }
-            }
-        });
-
-        // 4. Tecla Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeMenu();
-        });
-
-        // 5. Swipe (Follow finger)
-        mobileMenu?.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            mobileMenu.style.transition = 'none';
-        }, { passive: true });
-
-        mobileMenu?.addEventListener('touchmove', (e) => {
-            currentX = e.touches[0].clientX;
-            let diffX = currentX - startX;
-            if (diffX > 0) {
-                mobileMenu.style.transform = `translateX(${diffX}px)`;
-            }
-        }, { passive: true });
-
-        mobileMenu?.addEventListener('touchend', () => {
-            let finalDiff = currentX - startX;
-            if (finalDiff > 100) {
-                closeMenu();
-            } else {
-                mobileMenu.style.transition = ''; 
-                mobileMenu.style.transform = '';
-            }
-            startX = 0; currentX = 0;
-        });
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 950) closeMenu();
-        });
-    });
-
-    </script>
-
+    <div class="nav-mobile-overlay" id="mobile-menu">
+        <nav aria-label="Navegación Móvil Desplegada">
+            <!-- Usamos la misma lista de enlaces para evitar duplicidad de contenido -->
+            <ul class="nav-list">
+                 <li><a href="#ceQueJaimeFaire">ce que j'aime faire</a></li>
+                <li><a href="#mesCompetences">competénces</a></li>
+                <li><a href="#etudes">études</a></li>
+                <li><a href="#memeBjork">méme</a></li>
+                <li><a href="#contacte">contacte</a></li>
+                <li class="lang">
+                    <a href="#" aria-label="Cambiar Idioma" id="lang-switch">
+                        <span id="lang-fr" class="active" data-lang="fr">FR</span>
+                        <span class="separator">·</span>
+                        <span id="lang-es" data-lang="es">ES</span>
+                    </a>
+            </ul>
+        </nav>
+    </div>
+    
   
     <section class="hero-container" id="heroContainer">
         <div class="hero-text">
@@ -179,8 +100,8 @@
                 </div>
                 <div class="place2"></div>
                 <div class="place3"></div>
-                <div class="place4" id="ceQueJaimeFaire">
-                    <h2>CE QUE J'AIME FAIRE</h2>
+                <div class="place4">
+                    <h2 id="ceQueJaimeFaire">CE QUE J'AIME FAIRE</h2>
                 </div>
             
         </section>
@@ -329,7 +250,7 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 
 </html>
