@@ -221,7 +221,7 @@ body {
     text-transform: uppercase;
     font-size: 0.9em;
     font-weight: 700;
-    padding: 8px 12px; 
+    padding: 8px 0; 
     opacity: 100%; 
     color: var(--text-color);
     text-shadow: none; 
@@ -241,6 +241,11 @@ body {
     line-height: 1;
     display: inline-block; 
     text-shadow: none !important; 
+}
+
+#lang-fr, #lang-es{
+    line-height: 70px;
+    padding: 0 13px;
 }
 
 /* Estilo para el idioma ACTIVO (sin cambios) */
@@ -306,8 +311,7 @@ body {
 .hero-text {
     display: flex;
     flex-direction: column; 
-    mix-blend-mode: screen;
-    mix-blend-mode: difference;
+
     /* CLAVE para centrar verticalmente: */
     align-items: flex-start; /* Asegura que el texto se alinee a la izquierda dentro del contenedor Flex */
     justify-content: center; /* Centra todo el contenido (el bloque de texto) verticalmente */
@@ -886,355 +890,367 @@ footer{
 @media (max-width: 950px){
 
 
-            /* OCULTAR LA NAVEGACIÓN DE ESCRITORIO */
-            .header-content {
-                display: none;
-            }
+    /* OCULTAR LA NAVEGACIÓN DE ESCRITORIO */
+    .header-content {
+        display: none;
+    }
 
-            /* HABILITAR EL DISPLAY PARA MOSTRAR EL LOGO Y LA HAMBURGUESA */
-            .header {
-                justify-content: space-between;
-                align-items: center;
-                padding: 0 5%;
-                display: flex; /* Para alinear el logo y el botón de la hamburguesa */
-            }
+    /* HABILITAR EL DISPLAY PARA MOSTRAR EL LOGO Y LA HAMBURGUESA */
+    .header {
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5%;
+        display: flex; /* Para alinear el logo y el botón de la hamburguesa */
+    }
 
-            .logo {
-                margin-left: 2%; 
-            }
+    .logo {
+        margin-left: 2%; 
+    }
 
-            /* BOTÓN HAMBURGUESA (Contenedor y SVG) */
-            .burger-container {
-                display: block;
-                cursor: pointer;
-                padding: 10px;
-                width: 70px; 
-                height: 70px;
-                /* El CSS de la animación del SVG se agregará aquí más tarde */
-            }
-            
-            .burger-container svg {
-                width: 100%;
-                height: 100%;
-            }
+    /* BOTÓN HAMBURGUESA (Contenedor y SVG) */
+    .burger-container {
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        width: 70px; 
+        height: 70px;
+        /* El CSS de la animación del SVG se agregará aquí más tarde */
+    }
 
-            /* MENÚ DESPLEGABLE (Overlay) */
-            .nav-mobile-overlay {
-                /* MOSTRAR EN MÓVIL (Aunque inicialmente oculto por JS) */
-                display: block; 
-                position: fixed;
-                top: 69px; /* Debajo del header fijo */
-                left: 60%;
-                width: 40%;
-                height: calc(100vh - 70px); 
-                background-color: rgba(69, 6, 84, 0.9); 
-                z-index: 999; 
-                
-                /* EFECTO BACKGROUND BLUR HEADER*/
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                
-                /* Estado inicial: OCULTO (fuera de la vista) */
-                visibility: hidden;
-                opacity: 0;
-                transform: translateX(100%);
-                /* Transiciones para la animación suave (aunque no sea JS) */
-                transition: opacity 0.4s ease, transform 0.4s ease;
-            }
+    .burger-container svg {
+        width: 100%;
+        height: 100%;
+    }
 
-            /* Contenido del menú desplegable */
-            .nav-mobile-overlay nav {
-                /* Centrado para la lista de enlaces */
-                display: flex;
-                justify-content: center;
-                align-items: flex-start;
-                height: 100%;
-                padding-top: 50px;
-            }
+    /* MENÚ DESPLEGABLE (Overlay) 950px*/
+    .nav-mobile-overlay {
+    display: block; 
+    position: fixed;
+    top: 69px;
+    right: 0px;
+    width: 400px;
+    height: calc(100vh - 70px); 
+    background-color: rgba(69, 6, 84, 0.9); 
+    z-index: 999; 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
-            .nav-mobile-overlay .nav-list {
-                flex-direction: column; 
-                align-items: center;
-                text-align: center;
-                /* Resetear estilos de desktop */
-                height: auto; 
-            }
+    /* Estado inicial: Fuera de pantalla */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%);
 
-            .nav-mobile-overlay .nav-list li {
-                width: 100%;
-                line-height: normal; 
-                padding: 0px 0;
-                
-            }
-            
-            .nav-mobile-overlay .nav-list li:hover {
-                width: 100%;
-                line-height: normal; 
-                color: #FFFB8B;
-            }
-            
-            /* Ocultar los separadores en móvil */
-            .nav-mobile-overlay .nav-list li:not(:last-child)::after {
-                content: none;
-            }
+    /* Transición de salida (Cierre): Fluida y profesional */
+    transition: 
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+        opacity 0.5s ease, 
+        visibility 0.5s;
 
-            .nav-mobile-overlay .nav-list .lang{
-                margin-top: 25%;
-                margin-left: 0;
-            }
+    will-change: transform;
+    }
 
-            .nav-mobile-overlay .nav-list a {
-                font-size: 1.5rem; 
-                display: block;
-                padding: 10px 0;
-            }
-            
-            /* ESTADO ABIERTO (Clase que pondrá el JS en el BODY) */
-            body.menu-open .nav-mobile-overlay {
-                visibility: visible;
-                opacity: 1;
-                transform: translateY(0); /* Desplegar hacia abajo */
-            }
+    /* Estado ABIERTO */
+    body.menu-open .nav-mobile-overlay {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(0);
+        touch-action: pan-y;
+    }
+
+    /* Contenido del menú desplegable */
+    .nav-mobile-overlay nav {
+        /* Centrado para la lista de enlaces */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100%;
+        padding-top: 50px;
+    }
+
+    .nav-mobile-overlay .nav-list {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+        /* Resetear estilos de desktop */
+        height: auto; 
+    }
+
+    .nav-mobile-overlay .nav-list li {
+        width: 100%;
+        line-height: normal; 
+        padding: 0px 0;
         
+    }
+
+    .nav-mobile-overlay .nav-list li:hover {
+        width: 100%;
+        line-height: normal; 
+        color: #FFFB8B;
+    }
+
+    /* Ocultar los separadores en móvil */
+    .nav-mobile-overlay .nav-list li:not(:last-child)::after {
+        content: none;
+    }
+
+    .nav-mobile-overlay .nav-list .lang{
+        margin-top: 25%;
+        margin-left: 0;
+    }
+
+    .nav-mobile-overlay .nav-list a {
+        font-size: 1.5rem; 
+        display: block;
+        padding: 10px 0;
+    }
+
+    /* ESTADO ABIERTO (Clase que pondrá el JS en el BODY) */
+    body.menu-open .nav-mobile-overlay {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0); /* Desplegar hacia abajo */
+    }
+            
 
 
-.hero-container{
-    padding-left: 0; 
-    padding-right: 0;
-    padding-top: 70px;
-}
+    .hero-container{
+        padding-left: 0; 
+        padding-right: 0;
+        padding-top: 70px;
+    }
 
-.image-wrapper{
-    padding-right: 3.1%;
-}
+    .image-wrapper{
+        padding-right: 3.1%;
+    }
 
-.santiago-photo {
-   /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
-       pero nunca será más ancha que 30rem */
-    width: clamp(15rem, 45%, 30rem);
-    height: auto;
-    background-color: #5b21b6;
-    /* Ajusta según el diseño */
-    display: flex;
-    z-index: 1;
-    /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
-}
+    .santiago-photo {
+    /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
+        pero nunca será más ancha que 30rem */
+        width: clamp(15rem, 45%, 30rem);
+        height: auto;
+        background-color: #5b21b6;
+        /* Ajusta según el diseño */
+        display: flex;
+        z-index: 1;
+        /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
+    }
 
-.hero-text .subtitle {
-    padding-top: 1.5rem;
-    font-family: montserrat;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 1.7vw;
-    line-height: 2vw;
-}
+    .hero-text .subtitle {
+        padding-top: 1.5rem;
+        font-family: montserrat;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 1.7vw;
+        line-height: 2vw;
+    }
 
-.container-left h2{
-    font-size: 3vw;
-    line-height: 3vw;
-}
+    .container-left h2{
+        font-size: 3vw;
+        line-height: 3vw;
+    }
 
-/*----------------------------------------------------------*/
-/*-----------COMPETENCES COMPETENCES 950px------------------*/
-/*----------------------------------------------------------*/
+    /*----------------------------------------------------------*/
+    /*-----------COMPETENCES COMPETENCES 950px------------------*/
+    /*----------------------------------------------------------*/
 
-.section2 {
-    margin: auto;
-    margin-top: -10%;
-}
+    .section2 {
+        margin: auto;
+        margin-top: -10%;
+    }
 
-/**/
-.intro-text,
-.tools-card,
-.tech-card,
-.backend-card{             
-    padding: 10%;
-}
-/**/
-.intro-text{                
-    padding: 10%;
-    display: flex;
-    align-items: center;
-}
-/**/
-.intro-text p{             
-    font-size: 2.2vw;
-    font-style: italic;
-}
-/**/
-.tools-card p, .tech-card p, .backend-card p{   
-    font-size: 2.2vw;
-    line-height: 2.2vw;
-    font-weight: 400;
-}
-/**/
-.tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
-    padding: 10%;
-}
-/**/
-.tech-card .triangulo{
-    top:10.05%;
-    width: 80%;
-    height: 80%;
-}
-/**/
-.tech-card .circulo-tech{
-    position: absolute;
-    left: 57%;
-    top:57%;
-    width: 28%;
-    height: 28%;
-    border-radius: 50%;
-    z-index: 5;
+    /**/
+    .intro-text,
+    .tools-card,
+    .tech-card,
+    .backend-card{             
+        padding: 10%;
+    }
+    /**/
+    .intro-text{                
+        padding: 10%;
+        display: flex;
+        align-items: center;
+    }
+    /**/
+    .intro-text p{             
+        font-size: 2.2vw;
+        font-style: italic;
+    }
+    /**/
+    .tools-card p, .tech-card p, .backend-card p{   
+        font-size: 2.2vw;
+        line-height: 2.2vw;
+        font-weight: 400;
+    }
+    /**/
+    .tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
+        padding: 10%;
+    }
+    /**/
+    .tech-card .triangulo{
+        top:10.05%;
+        width: 80%;
+        height: 80%;
+    }
+    /**/
+    .tech-card .circulo-tech{
+        position: absolute;
+        left: 57%;
+        top:57%;
+        width: 28%;
+        height: 28%;
+        border-radius: 50%;
+        z-index: 5;
+            background-image: linear-gradient(
+            60deg,
+            #141414 20%, 
+            #732689 100%       
+        );
+        
+    }
+
+    /**/
+    .backend-card .card-color{
+        position: absolute;
+        margin-top: -73%;
+        margin-left: 6%;
+        width: 27vw;
+        height: 27vw;
+        border-radius: 50%;
+        z-index: -1;
         background-image: linear-gradient(
-        60deg,
-        #141414 20%, 
-        #732689 100%       
-    );
-    
-}
-
-/**/
-.backend-card .card-color{
-    position: absolute;
-    margin-top: -73%;
-    margin-left: 6%;
-    width: 27vw;
-    height: 27vw;
-    border-radius: 50%;
-    z-index: -1;
-    background-image: linear-gradient(
-        to top, 
-        #141414 0%, 
-        #732689 100%       
-    );
-}
+            to top, 
+            #141414 0%, 
+            #732689 100%       
+        );
+    }
 
 
-/*----------------------------------------------------------*/
-/*---------------CV CV CV CV CV CV CV 950px-----------------------*/
-/*----------------------------------------------------------*/
+    /*----------------------------------------------------------*/
+    /*---------------CV CV CV CV CV CV CV 950px-----------------------*/
+    /*----------------------------------------------------------*/
 
-.section4 h2{
-    font-size: 3vw;
-    line-height: 3vw;
-    padding-top: 5%;
-    padding-bottom: 5%;
-    font-weight: 800;
+    .section4 h2{
+        font-size: 3vw;
+        line-height: 3vw;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        font-weight: 800;
 
-}
+    }
 
-.section4 .container-universities{
-    margin-top: 2%;
-    padding-left: 10%;
-}
+    .section4 .container-universities{
+        margin-top: 2%;
+        padding-left: 10%;
+    }
 
-.section4 .year{
-    font-size: (0.7rem, 1.5vw, 2rem);
-    line-height: 1.5vw;
-    padding-bottom: 1%;
-}
+    .section4 .year{
+        font-size: (0.7rem, 1.5vw, 2rem);
+        line-height: 1.5vw;
+        padding-bottom: 1%;
+    }
 
-.section4 .univ-country .university{
-    margin-bottom: 0.5%;
-    font-size: 2vw;
-    line-height: 2vw;
-}
-.section4 .container-universities .country{
-    font-size: 1.2vw;
-    padding-left: 1%;
-}
-.section4 .studies{
-    font-size: 2vw;
-    line-height: 2vw;
-    margin-bottom: 1,5%;
-}
-
-
-/*----------------------------------------------------------*/
-/*---------------------------MEME 950 PX--------------------*/
-/*----------------------------------------------------------*/
+    .section4 .univ-country .university{
+        margin-bottom: 0.5%;
+        font-size: 2vw;
+        line-height: 2vw;
+    }
+    .section4 .container-universities .country{
+        font-size: 1.2vw;
+        padding-left: 1%;
+    }
+    .section4 .studies{
+        font-size: 2vw;
+        line-height: 2vw;
+        margin-bottom: 1,5%;
+    }
 
 
-.photo-bjork{
-    width:40%;
-    overflow: hidden;
-}
+    /*----------------------------------------------------------*/
+    /*---------------------------MEME 950 PX--------------------*/
+    /*----------------------------------------------------------*/
 
-.text-bjork-mob{
-    display: none;
-}
 
-.text-bjork{
-    width: 26%;
-}
+    .photo-bjork{
+        width:40%;
+        overflow: hidden;
+    }
 
-.text-bjork p{
-    font-size: 4.2vw;
-    line-height: 4.2vw;
+    .text-bjork-mob{
+        display: none;
+    }
+
+    .text-bjork{
+        width: 26%;
+    }
+
+    .text-bjork p{
+        font-size: 4.2vw;
+        line-height: 4.2vw;
+        letter-spacing: 0.2vw;
+        font-weight:500;
+        color: #FFFB8B;
+    }
+    /*----------------------------------------------------------*/
+    /*--------------------------FOOTER 950 PX-------------------*/
+    /*----------------------------------------------------------*/
+
+    footer{
+        display: flex;
+        align-items: center;
+    }
+
+    .footer-content{
+        display: grid;
+        width: 80%;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 10px;
+        padding: 90px 0;
+    }
+    .me-info{
+        grid-column: 1 / 5;
+    }
+    .me-info span{
+    font-size: 3.5vw;
+    line-height: 3.5vw;
     letter-spacing: 0.2vw;
-    font-weight:500;
-    color: #FFFB8B;
-}
-/*----------------------------------------------------------*/
-/*--------------------------FOOTER 950 PX-------------------*/
-/*----------------------------------------------------------*/
+    }
 
-footer{
-    display: flex;
-    align-items: center;
-}
+    .me-info .me{
+        font-size: 4.5vw;   
+        line-height: 4.5vw;
+    }
 
-.footer-content{
-    display: grid;
-    width: 80%;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 10px;
-    padding: 90px 0;
-}
-.me-info{
-    grid-column: 1 / 5;
-}
-.me-info span{
-   font-size: 3.5vw;
-   line-height: 3.5vw;
-   letter-spacing: 0.2vw;
-}
+    .me-info .profile{
+        font-size: 3.3vw;
+    }
 
-.me-info .me{
-    font-size: 4.5vw;   
-    line-height: 4.5vw;
-}
+    .contact{
+        grid-column: 6 / 10;
+    }
+    .media{
+        grid-column: 10 / 13;
+    }
 
-.me-info .profile{
-    font-size: 3.3vw;
-}
-
-.contact{
-    grid-column: 6 / 10;
-}
-.media{
-    grid-column: 10 / 13;
-}
-
-.contact, .media{
-    font-size: 1.7vw;
-    line-height: 2.3vw;
-}
+    .contact, .media{
+        font-size: 1.7vw;
+        line-height: 2.3vw;
+    }
 
 
-.contact .title-contact{
-    margin-bottom: 0.7vw;
-}
+    .contact .title-contact{
+        margin-bottom: 0.7vw;
+    }
 
-.media .title-media{
-    margin-bottom: 0.5vw;
-}
+    .media .title-media{
+        margin-bottom: 0.5vw;
+    }
 
-.media .prochainement{
-    font-size: 1.1vw;
-    line-height: 0.6vw;
-}
+    .media .prochainement{
+        padding-left: 4%;
+        font-size: 1.1vw;
+        line-height: 0.6vw;
+    }
 }
 /*------------------------------------*/
 /*------------------------------------*/
@@ -1719,10 +1735,12 @@ footer{
 
 .me-info .me{
     font-size: clamp(3rem, 10vw, 6rem);
+    margin-bottom: 10px;
 }
 
 .me-info .profile{
     font-size: clamp(2.2rem, 7vw, 6rem);
+    line-height: 0.9;
 }
 
 .contact{
@@ -1738,6 +1756,7 @@ footer{
     font-size: clamp(1rem, 3vw, 6rem);
     line-height: 1.8;
     width: 100%;
+    text-align: right;
 }
 
 .contact .title-contact{
@@ -1755,3 +1774,66 @@ footer{
 
 
 }
+
+@media (max-width: 450px){
+
+    /* MENÚ DESPLEGABLE (Overlay) */
+    .nav-mobile-overlay {
+        /* MOSTRAR EN MÓVIL (Aunque inicialmente oculto por JS) */
+        right: 0px;
+        width: 80%;
+    }
+
+    /* Contenido del menú desplegable */
+    .nav-mobile-overlay nav {
+        /* Centrado para la lista de enlaces */
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+        padding-left: 10%;
+    }
+
+    .nav-mobile-overlay .nav-list .lang{
+        margin-top: 25%;
+        margin-left: 0;
+        font-size: 6vw; 
+    }
+
+    .nav-mobile-overlay .nav-list a {
+        font-size: 6vw; 
+        display: block;
+        padding: 10px 0;
+    }
+
+body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+        z-index: 5;
+        opacity: 0;
+        visibility: hidden;
+                /* AL CERRAR: Espera 0.2s para que el menú tome la delantera */
+
+        transition: opacity 0.4s ease 0.1s, visibility 0.4s ease 0.1s;
+    }
+
+    body.menu-open::after {
+        opacity: 1;
+        visibility: visible;
+        /* AL ABRIR: Sin delay para impacto inmediato */
+        transition: opacity 0.3s ease;
+    }
+
+     /* Animación suave para que la capa no aparezca de golpe */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    }
+
+   
