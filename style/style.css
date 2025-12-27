@@ -49,6 +49,8 @@ body {
     overflow-x: hidden;
     /* Evitar scroll horizontal */
 }
+
+
 /*
 .header{
     top: 0;
@@ -267,6 +269,8 @@ body {
     color: var(--text-color);
     opacity: 75%;
     margin: 0 4px;
+    cursor: default;          /* Hace que la flecha no cambie a manito */
+    pointer-events: none;     /* Hace que el elemento sea "invisible" a los clics */
 }
         
 
@@ -284,7 +288,7 @@ body {
     scroll-margin-top: 115px; /* Distancia personalizada para Proyectos */
 }
 #mesCompetences{
-    scroll-margin-top: 200px; /* Distancia personalizada para Proyectos */
+    scroll-margin-top: 120px; /* Distancia personalizada para Proyectos */
 }
 #etudes{
     scroll-margin-top: -200px; /* Distancia personalizada para Proyectos */
@@ -297,7 +301,7 @@ body {
 }
 /* 1. Desactivamos el smooth scroll global para que el salto sea limpio */
 html {
-    scroll-behavior: auto !important;
+    scroll-behavior: auto;
 }
 
 /* 2. Definimos la animación de 0.5s */
@@ -491,6 +495,9 @@ html {
    font-weight: 800;
 }
 
+.big-text-web{
+    height: 50vw;
+}
 .big-text-web .websites{
     font-family: mango grotesque web;
     font-weight:900;
@@ -516,7 +523,7 @@ html {
 .carrousel-words{
     display: flex;
     animation: scroll-loop 15s linear infinite;
-    width: max-content; 
+    width: max-content;
 }
 
 .carrousel-words p{
@@ -560,7 +567,7 @@ html {
     padding-top: 10%;
     position: -webkit-sticky; /* Soporte para Safari */
     position: sticky;
-    top: 180px; /* Se detendrá a 120px del borde superior */
+    top: 200px; /* Se detendrá a 120px del borde superior */
     height: fit-content; /* Asegura que solo ocupe el espacio de su contenido */
 
 }
@@ -578,7 +585,10 @@ html {
 
 .section3 .container-right {
     width: 50%;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    gap: 20vh;
+    padding-bottom: 50vw;
 }
 
 .mes-competences{
@@ -588,16 +598,25 @@ html {
 .intro-text,
 .tools-card,
 .tech-card,
-.backend-card{
+.backend-card {
     aspect-ratio: 1 / 1;
     width: 100%;
     padding: 20%;
+    
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 0.2; /* Todas empiezan en 0.2 */
+    will-change: opacity, transform;
+    margin-top: 10vw;
+    margin-bottom: 10vw; /* Un margen para que se vea el desplazamiento */
 }
+
 
 .intro-text{
     padding: 20%;
     display: flex;
     align-items: center;
+    opacity: 1;
+    transform: scale(1.02);
 }
 
 .intro-text p{
