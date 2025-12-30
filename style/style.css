@@ -50,58 +50,6 @@ body {
     /* Evitar scroll horizontal */
 }
 
-
-/*
-.header{
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background-color: rgba(69, 6, 84, 0.8);
-    position: fixed;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-*//*
-.header-mob{
-    display: none;
-}
-*//*
-.header-content{
-    display: flex;
-    align-items: end;
-    justify-content: right;
-    width: 80%;
-    margin-left: 10%;
-}
-*//*
-.header-content p{
-    font-size: 1.1vw;
-    padding: 0 0.5%;
-    line-height: 70px;
-    font-style: italic;
-    font-weight: 500;
-}
-
-*//*
-.header-content p a{
-    color: #fff;
-    text-decoration: none;
-    opacity: 75%;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    transition-duration: 0.2s;
-}
-*//*
-.header-content p a:hover{
-    opacity: 100%;
-    transition-duration: 0.2s;
-    text-shadow: 
-       
-        0 0 15px var(--purple-color); /* Sombra más difusa (el glow) */
- /*  }*/
-
  .header {
     top: 0;
     left: 0;
@@ -273,9 +221,6 @@ body {
     pointer-events: none;     /* Hace que el elemento sea "invisible" a los clics */
 }
         
-
-
-
 /* OCULTAR ELEMENTOS MÓVILES POR DEFECTO (Desktop) */
 .burger-container, .nav-mobile-overlay {
     display: none;
@@ -284,27 +229,33 @@ body {
 /*----------------------------------------------------------*/
 /*-------------distancias al header, navegación-------------*/
 /*----------------------------------------------------------*/
+
 #ceQueJaimeFaire{
-    scroll-margin-top: 115px; /* Distancia personalizada para Proyectos */
+    scroll-margin-top: 115px; /* Distancia personalizada*/
 }
 #mesCompetences{
-    scroll-margin-top: 120px; /* Distancia personalizada para Proyectos */
+    scroll-margin-top: 120px; /* Distancia personalizada*/
 }
 #etudes{
-    scroll-margin-top: -200px; /* Distancia personalizada para Proyectos */
+    scroll-margin-top: -200px; /* Distancia personalizada*/
 }
 #memeBjork{
-    scroll-margin-top: 0px; /* Distancia personalizada para Proyectos */
+    scroll-margin-top: 0px; /* Distancia personalizada*/
 }
 #contacte{
-    scroll-margin-top: 50px; /* Distancia personalizada para Proyectos */
-}
-/* 1. Desactivamos el smooth scroll global para que el salto sea limpio */
-html {
-    scroll-behavior: auto;
+    scroll-margin-top: 50px; /* Distancia personalizada */
 }
 
-/* 2. Definimos la animación de 0.5s */
+/* 1. Desactivamos el smooth scroll global para que el salto sea limpio */
+
+.websites, 
+.carrousel-words-container, 
+#ceQueJaimeFaire {
+    will-change: transform;
+    transition: none !important; /* Solo quitamos la transición a estos elementos */
+}
+
+/* 2. Definimos la animación de 0.5s, animación de diferente */
 @keyframes microSlide {
     from {
         opacity: 0.8;
@@ -326,9 +277,21 @@ html {
 /*----------------------------HERO--------------------------*/
 /*----------------------------------------------------------*/
 
+main{
+    position: relative;
+    background-color:#141414;
+    z-index: 2;
+    margin-bottom: 25vw;
+    pointer-events: none;
+}
+
+main > * {
+        pointer-events: auto;
+    }
 
 .hero-container {
-    max-width: 80%;
+    width: 80%;
+    max-width: 1920px;
     margin: 0 auto;
     /* Necesitas una altura para que el centrado vertical funcione */ 
     padding-left: 20px; 
@@ -337,6 +300,8 @@ html {
     display: grid; 
     z-index: 10;
 }
+
+
 
 .hero-text,
 .image-wrapper {
@@ -361,10 +326,8 @@ html {
     
     padding-left: 5%; 
 
-    z-index: 2; 
+    z-index: 11; 
 }
-
-
 
 /* Estilo de la imagen de Santiago */
 .santiago-photo {
@@ -374,7 +337,7 @@ html {
     background-color: #5b21b6;
     /* Ajusta según el diseño */
     display: flex;
-    z-index: 1;
+    z-index: 10;
     /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
 }
 
@@ -409,7 +372,9 @@ html {
 /*---------------sección l'ame- WEBSITES--------------------*/
 /*----------------------------------------------------------*/
 
-
+.section2-container{
+    max-width: 1920px;
+}
 .section2 {
     margin: auto;
     margin-top: -100px;
@@ -420,12 +385,6 @@ html {
     grid-template-rows: auto;
     background-color: var(--grid-line-color);
     padding: 1px;
-    -webkit-mask-image: linear-gradient(
-        to bottom, 
-        white 0%,
-        white 65%,
-        transparent 100%
-    );
 }
 
 .section2 .estlame{
@@ -495,10 +454,27 @@ html {
    font-weight: 800;
 }
 
+
+/*----------------------------------------------------------*/
+/*---------------WEBSITES WEBSITES WEBSITES-----------------*/
+/*----------------------------------------------------------*/
+
+
+.container-big-text-web{
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100vw;
+    max-width: 1920px;
+}
+
 .big-text-web{
+    z-index: 2;
     height: 50vw;
 }
+
 .big-text-web .websites{
+    z-index: 2;
     font-family: mango grotesque web;
     font-weight:900;
     font-size: 42.5vw;
@@ -509,13 +485,24 @@ html {
     color: var(--purple-color);
 }
 
-.big-text-web .websites1, .big-text-web .websites2{
+.big-text-web .websites1{
+    z-index: 2;
+    font-family: mango grotesque web;
+    font-weight:900;
+    font-size: 42.5vw;
+    margin-left: -3.4%;
+    margin-top: -12%;
+    position: relative;
+    line-height: 41vw;
+    color: var(--purple-color);
+}
+
+.big-text-web .websites2{
     display: none;
 }
 
-
 .carrousel-words-container{
-    margin-top: -20%;
+    margin-top: -80%;
     width:100%;
     overflow: hidden; /*ocultar todo lo que se sale*/
     white-space: nowrap; /*evita saltos de línea dentro del carrusel*/
@@ -536,6 +523,24 @@ html {
     color: var(--yellow)
 }
 
+
+/* =========================================================== */
+/* =================== PARALLAX WEBSITES ===================== */
+/* =========================================================== */
+
+.websites, 
+.carrousel-words-container {
+    will-change: transform;
+    /* Evita que el navegador intente "adivinar" la posición, suaviza el cálculo */
+    transition: transform 0.1s linear; 
+}
+
+/* Aseguramos que el contenedor de las palabras esté por encima de WEBSITES */
+.carrousel-words-container {
+    position: relative;
+    z-index: 10;
+}
+
 @keyframes scroll-loop { /*carrusel*/
     0% {
         transform: translateX(0%); /* Inicia en la posición normal */
@@ -550,9 +555,16 @@ html {
 /*---------------sección tools / tech-----------------------*/
 /*----------------------------------------------------------*/
 
+.section3-container{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1920px;
+    background-color: #141414;
+}
 
 .section3 {
-    margin-top: 10%;
+    padding-top: 55%;
     margin-left: 10%;
     width: 80%;
     display: flex;
@@ -567,7 +579,7 @@ html {
     padding-top: 10%;
     position: -webkit-sticky; /* Soporte para Safari */
     position: sticky;
-    top: 200px; /* Se detendrá a 120px del borde superior */
+    top: 120px; /* Se detendrá a 120px del borde superior */
     height: fit-content; /* Asegura que solo ocupe el espacio de su contenido */
 
 }
@@ -651,7 +663,6 @@ html {
 }
 
 .tools-card .card-color div{
-
     width: 100%;
     height: 100%;
     display: flex;
@@ -665,14 +676,14 @@ html {
 }
 
 .tech-card .card-color{
-        width: 100%;
-        height: 100%;
-        z-index: 3;
-        background-image: linear-gradient(
-            to top right,
-            var(--purple-color) 0%,
-            var(--yellow) 60%
-        );
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-image: linear-gradient(
+        to top right,
+        var(--purple-color) 0%,
+        var(--yellow) 60%
+    );
 }
 
 .tech-card .triangulo{
@@ -728,7 +739,6 @@ html {
 
 .backend-card{
     position: relative;
-   
 }
 
 .backend-card div{
@@ -759,6 +769,13 @@ html {
 /*----------------------------------------------------------*/
 /*---------------CV CV CV CV CV CV CV-----------------------*/
 /*----------------------------------------------------------*/
+.section4-container{
+    position: relative;
+    z-index: 2;
+    background-color: #141414;
+    width: 100%;
+    max-width: 1920px;
+}
 
 .section4{
     padding-top:20vw;
@@ -819,11 +836,16 @@ html {
 
 
 .section5{
+    max-width: 1920px;
+    z-index: 2;
+    position: relative;
     width: 100%;
     display: flex;
     justify-content:center;
     align-items: center;
     background-color: var(--purple-color);
+    /* Sombra: eje-x, eje-y, desenfoque, propagación, color */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .text-bjork-mob{
@@ -859,6 +881,9 @@ html {
 /*----------------------------------------------------------*/
 
 footer{
+    position: fixed;
+        bottom: 0;
+        left: 0;
     width: 100%;
     background-color: #FFFB8B;
     background-image: linear-gradient(
@@ -869,6 +894,8 @@ footer{
     );
     display: flex;
     align-items: center;
+    z-index: 0;
+    pointer-events: auto;
 }
 .footer-content{
     width: 80%;
@@ -1199,8 +1226,6 @@ footer{
             #732689 100%       
         );
     }
-
-
     /*----------------------------------------------------------*/
     /*---------------CV CV CV CV CV CV CV 950px-----------------------*/
     /*----------------------------------------------------------*/
@@ -1245,6 +1270,11 @@ footer{
     /*---------------------------MEME 950 PX--------------------*/
     /*----------------------------------------------------------*/
 
+    .section5{
+        margin-bottom: 0;
+        box-shadow: none;
+        margin-bottom: 0;
+    }
 
     .photo-bjork{
         width:40%;
@@ -1271,6 +1301,7 @@ footer{
     /*----------------------------------------------------------*/
 
     footer{
+        position: relative;
         display: flex;
         align-items: center;
     }
@@ -1551,7 +1582,7 @@ footer{
     margin-top: 50px;
     width: 80%;
     grid-template-columns: 1fr;
-                 -webkit-mask-image: linear-gradient(
+    -webkit-mask-image: linear-gradient(
         to bottom, 
         black 0%,
         black 85%,

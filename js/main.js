@@ -1,5 +1,49 @@
 /*===================================================*/
 /*===================================================*/
+/*===============    smooth scroll    ===============*/
+/*===================================================*/
+/*===================================================*/
+
+
+let lenis;
+
+function initLenis() {
+  // Solo se ejecuta si el ancho es mayor o igual a 950px
+  if (window.innerWidth >= 950) {
+    if (!lenis) {
+      lenis = new Lenis({
+        lerp: 0.15,
+        wheelMultiplier: 0.8,
+        gestureOrientation: 'vertical',
+        normalizeWheel: true,
+        smoothWheel: true
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+  } else {
+    // Si la pantalla es pequeña y Lenis existía, lo destruimos
+    if (lenis) {
+      lenis.destroy();
+      lenis = null;
+    }
+  }
+}
+
+// Ejecutamos al cargar la página
+initLenis();
+
+// Escuchamos el cambio de tamaño de ventana para activar/desactivar en tiempo real
+window.addEventListener('resize', initLenis);
+
+
+
+/*===================================================*/
+/*===================================================*/
 /*==========    botonera desplegable    =============*/
 /*===================================================*/
 /*===================================================*/
@@ -137,6 +181,45 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 /*===================================================*/
 /*===================================================*/
+/*====   websites / carrusel velocidad scroll    ====*/
+/*===================================================*/
+/*===================================================*/
+
+window.addEventListener('scroll', () => {
+    // Solo ejecutamos si el ancho de pantalla es mayor a 950px
+    if (window.innerWidth >= 951) {
+        const scrollY = window.scrollY;
+
+        // CE QUE J'AIME FAIRE
+        const cequejaimefaire = document.querySelector('#ceQueJaimeFaire');
+        if (cequejaimefaire) {
+            cequejaimefaire.style.transform = `translateY(${scrollY * 0.1}px)`;
+        }
+
+        // "WEBSITES"
+        const websites = document.querySelector('.websites');
+        if (websites) {
+            websites.style.transform = `translateY(${scrollY * 0.1}px)`;
+        }
+        const websites1 = document.querySelector('.websites1');
+        if (websites1) {
+            websites1.style.transform = `translateY(${scrollY * 0.1}px)`;
+        }
+
+        // CARROUSEL DE PALABRAS
+        const carrousel = document.querySelector('.carrousel-words-container');
+        if (carrousel) {
+            // Factor mayor para que parezca que está más cerca del usuario
+            carrousel.style.transform = `translateY(${scrollY * 0.48}px)`;
+        }
+    }
+});
+
+
+
+
+/*===================================================*/
+/*===================================================*/
 /*================    scroll cards    ================*/
 /*===================================================*/
 /*===================================================*/
@@ -183,27 +266,18 @@ window.addEventListener('scroll', () => {
     if (isAnimating) return;
 
     const rect = snapContainer.getBoundingClientRect();
-    const scrollingUp = window.scrollY < lastScrollY;
-
-    // Entramos desde ARRIBA → primera card
-    if (rect.top < 300 && rect.top > 0 && currentIndex === -1 && !scrollingUp) {
+    
+    // Si entramos desde arriba y no hay nada activo, activamos la primera
+    if (rect.top < 300 && rect.top > 0 && currentIndex === -1) {
         currentIndex = 0;
         updateCardStyles(0);
     }
-
-    // Entramos desde ABAJO → última card
-    if (rect.bottom > window.innerHeight - 200 && rect.bottom < window.innerHeight + 200 && currentIndex === -1 && scrollingUp) {
-        currentIndex = cardElements.length - 1;
-        updateCardStyles(currentIndex);
-    }
-
-    // Salimos completamente por arriba → reset
+    
+    // Si salimos de la sección totalmente por arriba, reseteamos
     if (rect.top > 500) {
         currentIndex = -1;
         updateCardStyles(-1);
     }
-
-    lastScrollY = window.scrollY;
 }, { passive: true });
 
 // EVENTO WHEEL: El que genera el SNAP (paso a paso)
@@ -230,3 +304,33 @@ window.addEventListener('wheel', (e) => {
         }
     }
 }, { passive: false });
+
+
+/*===================================================*/
+/*===================================================*/
+/*=============    navegación al footer    ==========*/
+/*===================================================*/
+/*===================================================*/
+
+
+document.querySelectorAll('a[href="#contacte"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (window.innerWidth >= 951) {
+            // En DESKTOP: Hacemos scroll hasta el final absoluto de la página
+            // Esto "descubre" el footer por completo
+            const scrollHeight = document.documentElement.scrollHeight;
+            
+            if (typeof lenis !== 'undefined') {
+                lenis.scrollTo(scrollHeight);
+            } else {
+                window.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+            }
+        } else {
+            // En MOBILE: Scroll normal al elemento porque no hay reveal
+            const target = document.querySelector('#contacte');
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
