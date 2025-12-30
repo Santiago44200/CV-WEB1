@@ -230,7 +230,7 @@ body {
 /*-------------distancias al header, navegación-------------*/
 /*----------------------------------------------------------*/
 
-#ceQueJaimeFaire{
+#ceQueJaimeFaire-anchor{
     scroll-margin-top: 115px; /* Distancia personalizada*/
 }
 #mesCompetences{
@@ -248,7 +248,7 @@ body {
 
 /* 1. Desactivamos el smooth scroll global para que el salto sea limpio */
 
-.websites, 
+.websites, .websites1, .websites2, .websites3, .websites4
 .carrousel-words-container, 
 #ceQueJaimeFaire {
     will-change: transform;
@@ -416,6 +416,7 @@ main > * {
 .place4 {
     align-items: flex-start;
     padding-top: 10%;
+    position: relative;
 }
 
 
@@ -497,20 +498,40 @@ main > * {
     color: var(--purple-color);
 }
 
-.big-text-web .websites2{
+.big-text-web .websites2, .websites3, .websites4{
     display: none;
 }
 
+
 .carrousel-words-container{
-    margin-top: -80%;
-    width:100%;
-    overflow: hidden; /*ocultar todo lo que se sale*/
-    white-space: nowrap; /*evita saltos de línea dentro del carrusel*/
-}
-.carrousel-words{
+    margin-top: -80%; /* Ajusta según necesites subirlo */
+    width: 100%;
     display: flex;
-    animation: scroll-loop 15s linear infinite;
+    
+    /* Crucial para el arrastre */
+    overflow-x: auto; /* Permitimos scroll interno para que el JS lo mueva */
+    scrollbar-width: none; /* Oculta barra en Firefox */
+    white-space: nowrap;
+    
+    user-select: none;
+    cursor: grab;
+}
+
+/* Ocultar barra de scroll en Chrome/Safari */
+.carrousel-words-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cambiar cursor al hacer clic (cuando JS añade la clase) */
+.carrousel-words-container.active {
+    cursor: grabbing;
+}
+
+.carrousel-words {
+    display: flex;
     width: max-content;
+    /* Dejamos que la animación corra por defecto, el JS la pausará */
+    will-change: transform; /* Optimización de rendimiento */
 }
 
 .carrousel-words p{
@@ -528,7 +549,7 @@ main > * {
 /* =================== PARALLAX WEBSITES ===================== */
 /* =========================================================== */
 
-.websites, 
+.websites, .websites1, .websites2, .websites3, .websites4
 .carrousel-words-container {
     will-change: transform;
     /* Evita que el navegador intente "adivinar" la posición, suaviza el cálculo */
@@ -540,16 +561,6 @@ main > * {
     position: relative;
     z-index: 10;
 }
-
-@keyframes scroll-loop { /*carrusel*/
-    0% {
-        transform: translateX(0%); /* Inicia en la posición normal */
-    }
-    100% {
-        transform: translateX(-50%); /* Se mueve el ancho de la primera copia */
-    }
-}
-
 
 /*----------------------------------------------------------*/
 /*---------------sección tools / tech-----------------------*/
@@ -1113,8 +1124,6 @@ footer{
         transform: translateY(0); /* Desplegar hacia abajo */
     }
             
-
-
     .hero-container{
         padding-left: 0; 
         padding-right: 0;
@@ -1208,10 +1217,8 @@ footer{
             #141414 20%, 
             #732689 100%       
         );
-        
     }
 
-    /**/
     .backend-card .card-color{
         position: absolute;
         margin-top: -73%;
@@ -1226,8 +1233,22 @@ footer{
             #732689 100%       
         );
     }
+
     /*----------------------------------------------------------*/
-    /*---------------CV CV CV CV CV CV CV 950px-----------------------*/
+    /*----------.----- WEBSITES WEBSITES 950px------------------*/
+    /*----------------------------------------------------------*/
+
+    .carrousel-words-container{
+        margin-top: -60%;
+        will-change: transform, opacity;
+        /* Evitamos transiciones de tiempo largas aquí para que el JS mande, 
+        pero dejamos un mínimo para suavizar */
+        transition: opacity 0.2s linear;
+    }
+
+
+    /*----------------------------------------------------------*/
+    /*---------------CV CV CV CV CV CV CV 950px-----------------*/
     /*----------------------------------------------------------*/
 
     .section4 h2{
@@ -1236,7 +1257,6 @@ footer{
         padding-top: 5%;
         padding-bottom: 5%;
         font-weight: 800;
-
     }
 
     .section4 .container-universities{
@@ -1273,7 +1293,7 @@ footer{
     .section5{
         margin-bottom: 0;
         box-shadow: none;
-        margin-bottom: 0;
+        padding-bottom: 0;
     }
 
     .photo-bjork{
@@ -1299,6 +1319,11 @@ footer{
     /*----------------------------------------------------------*/
     /*--------------------------FOOTER 950 PX-------------------*/
     /*----------------------------------------------------------*/
+
+    main{
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 
     footer{
         position: relative;
@@ -1623,9 +1648,7 @@ footer{
 }
 
 .place4{
-    display: flex;
-    align-items: flex-start;
-
+    align-items:flex-start;
 }
 
 .place4 h2{
@@ -1634,8 +1657,9 @@ footer{
     opacity: 1;
 }
 
-
-
+#ceQueJaimeFaire{
+    margin: 0 auto;
+}
 
 
 
@@ -1643,25 +1667,32 @@ footer{
 /*---------------websites websites 600px-----------------------*/
 /*----------------------------------------------------------*/
     
-.big-text-web{
-    height: 93vw;
-}
-.big-text-web .websites, .big-text-web .websites1, .big-text-web .websites2{
+
+.big-text-web .websites,
+.big-text-web .websites1,
+.big-text-web .websites2,
+.big-text-web  .websites3,
+.big-text-web .websites4 {
     display: block;
-        visibility: visible;
+    visibility: visible;
     font-family: mango grotesque web;
-    font-weight:900;
+    font-weight: 900;
     font-size: 42.5vw;
     margin-left: -3.4%;
-    margin-top: -31%;
     position: relative;
-    line-height: 41vw;
-    margin-bottom: 19vw;
+    line-height: 43vw; 
+    margin-bottom: 0; 
+    margin-top: -15vw; 
     color: var(--purple-color);
 }
 
+.big-text-web .websites{
+    margin-top: -50vw;
+}
+
+
 .carrousel-words-container{
-    margin-top: -50%;
+    margin-top: -150%;
 }
 .carrousel-words p{
     font-size: 5vw;
@@ -1675,7 +1706,7 @@ footer{
 
 
 .section3 {
-    margin-top: 20vw;
+    margin-top: 120vw;
     margin-left: 5%;
     width: 90%;
     display: flex;
@@ -1755,9 +1786,9 @@ footer{
     height: 60vw;
 }
 
-/*----------------------------------------------------------*/
+/*------------------------------------------------------------------*/
 /*---------------------------ETUDES 600px---------------------------*/
-/*----------------------------------------------------------*/
+/*------------------------------------------------------------------*/
 .section4{
     width: 90%;
     margin-left: 5%;

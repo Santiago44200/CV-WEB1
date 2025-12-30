@@ -181,40 +181,61 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 /*===================================================*/
 /*===================================================*/
-/*====   websites / carrusel velocidad scroll    ====*/
+/*===  websites / carrusel velocidad scroll 1920  ===*/
 /*===================================================*/
 /*===================================================*/
-
-window.addEventListener('scroll', () => {
-    // Solo ejecutamos si el ancho de pantalla es mayor a 950px
-    if (window.innerWidth >= 951) {
+function handleParallax() {
+    requestAnimationFrame(() => {
+        const width = window.innerWidth;
         const scrollY = window.scrollY;
+        
+        let carrouselFactor;
 
-        // CE QUE J'AIME FAIRE
-        const cequejaimefaire = document.querySelector('#ceQueJaimeFaire');
-        if (cequejaimefaire) {
-            cequejaimefaire.style.transform = `translateY(${scrollY * 0.1}px)`;
+        // ORDEN CORRECTO: De mayor a menor
+        if (width >= 951) {
+            carrouselFactor = 0.48; 
+        } else if (width >= 768) {
+            carrouselFactor = 0.38; 
+        } else if (width >= 601) {
+            carrouselFactor = 0.37; 
+        } else if (width >= 320) {
+            carrouselFactor = 0.41; 
+        } else {
+            carrouselFactor = 0; // Para pantallas menores a 320
         }
 
-        // "WEBSITES"
-        const websites = document.querySelector('.websites');
-        if (websites) {
-            websites.style.transform = `translateY(${scrollY * 0.1}px)`;
-        }
-        const websites1 = document.querySelector('.websites1');
-        if (websites1) {
-            websites1.style.transform = `translateY(${scrollY * 0.1}px)`;
-        }
+        // Aplicamos la lógica si tenemos un factor (si es > 0)
+        if (carrouselFactor > 0) {
+            // CE QUE J'AIME FAIRE
+            const cequejaimefaire = document.querySelector('#ceQueJaimeFaire');
+            if (cequejaimefaire) {
+                cequejaimefaire.style.transform = `translateY(${scrollY * 0.11}px)`;
+            }
 
-        // CARROUSEL DE PALABRAS
-        const carrousel = document.querySelector('.carrousel-words-container');
-        if (carrousel) {
-            // Factor mayor para que parezca que está más cerca del usuario
-            carrousel.style.transform = `translateY(${scrollY * 0.48}px)`;
-        }
-    }
-});
+            // WEBSITES
+            const webElements = ['.websites', '.websites1', '.websites2', '.websites3', '.websites4'];
+            webElements.forEach(clase => {
+                const el = document.querySelector(clase);
+                if (el) {
+                    el.style.transform = `translateY(${scrollY * 0.1}px)`;
+                }
+            });
 
+            // CARROUSEL DE PALABRAS
+            const carrousel = document.querySelector('.carrousel-words-container');
+            if (carrousel) {
+                carrousel.style.transform = `translateY(${scrollY * carrouselFactor}px)`;
+            }
+        } else {
+            // Reset total si la pantalla es muy pequeña
+            const toReset = ['#ceQueJaimeFaire', '.websites', '.websites1', '.websites2', '.carrousel-words-container'];
+            toReset.forEach(sel => {
+                const el = document.querySelector(sel);
+                if (el) el.style.transform = 'none';
+            });
+        }
+    });
+}
 
 
 
@@ -306,6 +327,99 @@ window.addEventListener('wheel', (e) => {
 }, { passive: false });
 
 
+
+/*===================================================*/
+/*===================================================*/
+/*============    carrusel arrastrable    ===========*/
+/*===================================================*/
+/*===================================================*/
+
+const slider = document.querySelector('.carrousel-words-container');
+const inner = document.querySelector('.carrousel-words');
+
+let isDown = false;
+let startX;
+let scrollLeft;
+let animationId;
+let speed = 1.5; // Velocidad base automática
+let velocity = 0; // Velocidad del impulso actual
+let friction = 0.95; // Qué tan rápido se detiene (0.9 a 0.98 es lo ideal)
+
+const autoScroll = () => {
+    if (!isDown) {
+        // Sumamos la velocidad automática + el impulso del usuario
+        slider.scrollLeft += speed + velocity;
+        
+        // Aplicamos fricción al impulso para que tienda a cero
+        velocity *= friction;
+
+        // Bucle infinito
+        if (slider.scrollLeft >= (slider.scrollWidth * 2 / 3)) {
+            slider.scrollLeft = slider.scrollWidth / 3;
+        } else if (slider.scrollLeft <= 0) {
+            slider.scrollLeft = slider.scrollWidth / 3;
+        }
+    }
+    animationId = requestAnimationFrame(autoScroll);
+};
+
+// --- GESTIÓN DE ARRASTRE ---
+const startDrag = (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    const pageX = e.pageX || e.touches[0].pageX;
+    startX = pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    velocity = 0; // Reseteamos inercia anterior al tocar
+    cancelAnimationFrame(animationId);
+};
+
+const moveDrag = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const pageX = e.pageX || e.touches[0].pageX;
+    const x = pageX - slider.offsetLeft;
+    
+    // Calculamos cuánto se ha movido en este frame para obtener la velocidad
+    const walk = (x - startX) * 2; 
+    const prevScroll = slider.scrollLeft;
+    slider.scrollLeft = scrollLeft - walk;
+    
+    // La velocidad es la diferencia entre el scroll actual y el anterior
+    velocity = slider.scrollLeft - prevScroll;
+
+    // Infinito durante el arrastre
+    if (slider.scrollLeft <= 0 || slider.scrollLeft >= (slider.scrollWidth * 2 / 3)) {
+        slider.scrollLeft = slider.scrollWidth / 3;
+        startX = pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    }
+};
+
+const endDrag = () => {
+    if (!isDown) return;
+    isDown = false;
+    slider.classList.remove('active');
+    // No reseteamos velocity a 0, dejamos que autoScroll la agote con la fricción
+    autoScroll();
+};
+
+// Listeners (Mouse y Touch)
+slider.addEventListener('mousedown', startDrag);
+slider.addEventListener('mousemove', moveDrag);
+window.addEventListener('mouseup', endDrag);
+slider.addEventListener('mouseleave', endDrag);
+slider.addEventListener('touchstart', startDrag);
+slider.addEventListener('touchmove', moveDrag);
+slider.addEventListener('touchend', endDrag);
+
+// Inicio
+window.addEventListener('load', () => {
+    slider.scrollLeft = slider.scrollWidth / 3;
+    autoScroll();
+});
+
+
 /*===================================================*/
 /*===================================================*/
 /*=============    navegación al footer    ==========*/
@@ -333,4 +447,31 @@ document.querySelectorAll('a[href="#contacte"]').forEach(anchor => {
             target.scrollIntoView({ behavior: 'smooth' });
         }
     });
+});
+
+
+/*===================================================*/
+/*===================================================*/
+/*==============    CARGAR TODO EL DOM    ===========*/
+/*===================================================*/
+/*===================================================*/
+
+
+// --- GESTIÓN DE EVENTOS GLOBALES ---
+
+// 1. Nos aseguramos de que el parallax se calcule al scrollear
+window.addEventListener('scroll', handleParallax);
+
+// 2. Nos aseguramos de que se recalcule si cambian el tamaño de la ventana
+window.addEventListener('resize', () => {
+    initLenis();
+    handleParallax();
+});
+
+// 3. LA CLAVE: Ejecución al cargar completamente
+// Usamos 'load' en lugar de 'DOMContentLoaded' para estar seguros de que 
+// Lenis y las dimensiones del scroll ya son definitivas.
+window.addEventListener('load', () => {
+    initLenis();      // Inicia el scroll suave
+    handleParallax(); // Ejecuta el cálculo de posiciones inmediatamente
 });
