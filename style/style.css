@@ -863,7 +863,7 @@ main > * {
 }
 
 .text-ekeko-1{
-    padding-top: 10%;
+    padding-top: 12%;
     align-self: flex-start;
     width: 20%;
     margin-left: 10%;
@@ -871,10 +871,15 @@ main > * {
 
 .text-ekeko-1 p{
     font-family: var(--font-primary);
-    font-size: clamp(21px, 1.5vw, 50px);
+    font-size: 1.2vw;
     font-style: italic;
     font-weight: 500;
     text-align: left;
+}
+
+.text-ekeko-1 .smiley{
+    font-size: 4vw;
+    margin-left: -4%;
 }
 
 .photo-ekeko{
@@ -882,6 +887,7 @@ main > * {
     overflow: hidden;
     padding: 8% 0;
     padding-left: 2%;
+    padding-bottom: 2%;
 }
 
 .photo-ekeko img{
@@ -889,7 +895,7 @@ main > * {
 }
 
 .text-ekeko{
-    padding-bottom: 10%;
+    padding-bottom: 12%;
     width: 20%;
     align-self: flex-end;
 }
