@@ -239,7 +239,7 @@ body {
 #etudes{
     scroll-margin-top: -200px; /* Distancia personalizada*/
 }
-#memeBjork{
+#memeEkeko{
     scroll-margin-top: 0px; /* Distancia personalizada*/
 }
 #contacte{
@@ -848,43 +848,61 @@ main > * {
 
 .section5{
     max-width: 1920px;
-    z-index: 2;
     position: relative;
+    z-index: 2;
     width: 100%;
     display: flex;
-    justify-content:center;
     align-items: center;
     background-color: var(--purple-color);
     /* Sombra: eje-x, eje-y, desenfoque, propagación, color */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.text-bjork-mob{
+.text-ekeko-mob{
     display: none;
 }
 
-.photo-bjork{
-    width:40%;
-    overflow: hidden;
-    margin: 13% 0;
+.text-ekeko-1{
+    padding-top: 10%;
+    align-self: flex-start;
+    width: 20%;
+    margin-left: 10%;
 }
 
-.photo-bjork img{
+.text-ekeko-1 p{
+    font-family: var(--font-primary);
+    font-size: clamp(21px, 1.5vw, 50px);
+    font-style: italic;
+    font-weight: 500;
+    text-align: left;
+}
+
+.photo-ekeko{
+    width: 40%;
+    overflow: hidden;
+    padding: 8% 0;
+    padding-left: 2%;
+}
+
+.photo-ekeko img{
     width: 100%;
 }
 
-.text-bjork{
-    width: 21%;
+.text-ekeko{
+    padding-bottom: 10%;
+    width: 20%;
+    align-self: flex-end;
 }
 
-.text-bjork p{
-    margin-left: 20%;
+.text-ekeko p{
     font-family: mango grotesque web;
     font-size: 3vw;
     line-height: 3vw;
     letter-spacing: 0.2vw;
     font-weight:500;
     color: #FFFB8B;
+    text-align: right;
+    text-transform: uppercase
 }
 
 /*----------------------------------------------------------*/
@@ -972,7 +990,7 @@ footer{
 
 
 @media (max-width: 1200px){
-#memeBjork{
+#memeEkeko{
     scroll-margin-top: 7vw; /* Distancia personalizada para Proyectos */
 }
 }
@@ -1296,20 +1314,20 @@ footer{
         padding-bottom: 0;
     }
 
-    .photo-bjork{
+    .photo-ekeko{
         width:40%;
         overflow: hidden;
     }
 
-    .text-bjork-mob{
+    .text-ekeko-mob{
         display: none;
     }
 
-    .text-bjork{
+    .text-ekeko{
         width: 26%;
     }
 
-    .text-bjork p{
+    .text-ekeko p{
         font-size: 4.2vw;
         line-height: 4.2vw;
         letter-spacing: 0.2vw;
@@ -1452,18 +1470,18 @@ footer{
 /*----------------------------------------------------------*/
 
 
-.photo-bjork{
+.photo-ekeko{
     width:50%;
     overflow: hidden;
     margin: 13% 0;
 }
 
-.text-bjork-mob{
+.text-ekeko-mob{
     display: none;
 }
 
 
-.text-bjork p{
+.text-ekeko p{
     font-size: 5.1vw;
     line-height: 5.1vw;
     letter-spacing: 0.2vw;
@@ -1840,18 +1858,18 @@ footer{
         flex-direction: column;
     }
     
-    .photo-bjork{
+    .photo-ekeko{
         width:80%;
         overflow: hidden;
         margin-top: 20%;
         margin-bottom: 5%;
     }
     
-    .text-bjork{
+    .text-ekeko{
         display: none;
     }
 
-    .text-bjork-mob{
+    .text-ekeko-mob{
         display:contents;
         text-align: center;
         color: #FFFB8B;
@@ -1860,7 +1878,7 @@ footer{
         line-height: 1;
         letter-spacing: 0.3vw;
     }
-    .text-bjork-mob p{
+    .text-ekeko-mob p{
         margin-bottom: 16%;
     }
 
