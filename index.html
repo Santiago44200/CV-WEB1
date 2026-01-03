@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&family=Oswald:wght@700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <script src="js/main.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -34,13 +35,13 @@
         <!-- NAVEGACIÓN PRINCIPAL (VISIBLE EN DESKTOP) -->
         <nav class="header-content" aria-label="Navegación Principal Desktop">
             <ul class="nav-list">
-                <li><a href="#ceQueJaimeFaire-anchor">ce que j'aime faire</a></li>
-                <li><a href="#mesCompetences">competénces</a></li>
-                <li><a href="#etudes">études</a></li>
-                <li><a href="#memeBjork">méme</a></li>
-                <li><a href="#contacte">contacte</a></li>
+                <li><a href="#ceQueJaimeFaire-anchor" data-i18n="ce-que-jaime">ce que j'aime faire</a></li>
+                <li><a href="#mesCompetences" data-i18n="competences">competénces</a></li>
+                <li><a href="#etudes" data-i18n="etudes">études</a></li>
+                <li><a href="#ekeko" data-i18n="ekeko">ekeko</a></li>
+                <li><a href="#contacte" data-i18n="contacte">contacte</a></li>
                 <li class="lang">
-                    <a href="#" aria-label="Cambiar Idioma" id="lang-switch">
+                    <a href="#" aria-label="Cambiar Idioma" class="lang-switch">
                         <span id="lang-fr" class="active" data-lang="fr">FR</span>
                         <span class="separator">·</span>
                         <span id="lang-es" data-lang="es">ES</span>
@@ -66,13 +67,13 @@
         <nav aria-label="Navegación Móvil Desplegada">
             <!-- Usamos la misma lista de enlaces para evitar duplicidad de contenido -->
             <ul class="nav-list">
-                 <li><a href="#ceQueJaimeFaire-anchor">ce que j'aime faire</a></li>
-                <li><a href="#mesCompetences">competénces</a></li>
-                <li><a href="#etudes">études</a></li>
-                <li><a href="#memeBjork">méme</a></li>
-                <li><a href="#contacte">contacte</a></li>
+                 <li><a href="#ceQueJaimeFaire-anchor" data-i18n="ce-que-jaime">ce que j'aime faire</a></li>
+                <li><a href="#mesCompetences" data-i18n="competences">competénces</a></li>
+                <li><a href="#etudes" data-i18n="etudes">études</a></li>
+                <li><a href="#ekeko" data-i18n="ekeko">ekeko</a></li>
+                <li><a href="#contacte" data-i18n="contacte">contacte</a></li>
                 <li class="lang">
-                    <a href="#" aria-label="Cambiar Idioma" id="lang-switch">
+                    <a href="#" aria-label="Cambiar Idioma" class="lang-switch">
                         <span id="lang-fr" class="active" data-lang="fr">FR</span>
                         <span class="separator">·</span>
                         <span id="lang-es" data-lang="es">ES</span>
@@ -84,9 +85,9 @@
     <main> 
         <section class="hero-container" id="heroContainer">
             <div class="hero-text">
-                <p class="greeting">BONJOUR !</p>
-                <h1 class="main-title"><span class="stroke-effect">C'EST SANTIAGO</span></h1>
-                <p class="subtitle">DEVELOPPEUR WEB CREATIF<br>et DESIGNER UX/UI</p>
+                <p class="greeting" data-i18n="bonjour">BONJOUR !</p>
+                <h1 class="main-title"><span class="stroke-effect" data-i18n="cest-santiago">C'EST SANTIAGO</span></h1>
+                <p class="subtitle" data-i18n="developpeur-web-creatif-designer-ux">DEVELOPPEUR WEB CREATIF<br>et DESIGNER UX/UI</p>
             </div>
             <div class="image-wrapper">
                 <img src="img/foto-santiago.png" alt="Photo de Santiago" class="santiago-photo">
@@ -97,7 +98,7 @@
 
         <section class="section2-container">
             <section class="section2">
-                            <h2 class="estlame">LE DESIGN EST L'ÂME,<br>ET LE CODE LE POULS</h2>
+                            <h2 class="estlame" data-i18n="le-design-est-lame">LE DESIGN EST L'ÂME,<br>ET LE CODE LE POULS</h2>
 
                     <div class="place1">
                         <div class="circle"></div>
@@ -106,7 +107,7 @@
                     <div class="place3"></div>
                     <div class="place4">
                         <div id="ceQueJaimeFaire-anchor" style="position: absolute; top: 0;"></div>
-                        <h2 id="ceQueJaimeFaire">CE QUE J'AIME FAIRE</h2>
+                        <h2 id="ceQueJaimeFaire" data-i18n="ce-que-jaime-faire">CE QUE J'AIME FAIRE</h2>
                     </div>
                 
             </section>
@@ -123,17 +124,23 @@
 
                 <div class="carrousel-words-container">
                     <div class="carrousel-words">
-                        <p>LUDIQUES</p><p>/</p><p>ESTHÉTIQUES</p><p>/</p>
-                        <p>CREATIVES</p><p>/</p>
-                        <p>SUR MESURE</p><p>/</p><p>INNOVANTES</p><p>/</p>
+                        <p data-i18n="ludiques">LUDIQUES</p><p>/</p>
+                        <p data-i18n="esthetiques">ESTHÉTIQUES</p><p>/</p>
+                        <p data-i18n="creatives">CREATIVES</p><p>/</p>
+                        <p data-i18n="sur-mesure">SUR MESURE</p><p>/</p>
+                        <p data-i18n="innovantes">INNOVANTES</p><p>/</p>
                         
-                        <p>LUDIQUES</p><p>/</p><p>ESTHÉTIQUES</p><p>/</p>
-                        <p>CREATIVES</p><p>/</p>
-                        <p>SUR MESURE</p><p>/</p><p>INNOVANTES</p><p>/</p>
+                        <p data-i18n="ludiques">LUDIQUES</p><p>/</p>
+                        <p data-i18n="esthetiques">ESTHÉTIQUES</p><p>/</p>
+                        <p data-i18n="creatives">CREATIVES</p><p>/</p>
+                        <p data-i18n="sur-mesure">SUR MESURE</p><p>/</p>
+                        <p data-i18n="innovantes">INNOVANTES</p><p>/</p>
 
-                         <p>LUDIQUES</p><p>/</p><p>ESTHÉTIQUES</p><p>/</p>
-                        <p>CREATIVES</p><p>/</p>
-                        <p>SUR MESURE</p><p>/</p><p>INNOVANTES</p><p>/</p>
+                        <p data-i18n="ludiques">LUDIQUES</p><p>/</p>
+                        <p data-i18n="esthetiques">ESTHÉTIQUES</p><p>/</p>
+                        <p data-i18n="creatives">CREATIVES</p><p>/</p>
+                        <p data-i18n="sur-mesure">SUR MESURE</p><p>/</p>
+                        <p data-i18n="innovantes">INNOVANTES</p><p>/</p>
                     </div>
                 </div>
             </div>
@@ -147,13 +154,13 @@
                         <div class="circle2-c-left"></div>
                     </div>
                     <div class="mes-competences" id="mesCompetences">
-                        <h2 class="mes">MES</h2>
-                        <h2 class="competences">COMPÉTENCES</h2>
+                        <h2 class="mes" data-i18n="mes">MES</h2>
+                        <h2 class="competences" data-i18n="competences-titre">COMPÉTENCES</h2>
                     </div>
                 </div>
                 <div class="container-right" id="snapContainer">
                     <div class="intro-text">              
-                        <p>Développeur Front-End<br>avec une forte sensibilité<br>pour le design visuel.
+                        <p data-i18n="text-card">Développeur Front-End<br>avec une forte sensibilité<br>pour le design visuel.
                         <br><br>Mon rôle est de combiner<br>ces expertises pour créer<br>des interfaces à la fois<br>performantes et soignées.
                         </p>
                     
@@ -194,14 +201,14 @@
 
         <section class="section4-container">
             <section class="section4" id="etudes">
-                <h2>ÉTUDES</h2>
+                <h2 data-i18n="etudes-titre">ÉTUDES</h2>
                 <div class="container-universities">
-                        <p class="year">2025 - 2026</p>
-                        <div class="univ-country">
-                        <h5 class="university">ENI École Informatique</h5>
-                        <p class="country">(France)</p>
-                        </div>
-                        <h4 class="studies">BAC+2 en Developpement web et web mobile</h4>
+                    <p class="year">2025 - 2026</p>
+                    <div class="univ-country">
+                    <h5 class="university" data-i18n="eni">ENI École Informatique</h5>
+                    <p class="country" data-i18n="france">(France)</p>
+                    </div>
+                    <h4 class="studies" data-i18n="bac2">BAC+2 en Developpement web et web mobile</h4>
                 </div>
                 <div class="container-universities">
                     <p class="year">2024</p>
@@ -209,41 +216,58 @@
                     <h5 class="university">Interaction Design Foundation</h5>
                     <p class="country"></p>
                     </div>
-                    <h4 class="studies">Cours de UX et Agile</h4>
+                    <h4 class="studies" data-i18n="ux-agile">Cours de UX et Agile</h4>
                 </div>
                 <div class="container-universities">
                     <p class="year">2021 - 2024</p>
                     <div class="univ-country">
-                    <h5 class="university">Université de Lisbonne</h5>
-                    <p class="country">(Portugal)</p>
+                    <h5 class="university" data-i18n="ulisboa">Université de Lisbonne</h5>
+                    <p class="country"> (Portugal)</p>
                     </div>
-                    <h4 class="studies">Master 2 en Design d'Interaction (UX)</h4>
+                    <h4 class="studies" data-i18n="master">Master 2 en Design d'Interaction (UX)</h4>
                 </div>
                 <div class="container-universities">
                     <p class="year">2021 - 2022</p>
                     <div class="univ-country">
-                    <h5 class="university">Université de Palermo</h5>
-                    <p class="country">(Argentine)</p>
+                    <h5 class="university" data-i18n="upalermo">Université de Palermo</h5>
+                    <p class="country" data-i18n="argentine">(Argentine)</p>
                     </div>
-                    <h4 class="studies">Licence en Design</h4>
+                    <h4 class="studies" data-i18n="licence">Licence en Design</h4>
                 </div>
                 <div class="container-universities">
                     <p class="year">2013 - 2017</p>
                     <div class="univ-country">
-                    <h5 class="university">ISIL</h5>
-                    <p class="country"> (Pérou)</p>
+                    <h5 class="university" data-i18n="isil">ISIL</h5>
+                    <p class="country" data-i18n="perou"> (Pérou)</p>
                     </div>
-                    <h4 class="studies">Diplôme technique en Design</h4>
+                    <h4 class="studies" data-i18n="tecnico">Diplôme technique en Design</h4>
                 </div>
             </section>
         </section>
 
-        <section class="section5" id="memeEkeko">
-            <div class="text-ekeko-1"><p class="smiley">☺</p><p>L'Ekeko est une<br>figure très appréciée<br>de la culture andine,<br>étant le dieu<br>de l'abondance,<br>de la prospérité et<br>de la fertilité</p></div>
-            <div class="photo-ekeko"><img src="img/ekeko.png" alt=""></div>
-            <div class="text-ekeko"><p>Je le partage<br>comme un<br>porte-bonheur<br>pour que les<br>projets web<br>ne nous<br>manquent<br>jamais</p></div>
-            <div class="text-ekeko-mob"><p>Je le partage comme un porte-bonheur pour que les projets web ne nous manquent jamais</p></div>
-        </section>
+        <section class="section5" id="ekeko">
+    <div class="text-ekeko-1 parallax-text">
+        <p class="smiley">☺</p>
+        <p data-i18n="ekeko-dkt">L'Ekeko est une<br>figure très appréciée<br>de la culture andine,<br>étant le dieu<br>de l'abondance,<br>de la prospérité<br>et de la fertilité</p>
+    </div>
+
+    <div class="text-ekeko-1-mob parallax-text">
+        <p class="smiley">☺</p>
+        <p data-i18n="ekeko-mob">L'Ekeko est une figure très appréciée<br>de la culture andine, étant le dieu de<br>l'abondance, de la prospérité<br>et de la fertilité</p>
+    </div>           
+    
+    <div class="photo-ekeko parallax-photo">
+        <img src="img/ekeko.png" alt="Ekeko des projets web">
+    </div>
+
+    <div class="text-ekeko parallax-text">
+        <p data-i18n="amuleto-dkt">Je le partage<br>pour que les<br>projets web<br>ne nous<br>manquent<br>jamais</p>
+    </div>
+
+    <div class="text-ekeko-mob parallax-text">
+        <p data-i18n="amuleto-mob">Je le partage pour que<br>les projets web ne<br>nous manquent jamais</p>
+    </div>
+</section>
 
     </main>
 
@@ -251,10 +275,10 @@
         <div class="footer-content">
             <div class="me-info">
                 <span class="me">SANTIAGO</span>
-                <span class="profile">DEVELOPPEUR WEB CREATIF<br>et DESIGNER UX/UI</span>
+                <span class="profile" data-i18n="dev/ux">DEVELOPPEUR WEB CREATIF<br>et DESIGNER UX/UI</span>
             </div>
             <div class="contact">
-                <span class="title-contact">POUR ME CONTACTER</span>
+                <span class="title-contact" data-i18n="pour-me-contacter">POUR ME CONTACTER</span>
                 <span class="phone">+33 6 79 88 97 37</span>
                 <span class="email">surtoledo@gmail.com</span>
                 <span class="city">Nantes 44200, FR</span>
@@ -264,14 +288,13 @@
                 <span class="linkedin"><a href="https://www.linkedin.com/in/surtoledo/">→ LinkedIn</a></span>
                 <span class="behance"><a href="www.behance.net/surtoledo">→ Behance</a></span>
                 <div>
-                    <span class="portfolio">→ Portfolio web</span><br>
-                    <p class="prochainement">(prochainement)</p>
+                    <span class="portfolio" data-i18n="portfolio">→ Portfolio web</span><br>
+                    <p class="prochainement" data-i18n="prochainement">(prochainement)</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js" defer></script>
 </body>
 
 </html>

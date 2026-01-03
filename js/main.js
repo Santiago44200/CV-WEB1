@@ -1,5 +1,99 @@
 /*===================================================*/
 /*===================================================*/
+/*==============      TRADUCCIÓN         ============*/
+/*===================================================*/
+/*===================================================*/
+
+
+
+const translations = {
+    fr: {
+        "ce-que-jaime": "ce que j'aime faire",
+        "competences": "compétences",
+        "etudes": "études",
+        "ekeko": "ekeko",
+        "contacte": "contacte",
+        "bonjour": "BONJOUR !",
+        "cest-santiago": "C'EST SANTIAGO",
+        "developpeur-web-creatif-designer-ux": "DEVELOPPEUR WEB CREATIF<br>et DESIGNER UX/UI",
+        "le-design-est-lame": "LE DESIGN EST L'ÂME,<br>ET LE CODE LE POULS",
+        "ce-que-jaime-faire": "CE QUE J'AIME FAIRE",
+        "ludiques":"LUDIQUES",
+        "esthetiques":"ESTHÉTIQUES",
+        "creatives":"CREATIVES",
+        "sur-mesure":"SUR MESURE",
+        "innovantes":"INNOVANTES",
+        "mes": "MES",
+        "competences-titre":"COMPÉTENCES",
+        "text-card":"Développeur Front-End<br>avec une forte sensibilité<br>pour le design visuel.<br><br>Mon rôle est de combiner<br>ces expertises pour créer<br>des interfaces à la fois<br>performantes et soignées.",
+        "etudes-titre": "ÉTUDES",
+        "eni": "ENI École Informatique",
+        "france": "(France)",
+        "bac2": "BAC+2 en Developpement web et web mobile",
+        "ux-agile": "Cours de UX et Agile",
+        "ulisboa": "Université de Lisbonne",
+        "master": "Master 2 en Design d'Interaction (UX)",
+        "upalermo": "Université de Palermo",
+        "argentine": "(Argentine)",
+        "licence": "Licence en Design",
+        "isil":"ISIL",
+        "perou":"(Pérou)",
+        "tecnico":"Diplôme technique en Design",
+        "ekeko-dkt":"L'Ekeko est une<br>figure très appréciée<br>de la culture andine,<br>étant le dieu<br>de l'abondance,<br>de la prospérité<br>et de la fertilité",
+        "ekeko-mob": "L'Ekeko est une figure très appréciée<br>de la culture andine, étant le dieu de<br>l'abondance, de la prospérité<br>et de la fertilité",
+        "amuleto-dkt":"Je le partage<br>pour que les<br>projets web<br>ne nous<br>manquent<br>jamais",
+        "amuleto-mob":"Je le partage pour que<br>les proyectos web ne<br>nous manquent jamais",
+        "dev/ux": "DEVELOPPEUR WEB CREATIF<br>et DESIGNER UX/UI",
+        "pour-me-contacter": "POUR ME CONTACTER",
+        "portfolio": "Portfolio",
+        "prochainement":"Prochainement",
+    },
+    es: {
+        "ce-que-jaime": "lo que amo hacer",
+        "competences": "aptitudes",
+        "etudes": "estudios",
+        "ekeko": "ekeko",
+        "contacte": "contacto",
+        "bonjour": "¡HOLA!",
+        "cest-santiago": "SOY SANTIAGO",
+        "developpeur-web-creatif-designer-ux": "PROGRAMADOR WEB CREATIVO<br>Y DISEÑADOR UX/UI",
+        "le-design-est-lame": "EL DISEÑO ES EL ALMA,<br>Y EL CÓDIGO EL PULSO",
+        "ce-que-jaime-faire": "LO QUE AMO HACER",
+        "ludiques":"LÚDICAS",
+        "esthetiques":"ESTÉTICAS",
+        "creatives":"CREATIVAS",
+        "sur-mesure":"A MEDIDA",
+        "innovantes":"INNOVADORAS",
+        "mes": "MIS",
+        "competences-titre":"APTITUDES",
+        "text-card":"Programador Front-End<br>con una fuerte sensisilidad<br>por el diseño visual.<br><br>Fusiono estas disciplinas<br>para crear interfaces estéticas y funcionales.",
+        "etudes-titre": "ESTUDIOS",
+        "eni": "ENI Escuela de Informática",
+        "france": "(Francia)",
+        "bac2": "DAW - Desarrollo Web",
+        "ux-agile": "Curso de UX y metodologías ágiles",
+        "ulisboa": "Universidad de Lisboa",
+        "master": "Máster en Diseño de Interacción (UX)",
+        "upalermo": "Universidad de Palermo",
+        "argentine": "(Argentina)",
+        "licence": "Licenciatura en Diseño",
+        "isil": "ISIL",
+        "perou": "(Perú)",
+        "tecnico": "Carrera técnica en Diseño Gráfico",
+        "ekeko-dkt":"El Ekeko es una<br>figura muy apreciada<br>en la cultura andina,<br>es el dios de<br>la abundancia<br>la prosperidad<br>y la fertilidad",  
+        "ekeko-mob": "El Ekeko es una figura muy apreciada<br>en la cultura andina, es el dios<br>de la abundancia, la prosperidad<br>y la fertilidad",
+        "amuleto-dkt":"Lo comparto<br>para que los<br>proyectos web<br>nunca nos<br>falten",
+        "amuleto-mob":"Lo comparto para que<br>los proyectos web<br>nunca nos falten",
+        "dev/ux": "PROGRAMADOR WEB CREATIVO<br>& DISEÑADOR UX/UI",
+        "pour-me-contacter": "CONTÁCTAME",
+        "portfolio": "Portafolio",
+        "prochainement":"Próximamente",
+    }
+};
+
+
+/*===================================================*/
+/*===================================================*/
 /*===============    smooth scroll    ===============*/
 /*===================================================*/
 /*===================================================*/
@@ -189,55 +283,70 @@ function handleParallax() {
         const width = window.innerWidth;
         const scrollY = window.scrollY;
         
-        let carrouselFactor;
+        // Inicializamos con valores por defecto para que NUNCA sea undefined
+        let f = { carrousel: 0.1, ekekoImg: 0.01, ekekoTxt1: 0.05, ekekoTxt2: -0.05 };
 
-        // ORDEN CORRECTO: De mayor a menor
-        if (width >= 951) {
-            carrouselFactor = 0.48; 
+        // --- CONTROL POR TAMAÑO DE PANTALLA ---
+        if (width >= 1150) {
+            f = { carrousel: 0.48, ekekoImg: 0.01, ekekoTxt1: 0.15, ekekoTxt2: 0.12 };
+        } else if (width >= 950) {
+            f = { carrousel: 0.40, ekekoImg: 0.01, ekekoTxt1: 0.15, ekekoTxt2: 0.12 };
         } else if (width >= 768) {
-            carrouselFactor = 0.38; 
-        } else if (width >= 601) {
-            carrouselFactor = 0.37; 
+            f = { carrousel: 0.38, ekekoImg: 0.01, ekekoTxt1: 0.07, ekekoTxt2: -0.08 };
+        } else if (width >= 600) {
+            f = { carrousel: 0.37, ekekoImg: 0.005, ekekoTxt1: 0.12, ekekoTxt2: -0.08 };
+        } else if (width >= 450) {
+            // Ajuste para móvil: Valores moderados para que no desaparezcan
+            f = { carrousel: 0.56, ekekoImg: 0.01, ekekoTxt1: 0.08, ekekoTxt2: -0.05 };
         } else if (width >= 320) {
-            carrouselFactor = 0.41; 
+            // Ajuste para móvil: Valores moderados para que no desaparezcan
+            f = { carrousel: 0.41, ekekoImg: 0.01, ekekoTxt1: 0.08, ekekoTxt2: -0.05 };
         } else {
-            carrouselFactor = 0; // Para pantallas menores a 320
+            f = { carrousel: 0, ekekoImg: 0, ekekoTxt1: 0, ekekoTxt2: 0 };
         }
 
-        // Aplicamos la lógica si tenemos un factor (si es > 0)
-        if (carrouselFactor > 0) {
-            // CE QUE J'AIME FAIRE
-            const cequejaimefaire = document.querySelector('#ceQueJaimeFaire');
-            if (cequejaimefaire) {
-                cequejaimefaire.style.transform = `translateY(${scrollY * 0.11}px)`;
-            }
-
-            // WEBSITES
-            const webElements = ['.websites', '.websites1', '.websites2', '.websites3', '.websites4'];
-            webElements.forEach(clase => {
-                const el = document.querySelector(clase);
-                if (el) {
-                    el.style.transform = `translateY(${scrollY * 0.1}px)`;
-                }
+        // Si el carrousel es mayor a 0, ejecutamos (esto evita errores en pantallas < 320px)
+        if (f.carrousel > 0) {
+            
+            // 1. WEBSITES (Velocidad constante)
+            const webElements = document.querySelectorAll('#ceQueJaimeFaire, .websites, .websites1, .websites2, .websites3, .websites4');
+            webElements.forEach(el => {
+                el.style.transform = `translateY(${scrollY * 0.1}px)`;
             });
 
-            // CARROUSEL DE PALABRAS
+            // 2. CARROUSEL (Usa el factor del breakpoint)
             const carrousel = document.querySelector('.carrousel-words-container');
             if (carrousel) {
-                carrousel.style.transform = `translateY(${scrollY * carrouselFactor}px)`;
+                carrousel.style.transform = `translateY(${scrollY * f.carrousel}px)`;
+            }
+
+            // 3. SECCIÓN EKEKO (Basado en la sección)
+            const sectionEkeko = document.querySelector('#ekeko');
+            if (sectionEkeko) {
+                const sectionOffset = scrollY - sectionEkeko.offsetTop;
+
+                // Foto
+                document.querySelectorAll('.photo-ekeko').forEach(el => {
+                    el.style.transform = `translateY(${sectionOffset * f.ekekoImg}px)`;
+                });
+
+                // Texto Izquierda (Normal + Mob)
+                document.querySelectorAll('.text-ekeko-1, .text-ekeko-1-mob').forEach(el => {
+                    el.style.transform = `translateY(${sectionOffset * f.ekekoTxt1}px)`;
+                });
+
+                // Texto Derecha (Normal + Mob)
+                document.querySelectorAll('.text-ekeko, .text-ekeko-mob').forEach(el => {
+                    el.style.transform = `translateY(${sectionOffset * f.ekekoTxt2}px)`;
+                });
             }
         } else {
-            // Reset total si la pantalla es muy pequeña
-            const toReset = ['#ceQueJaimeFaire', '.websites', '.websites1', '.websites2', '.carrousel-words-container'];
-            toReset.forEach(sel => {
-                const el = document.querySelector(sel);
-                if (el) el.style.transform = 'none';
-            });
+            // RESET
+            const toReset = document.querySelectorAll('#ceQueJaimeFaire, .websites, .websites1, .carrousel-words-container, .photo-ekeko, .text-ekeko-1, .text-ekeko-1-mob, .text-ekeko, .text-ekeko-mob');
+            toReset.forEach(el => el.style.transform = 'none');
         }
     });
 }
-
-
 
 /*===================================================*/
 /*===================================================*/
@@ -245,87 +354,38 @@ function handleParallax() {
 /*===================================================*/
 /*===================================================*/
 
-const snapContainer = document.querySelector('.section3'); 
 const cardElements = document.querySelectorAll('.intro-text, .tools-card, .tech-card, .backend-card');
-let currentIndex = -1;
-let isAnimating = false;
 
-const updateCardStyles = (index) => {
-    cardElements.forEach((c, i) => {
-        // Si el índice es -1 (fuera de la sección), todas opacas. 
-        // Si no, la activa al 100% y el resto al 20%.
-        c.style.opacity = i === index ? "1" : "0.2";
-        c.style.transform = i === index ? "scale(1.02)" : "scale(1)";
+// 1. Configuración del observador
+const observerOptions = {
+    root: null, // usa el viewport
+    rootMargin: '-25% 0px -25% 0px', // El "área activa" es el centro (quita 25% arriba y abajo)
+    threshold: 0.1 // Se activa cuando al menos el 10% de la card entra en esa área
+};
+
+const observerCallback = (entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Cuando la card entra al área central
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "scale(1.02)";
+        } else {
+            // Cuando sale del área (hacia arriba o hacia abajo)
+            entry.target.style.opacity = "0.25";
+            entry.target.style.transform = "scale(1)";
+        }
     });
 };
 
-const scrollToCard = (index) => {
-    if (isAnimating || index < 0 || index >= cardElements.length) return;
-    
-    isAnimating = true;
-    currentIndex = index;
-    const targetCard = cardElements[index];
-    
-    // Alineamos exactamente a 200px para que coincida con tu CSS
-    const targetY = window.scrollY + targetCard.getBoundingClientRect().top - 120;
+// 2. Inicializar el observador
+const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    window.scrollTo({
-        top: targetY,
-        behavior: 'smooth'
-    });
-
-    updateCardStyles(index);
-
-    // Tiempo de bloqueo para que la animación termine suave
-    setTimeout(() => {
-        isAnimating = false;
-    }, 800);
-};
-
-// EVENTO SCROLL: Solo para detectar en qué zona estamos y prender la primera card
-window.addEventListener('scroll', () => {
-    if (isAnimating) return;
-
-    const rect = snapContainer.getBoundingClientRect();
-    
-    // Si entramos desde arriba y no hay nada activo, activamos la primera
-    if (rect.top < 300 && rect.top > 0 && currentIndex === -1) {
-        currentIndex = 0;
-        updateCardStyles(0);
-    }
-    
-    // Si salimos de la sección totalmente por arriba, reseteamos
-    if (rect.top > 500) {
-        currentIndex = -1;
-        updateCardStyles(-1);
-    }
-}, { passive: true });
-
-// EVENTO WHEEL: El que genera el SNAP (paso a paso)
-window.addEventListener('wheel', (e) => {
-    const rect = snapContainer.getBoundingClientRect();
-    
-    // Solo activamos el snap si la sección está centrada
-    if (rect.top < 250 && rect.bottom > 450) {
-        if (isAnimating) {
-            e.preventDefault();
-            return;
-        }
-
-        if (e.deltaY > 0) { // Scroll hacia abajo
-            if (currentIndex < cardElements.length - 1) {
-                e.preventDefault();
-                scrollToCard(currentIndex + 1);
-            }
-        } else { // Scroll hacia arriba
-            if (currentIndex > 0) {
-                e.preventDefault();
-                scrollToCard(currentIndex - 1);
-            }
-        }
-    }
-}, { passive: false });
-
+// 3. Aplicar estilos iniciales y empezar a observar
+cardElements.forEach(card => {
+    card.style.transition = "all 0.5s ease"; // Transición suave para opacidad y escala
+    card.style.opacity = "0.25";
+    observer.observe(card);
+});
 
 
 /*===================================================*/
@@ -450,28 +510,81 @@ document.querySelectorAll('a[href="#contacte"]').forEach(anchor => {
 });
 
 
+
 /*===================================================*/
 /*===================================================*/
 /*==============    CARGAR TODO EL DOM    ===========*/
 /*===================================================*/
 /*===================================================*/
 
-
 // --- GESTIÓN DE EVENTOS GLOBALES ---
 
-// 1. Nos aseguramos de que el parallax se calcule al scrollear
+// 1. Al hacer Scroll
 window.addEventListener('scroll', handleParallax);
 
-// 2. Nos aseguramos de que se recalcule si cambian el tamaño de la ventana
+// 2. Al cambiar el tamaño de la ventana
 window.addEventListener('resize', () => {
     initLenis();
     handleParallax();
 });
 
-// 3. LA CLAVE: Ejecución al cargar completamente
-// Usamos 'load' en lugar de 'DOMContentLoaded' para estar seguros de que 
-// Lenis y las dimensiones del scroll ya son definitivas.
+// 3. Al cargar la página (Inicialización Total)
 window.addEventListener('load', () => {
-    initLenis();      // Inicia el scroll suave
-    handleParallax(); // Ejecuta el cálculo de posiciones inmediatamente
+    initLenis();      
+    handleParallax(); 
+    initLanguage();   // <-- Llamamos a la lógica de idiomas aquí
 });
+
+/**
+ * Función para inicializar el cambio de idiomas
+ */
+function initLanguage() {
+    const langButtons = document.querySelectorAll('[data-lang]');
+
+    langButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const selectedLang = button.getAttribute('data-lang');
+
+            // --- NUEVO: Guardar en el navegador ---
+            localStorage.setItem('preferredLang', selectedLang);
+
+            // Sincronizar botones y cambiar textos
+            langButtons.forEach(b => {
+                b.classList.toggle('active', b.getAttribute('data-lang') === selectedLang);
+            });
+            updateTexts(selectedLang);
+        });
+    });
+
+    // --- NUEVO: Leer el idioma guardado al cargar ---
+    const savedLang = localStorage.getItem('preferredLang');
+    const initialLang = savedLang || document.querySelector('.active[data-lang]')?.getAttribute('data-lang') || 'fr';
+    
+    // Aseguramos que los botones reflejen el idioma guardado
+    langButtons.forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-lang') === initialLang);
+    });
+
+    updateTexts(initialLang);
+}
+
+/**
+ * Función que busca y reemplaza los textos
+ */
+/**
+ * Función que busca y reemplaza los textos
+ */
+function updateTexts(lang) {
+    // AQUÍ: Cambia el atributo técnico <html lang="...">
+    document.documentElement.lang = lang; 
+
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            // Usamos innerHTML para procesar etiquetas como <br>
+            el.innerHTML = translations[lang][key];
+        }
+    });
+}

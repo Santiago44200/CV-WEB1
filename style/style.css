@@ -31,7 +31,7 @@
 @font-face{
  font-family: 'Mango Grotesque Web';
  src: url(../fonts/MangoGrotesque-ExtBdIta.ttf);
- src: url(../fonts/MangoGrotesque-BoldItalic.ttf)
+ src: url(../fonts/MangoGrotesque-BoldItalic.ttf);
 }
 
 /* Reset básico */
@@ -64,6 +64,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+[data-lang] {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+/* El idioma activo se ve brillante y resaltado */
+[data-lang].active {
+    opacity: 1;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 /* --- LOGO --- */
@@ -239,7 +252,7 @@ body {
 #etudes{
     scroll-margin-top: -200px; /* Distancia personalizada*/
 }
-#memeEkeko{
+#ekeko{
     scroll-margin-top: 0px; /* Distancia personalizada*/
 }
 #contacte{
@@ -388,17 +401,16 @@ main > * {
 }
 
 .section2 .estlame{
-   display: flex;
-   position: absolute;
-   margin-top: 16%;
-   margin-left: 15%;
-   font-size: 3.7vw;
-   font-style: italic;
-   font-weight: 400;
-   line-height: 3.7vw;
+    display: flex;
+    position: absolute;
+    margin-top: 16%;
+    margin-left: 15%;
+    font-size: 3.7vw;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 3.7vw;
     z-index: 3;
-
-   }
+}
 
 .place1, 
 .place2,
@@ -587,7 +599,7 @@ main > * {
 
 .section3 .container-left {
     width: 50%;
-    padding-top: 10%;
+    padding-top: 18%;
     position: -webkit-sticky; /* Soporte para Safari */
     position: sticky;
     top: 120px; /* Se detendrá a 120px del borde superior */
@@ -611,7 +623,7 @@ main > * {
     display: flex;
     flex-direction: column;
     gap: 20vh;
-    padding-bottom: 50vw;
+    padding-bottom: 5vw;
 }
 
 .mes-competences{
@@ -631,7 +643,14 @@ main > * {
     will-change: opacity, transform;
     margin-top: 10vw;
     margin-bottom: 10vw; /* Un margen para que se vea el desplazamiento */
+
+    opacity: 0.25;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform; /* Optimiza el rendimiento */
 }
+}
+
+
 
 
 .intro-text{
@@ -842,7 +861,7 @@ main > * {
 
 
 /*----------------------------------------------------------*/
-/*---------------------------MEME---------------------------*/
+/*---------------------------EKEKO---------------------------*/
 /*----------------------------------------------------------*/
 
 
@@ -858,12 +877,12 @@ main > * {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.text-ekeko-mob{
+.text-ekeko-mob, .text-ekeko-1-mob{
     display: none;
 }
 
 .text-ekeko-1{
-    padding-top: 12%;
+    padding-top: 11%;
     align-self: flex-start;
     width: 20%;
     margin-left: 10%;
@@ -885,9 +904,9 @@ main > * {
 .photo-ekeko{
     width: 40%;
     overflow: hidden;
-    padding: 8% 0;
+    padding: 12% 0;
     padding-left: 2%;
-    padding-bottom: 2%;
+    padding-bottom: 5%;
 }
 
 .photo-ekeko img{
@@ -895,7 +914,7 @@ main > * {
 }
 
 .text-ekeko{
-    padding-bottom: 12%;
+    padding-bottom: 17%;
     width: 20%;
     align-self: flex-end;
 }
@@ -996,11 +1015,19 @@ footer{
 
 
 @media (max-width: 1200px){
-#memeEkeko{
+#ekeko{
     scroll-margin-top: 7vw; /* Distancia personalizada para Proyectos */
 }
 }
 
+@media (max-width: 1150px){
+.carrousel-words-container{
+    margin-top: -66%; /* Distancia personalizada para Proyectos */
+}
+.section5 .text-ekeko-1{
+    padding-top: 15%;
+}
+}
 
 /*------------------------------------*/
 /*------------------------------------*/
@@ -1311,7 +1338,7 @@ footer{
 
 
     /*----------------------------------------------------------*/
-    /*---------------------------MEME 950 PX--------------------*/
+    /*---------------------------EKEKO 950 PX--------------------*/
     /*----------------------------------------------------------*/
 
     .section5{
@@ -1329,6 +1356,14 @@ footer{
         display: none;
     }
 
+    .section5 .text-ekeko-1{
+        padding-top: 8%;
+    }
+
+    .text-ekeko-1 p{
+        font-size: 1.4vw;
+    }
+
     .text-ekeko{
         width: 26%;
     }
@@ -1339,6 +1374,7 @@ footer{
         letter-spacing: 0.2vw;
         font-weight:500;
         color: #FFFB8B;
+        margin-right: 20%;
     }
     /*----------------------------------------------------------*/
     /*--------------------------FOOTER 950 PX-------------------*/
@@ -1472,28 +1508,39 @@ footer{
 
 
 /*----------------------------------------------------------*/
-/*---------------------------MEME 768px---------------------------*/
+/*---------------------------EKEKO 768px---------------------------*/
 /*----------------------------------------------------------*/
 
 
 .photo-ekeko{
     width:50%;
     overflow: hidden;
-    margin: 13% 0;
+    margin: 20% 0;
+    margin-top: 15%;
+    margin-left: -4%;
 }
 
 .text-ekeko-mob{
     display: none;
 }
 
+.text-ekeko-1{
+    margin-top: 8%;
+}
 
+.text-ekeko-1 p{
+    font-size: 1.8vw;
+    width:26vw;
+}
 .text-ekeko p{
     font-size: 5.1vw;
     line-height: 5.1vw;
     letter-spacing: 0.2vw;
     font-weight:500;
+    width: 25vw;
     color: #FFFB8B;
-    margin-left: 10%;
+    margin-right: 38%;
+    margin-left: -40%;
 }
 
 /*----------------------------------------------------------*/
@@ -1575,51 +1622,63 @@ footer{
 
 .hero-container {
     max-width: 100%;
-    display: grid; 
+    display: flex;
+    flex-direction: column; 
 }
 
 .hero-text{
-    grid-column: 1 / 2; /* De la línea 1 a la 2 (ocupa 1 columna) */
-    grid-row: 1 / 2;    /* De la línea 1 a la 2 (ocupa 1 fila) */
+    margin-left: 0;
+    padding-left: 0;
 }
-
 .image-wrapper {
     display: flex;
-    justify-content: flex-end; /* Alinea la imagen a la derecha */
+    align-items: flex-end;
     align-items: center; 
     margin: 0 auto;
+    margin-top: 10vw;
+    position: relative;
     padding: 0;
     width: 90%;
+    height: 98vw;
+    overflow: hidden;
+}
+
+.image-wrapper img{
+    width:100% ;
+   object-fit: cover;
+    /* Movemos la imagen hacia arriba para "cortar el techo" */
+    transform: translateY(-20px); 
+    /* Opcional: para que no se vea plana al cortar */
+    transition: transform 0.3s ease;
 }
 
 .hero-text {
-    margin-left: 10%;
-    margin-top: 145px;
+    margin-left: 5%;
+    margin-top: 0;
 }
 
 /* Estilo de la imagen de Santiago */
 .santiago-photo {
-
     width: clamp(20rem, 50%, 40rem);
 }
 
 .hero-text .greeting {
     margin-top: 10vw;
-    margin-bottom: 1rem;
+    margin-bottom: 1.77vw;
     font-size: clamp(1.2rem, 4vw, 6rem);
 }
 
 .hero-text .main-title {
-    font-size: clamp(1.8rem, 10vw, 10rem);
+    font-size: clamp(2.5rem, 10vw, 10rem);
     line-height: 1;
     width: 50%;
 }
 
 .hero-text .subtitle {
-    padding-top: 1.5rem;
+    padding-top: 3vw;
     font-size: clamp(0.8rem, 2.3vw, 6rem);
     line-height: 1;
-    width: 80%;
+    width: 100%;
 }
 
 /*----------------------------------------------------------*/
@@ -1647,9 +1706,9 @@ footer{
 
 .section2 .estlame{
     position: absolute;
-    width: 40%;
+    width: 44%;
     margin-top: 24%;
-    margin-left: 20%;
+    margin-left: 18%;
     font-style: italic;
     line-height: 1.2;
     font-size: clamp(0.8rem, 6.5vw, 6rem);
@@ -1679,6 +1738,7 @@ footer{
     font-size: clamp(0.8rem, 6.5vw, 6rem);
     margin-top: 20vw;
     opacity: 1;
+    text-align: centerd;
 }
 
 #ceQueJaimeFaire{
@@ -1716,7 +1776,7 @@ footer{
 
 
 .carrousel-words-container{
-    margin-top: -150%;
+    margin-top: -230%;
 }
 .carrousel-words p{
     font-size: 5vw;
@@ -1843,7 +1903,6 @@ footer{
     margin: 1.2vw 0;
 }
 
-
 .section4 .univ-country .country{
     font-size: clamp(0.6rem, 2vw, 5rem) ;
 }
@@ -1854,9 +1913,8 @@ footer{
     margin-bottom: 10vw;
 }
 
-
 /*----------------------------------------------------------------*/
-/*---------------------------MEME 600px---------------------------*/
+/*--------------------------EKEKO 600px---------------------------*/
 /*----------------------------------------------------------------*/
 
 
@@ -1867,15 +1925,43 @@ footer{
     .photo-ekeko{
         width:80%;
         overflow: hidden;
-        margin-top: 20%;
-        margin-bottom: 5%;
+        margin: 0 auto;
+        margin-top: 5%;
+        margin-bottom: 0;
     }
     
+    .text-ekeko-1{
+    display: none;
+    }
+
     .text-ekeko{
         display: none;
     }
 
+    .text-ekeko-1-mob{
+        margin-top: 19%;
+        display: inline;
+        margin-bottom: -5%;
+    }
+
+    .text-ekeko-1-mob p{
+        text-align: center;
+        color: #FFFB8B;
+        font-weight: 500;
+        font-style: italic;
+        font-family: var(--font-primary);
+        font-size: clamp(0.9rem, 3.5vw, 3rem);
+        line-height: 1.5;
+        color: white;
+    }
+
+    .text-ekeko-1-mob .smiley{
+            margin-bottom: 0;
+            font-size: 10vw;
+    }
+
     .text-ekeko-mob{
+        margin-top: -10%;
         display:contents;
         text-align: center;
         color: #FFFB8B;
@@ -1884,8 +1970,10 @@ footer{
         line-height: 1;
         letter-spacing: 0.3vw;
     }
+
     .text-ekeko-mob p{
-        margin-bottom: 16%;
+        margin-bottom: 22%;
+        text-transform: uppercase;
     }
 
 /*----------------------------------------------------------------*/
@@ -1968,6 +2056,11 @@ footer{
         padding: 10px 0;
     }
 
+    .text-ekeko-1-mob{
+        margin-top: 25%;
+        margin-bottom: 1.5%;
+    }
+
 body::after {
         content: "";
         position: fixed;
@@ -1998,5 +2091,25 @@ body::after {
         to { opacity: 1; }
     }
     }
+
+    @media (max-width: 450px){
+        .carrousel-words-container{
+            margin-top: -180%;
+        }
+
+    }
+     @media (max-width: 420px){
+        .carrousel-words-container{
+            margin-top: -173%;
+        }
+
+    }
+       @media (max-width: 370px){
+        .carrousel-words-container{
+            margin-top: -165%;
+        }
+
+    }
+
 
    
