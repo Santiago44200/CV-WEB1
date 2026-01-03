@@ -144,39 +144,51 @@ window.addEventListener('resize', initLenis);
 /*===================================================*/
 
 
-function initActiveMenu() {
-    const sections = document.querySelectorAll('section[id], div[id]');
-    const navLinks = document.querySelectorAll('.nav-list li a');
 
+function initActiveMenu() {
+    const navLinks = document.querySelectorAll('.nav-list li a');
+    
     const observerOptions = {
         root: null,
-        rootMargin: '-40% 0px -40% 0px', // Detecta la sección cuando está cerca del centro
+        // Al ser un elemento sticky, usamos un margen más amplio para que 
+        // se mantenga activo mientras el título esté visible
+        rootMargin: '-10% 0px -80% 0px', 
         threshold: 0
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const callback = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
+                let id = entry.target.getAttribute('id');
                 
-                // Quitamos la clase activa de todos
+                // Si detectamos el contenedor de la izquierda, activamos "competences"
+                if (id === 'competences-trigger') {
+                    id = 'competences';
+                }
+
                 navLinks.forEach(link => {
                     link.classList.remove('nav-active');
-                    // Buscamos el link que apunte a esta sección (desktop y mobile)
                     if (link.getAttribute('href') === `#${id}`) {
                         link.classList.add('nav-active');
                     }
                 });
             }
         });
-    }, observerOptions);
+    };
 
+    const observer = new IntersectionObserver(callback, observerOptions);
+
+    // 1. Observamos las demás secciones (ej: estudios, contacto, etc.)
+    // Asegúrate de que esas secciones tengan su ID correspondiente en el HTML
+    const sections = document.querySelectorAll('section[id]:not(#competences-trigger)');
     sections.forEach(section => observer.observe(section));
+
+    // 2. Observamos el trigger que ya tienes en el HTML
+    const leftContainer = document.getElementById('competences-trigger');
+    if (leftContainer) {
+        observer.observe(leftContainer);
+    }
 }
-
-
-
-
 
 
 

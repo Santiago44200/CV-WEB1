@@ -167,14 +167,15 @@ body {
 
 /* Estilo para el enlace activo */
 .nav-list li a.nav-active {
-    border-bottom: 2px solid #f0f0f0; /* O el color de tu diseño */
-    padding-bottom: 4px;
+    color: #FFFB8B !important;
+    font-weight: 500;
     opacity: 1;
+    border-bottom: none;
 }
 
 /* transición suave */
 .nav-list li a {
-    transition: border-bottom 0.3s ease, opacity 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 
@@ -260,7 +261,7 @@ body {
 #ceQueJaimeFaire-anchor{
     scroll-margin-top: 115px; /* Distancia personalizada*/
 }
-#mesCompetences{
+#competences{
     scroll-margin-top: 120px; /* Distancia personalizada*/
 }
 #etudes{
@@ -1686,14 +1687,14 @@ footer{
 
 .hero-text .main-title {
     font-size: clamp(2.5rem, 10vw, 10rem);
-    line-height: 1;
+    line-height: 0.9;
     width: 50%;
 }
 
 .hero-text .subtitle {
     padding-top: 3vw;
     font-size: clamp(0.8rem, 2.3vw, 6rem);
-    line-height: 1;
+    line-height: 1.2;
     width: 100%;
 }
 
