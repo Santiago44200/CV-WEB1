@@ -66,7 +66,7 @@ const translations = {
         "innovantes":"INNOVADORAS",
         "mes": "MIS",
         "competences-titre":"APTITUDES",
-        "text-card":"Programador Front-End<br>con una fuerte sensisilidad<br>por el diseño visual.<br><br>Fusiono estas disciplinas<br>para crear interfaces estéticas y funcionales.",
+        "text-card":"Programador Front-End<br>con una fuerte sensibilidad<br>por el diseño visual.<br><br>Fusiono estas disciplinas<br>para crear interfaces estéticas y funcionales.",
         "etudes-titre": "ESTUDIOS",
         "eni": "ENI Escuela de Informática",
         "france": "(Francia)",
@@ -133,6 +133,51 @@ initLenis();
 
 // Escuchamos el cambio de tamaño de ventana para activar/desactivar en tiempo real
 window.addEventListener('resize', initLenis);
+
+
+
+
+/*===================================================*/
+/*===================================================*/
+/*=============    botonera activa    ===============*/
+/*===================================================*/
+/*===================================================*/
+
+
+function initActiveMenu() {
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-list li a');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-40% 0px -40% 0px', // Detecta la sección cuando está cerca del centro
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                
+                // Quitamos la clase activa de todos
+                navLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                    // Buscamos el link que apunte a esta sección (desktop y mobile)
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('nav-active');
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+}
+
+
+
+
+
 
 
 
@@ -532,7 +577,8 @@ window.addEventListener('resize', () => {
 window.addEventListener('load', () => {
     initLenis();      
     handleParallax(); 
-    initLanguage();   // <-- Llamamos a la lógica de idiomas aquí
+    initLanguage();   //incializar la lógica de idiomas aquí
+    initActiveMenu(); // línea de menú activo
 });
 
 /**
