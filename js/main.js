@@ -42,7 +42,7 @@ const translations = {
         "ekeko-dkt":"L'Ekeko est une<br>figure très appréciée<br>de la culture andine,<br>étant le dieu<br>de l'abondance,<br>de la prospérité<br>et de la fertilité",
         "ekeko-mob": "L'Ekeko est une figure très appréciée<br>de la culture andine, étant le dieu de<br>l'abondance, de la prospérité<br>et de la fertilité",
         "amuleto-dkt":"Je le partage<br>pour que les<br>projets web<br>ne nous<br>manquent<br>jamais",
-        "amuleto-mob":"Je le partage pour que<br>les proyectos web ne<br>nous manquent jamais",
+        "amuleto-mob":"Je le partage pour que<br>les projets web ne<br>nous manquent jamais",
         "dev/ux": "DEVELOPPEUR WEB CREATIF<br>et DESIGNER UX/UI",
         "pour-me-contacter": "POUR ME CONTACTER",
         "portfolio": "Portfolio",
