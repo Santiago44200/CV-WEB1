@@ -142,17 +142,12 @@ window.addEventListener('resize', initLenis);
 /*=============    botonera activa    ===============*/
 /*===================================================*/
 /*===================================================*/
-
-
-
 function initActiveMenu() {
     const navLinks = document.querySelectorAll('.nav-list li a');
     
     const observerOptions = {
         root: null,
-        // Al ser un elemento sticky, usamos un margen más amplio para que 
-        // se mantenga activo mientras el título esté visible
-        rootMargin: '-10% 0px -80% 0px', 
+        rootMargin: '-10% 0px -20% 0px', // Reducimos el margen inferior para que sea más sensible al subir
         threshold: 0
     };
 
@@ -161,9 +156,16 @@ function initActiveMenu() {
             if (entry.isIntersecting) {
                 let id = entry.target.getAttribute('id');
                 
-                // Si detectamos el contenedor de la izquierda, activamos "competences"
-                if (id === 'competences-trigger') {
-                    id = 'competences';
+                if (id === 'competences-trigger') id = 'competences';
+                if (id === 'web-section-container') id = 'ceQueJaimeFaire-anchor';
+
+                // LÓGICA DE CONTACTO
+                if (id === 'contact-trigger') {
+                    if (window.innerWidth >= 950) {
+                        id = 'contacte';
+                    } else {
+                        return; // Ignorar trigger en móvil
+                    }
                 }
 
                 navLinks.forEach(link => {
@@ -178,21 +180,46 @@ function initActiveMenu() {
 
     const observer = new IntersectionObserver(callback, observerOptions);
 
-    // 1. Observamos las demás secciones (ej: estudios, contacto, etc.)
-    // Asegúrate de que esas secciones tengan su ID correspondiente en el HTML
-    const sections = document.querySelectorAll('section[id]:not(#competences-trigger)');
+    // --- CAMBIO CLAVE 1: Observar también el FOOTER para móvil ---
+    // Agregamos footer[id] a la lista de observación
+    const sections = document.querySelectorAll('section[id]:not(#competences-trigger), footer[id]');
     sections.forEach(section => observer.observe(section));
 
-    // 2. Observamos el trigger que ya tienes en el HTML
-    const leftContainer = document.getElementById('competences-trigger');
-    if (leftContainer) {
-        observer.observe(leftContainer);
+    const webContainer = document.querySelector('.container-big-text-web');
+    if (webContainer) {
+        webContainer.setAttribute('id', 'web-section-container');
+        observer.observe(webContainer);
     }
+
+    const specialTriggers = ['competences-trigger', 'contact-trigger'];
+    specialTriggers.forEach(triggerId => {
+        const el = document.getElementById(triggerId);
+        if (el) observer.observe(el);
+    });
+
+    // --- CAMBIO CLAVE 2: Ajuste del Seguro de Scroll ---
+    window.addEventListener('scroll', () => {
+    if (window.innerWidth >= 950) {
+        const scrollPosition = window.innerHeight + window.pageYOffset;
+        const scrollTotal = document.documentElement.scrollHeight;
+        
+        // 1. Si estamos en el puro final (Contacto)
+        if (scrollPosition >= scrollTotal - 10) {
+            navLinks.forEach(link => link.classList.remove('nav-active'));
+            const contactLink = document.querySelector('a[href="#contacte"]');
+            if (contactLink) contactLink.classList.add('nav-active');
+        } 
+        // 2. Si empezamos a subir y estamos en el área del margen (Ekeko)
+        else if (scrollPosition < scrollTotal - 10 && scrollPosition > scrollTotal - (window.innerWidth * 0.25)) {
+            // Este cálculo (window.innerWidth * 0.25) detecta tu margin-bottom de 25vw
+            navLinks.forEach(link => link.classList.remove('nav-active'));
+            const ekekoLink = document.querySelector('a[href="#ekeko"]');
+            if (ekekoLink) ekekoLink.classList.add('nav-active');
+        }
+        // 3. En cualquier otro punto, dejamos que el IntersectionObserver trabaje solo
+    }
+});
 }
-
-
-
-
 /*===================================================*/
 /*===================================================*/
 /*==========    botonera desplegable    =============*/
@@ -201,7 +228,7 @@ function initActiveMenu() {
 
 
 // ================================
-// FUNCIÓN GLOBAL
+//         FUNCIÓN GLOBAL
 // ================================
 function closeMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
