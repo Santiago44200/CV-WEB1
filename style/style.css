@@ -823,7 +823,7 @@ main > * {
     width: 80%;
     margin-right: 10%;
     margin-left: 10%;
-    padding-bottom: 10%;
+    padding-bottom: 15%;
 }
 
 .section4 h2{
@@ -1320,6 +1320,10 @@ footer{
     /*----------------------------------------------------------*/
     /*---------------CV CV CV CV CV CV CV 950px-----------------*/
     /*----------------------------------------------------------*/
+
+    .section4{
+        margin-bottom: 5%;
+    }
 
     .section4 h2{
         font-size: 3vw;
