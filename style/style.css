@@ -350,7 +350,8 @@ main > * {
 
     /* CLAVE para centrar verticalmente: */
     align-items: flex-start; /* Asegura que el texto se alinee a la izquierda dentro del contenedor Flex */
-    justify-content: center; /* Centra todo el contenido (el bloque de texto) verticalmente */
+    justify-content:flex-start;
+    margin-top: 13vw;
     
     padding-left: 5%; 
 
@@ -358,6 +359,11 @@ main > * {
 }
 
 /* Estilo de la imagen de Santiago */
+
+.image-wrapper{
+    height: 45vw;
+    overflow: hidden;
+}
 .santiago-photo {
    /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
        pero nunca será más ancha que 30rem */
@@ -366,6 +372,8 @@ main > * {
     /* Ajusta según el diseño */
     display: flex;
     z-index: 10;
+    transform: translateY(-30px); 
+
     /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
 }
 
@@ -942,9 +950,6 @@ main > * {
     text-transform: uppercase
 }
 
-
-
-
 /*----------------------------------------------------------*/
 /*--------------------------FOOTER--------------------------*/
 /*----------------------------------------------------------*/
@@ -1040,6 +1045,13 @@ footer{
 }
 
 @media (max-width: 1150px){
+.image-wrapper{
+    height: 47vw;
+}
+
+.section2{
+    margin-top: -4vw;
+}
 .carrousel-words-container{
     margin-top: -66%; /* Distancia personalizada para Proyectos */
 }
@@ -1202,6 +1214,7 @@ footer{
 
     .image-wrapper{
         padding-right: 3.1%;
+        height: 47vw;
     }
 
     .santiago-photo {
@@ -1236,7 +1249,7 @@ footer{
 
     .section2 {
         margin: auto;
-        margin-top: -10%;
+        margin-top: -5%;
     }
 
     /**/
@@ -1546,7 +1559,7 @@ footer{
 .photo-ekeko{
     width:50%;
     overflow: hidden;
-    margin: 20% 0;
+    margin-bottom: 15%;
     margin-top: 15%;
     margin-left: -4%;
 }
@@ -1563,6 +1576,7 @@ footer{
     font-size: 1.8vw;
     width:26vw;
 }
+
 .text-ekeko p{
     font-size: 5.1vw;
     line-height: 5.1vw;
@@ -1572,7 +1586,7 @@ footer{
     color: #FFFB8B;
     margin-right: 38%;
     margin-left: -40%;
-}
+ }
 
 
 /*----------------------------------------------------------*/
@@ -1784,6 +1798,11 @@ footer{
 /*----------------------------------------------------------*/
     
 
+.big-text-web{
+    width: 100%;
+
+}
+
 .big-text-web .websites,
 .big-text-web .websites1,
 .big-text-web .websites2,
@@ -1842,6 +1861,7 @@ footer{
 .container-left .mes-competences{
     width: 80%;
     margin-left: 10%;
+    overflow: hidden;
 }
 
 .container-left h2{
@@ -1851,7 +1871,7 @@ footer{
 
 .container-left .mes{
     padding-left: 0%;
-    margin-left: -66%;
+    margin-right: 70%;
 }
 
 .container-left .competences{

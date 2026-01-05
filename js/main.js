@@ -8,6 +8,7 @@
 
 const translations = {
     fr: {
+        "devetux":"DEV et UX/UI",
         "ce-que-jaime": "ce que j'aime faire",
         "competences": "compétences",
         "etudes": "études",
@@ -49,6 +50,7 @@ const translations = {
         "prochainement":"Prochainement",
     },
     es: {
+        "devetux":"DEV & UX/UI",
         "ce-que-jaime": "lo que amo hacer",
         "competences": "aptitudes",
         "etudes": "estudios",
@@ -307,7 +309,7 @@ function closeMenu() {
 
 // Seleccionamos todos los enlaces de navegación (desktop y móvil)
 /*===================================================*/
-/*==============    navegación inteligente    =========*/
+/*============    navegación inteligente    =========*/
 /*===================================================*/
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -359,7 +361,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 /*===================================================*/
 /*===================================================*/
-/*===  websites / carrusel velocidad scroll 1920  ===*/
+/*=====  websites / carrusel velocidad scroll   =====*/
 /*===================================================*/
 /*===================================================*/
 function handleParallax() {
@@ -367,66 +369,77 @@ function handleParallax() {
         const width = window.innerWidth;
         const scrollY = window.scrollY;
         
-        // Inicializamos con valores por defecto para que NUNCA sea undefined
-        let f = { carrousel: 0.1, ekekoImg: 0.01, ekekoTxt1: 0.05, ekekoTxt2: -0.05 };
+        // 1. FACTORES DE VELOCIDAD (Añadidos heroTxt y heroImg)
+        let f = { 
+            heroTxt: 0.2, 
+            heroImg: 0.1, 
+            carrousel: 0.1, 
+            ekekoImg: 0.01, 
+            ekekoTxt1: 0.05, 
+            ekekoTxt2: -0.05 
+        };
 
-        // --- CONTROL POR TAMAÑO DE PANTALLA ---
         if (width >= 1150) {
-            f = { carrousel: 0.48, ekekoImg: 0.01, ekekoTxt1: 0.15, ekekoTxt2: 0.12 };
+            f = { heroTxt: 0.15, heroImg: -0.05, carrousel: 0.48, ekekoImg: 0.01, ekekoTxt1: 0.15, ekekoTxt2: 0.12 };
         } else if (width >= 950) {
-            f = { carrousel: 0.40, ekekoImg: 0.01, ekekoTxt1: 0.15, ekekoTxt2: 0.12 };
+            f = { heroTxt: 0.18, heroImg: -0.05, carrousel: 0.40, ekekoImg: 0.01, ekekoTxt1: 0.15, ekekoTxt2: 0.12 };
         } else if (width >= 768) {
-            f = { carrousel: 0.38, ekekoImg: 0.01, ekekoTxt1: 0.07, ekekoTxt2: -0.08 };
+            f = { heroTxt: 0.12, heroImg: -0.045, carrousel: 0.38, ekekoImg: 0.01, ekekoTxt1: 0.07, ekekoTxt2: -0.08 };
         } else if (width >= 600) {
-            f = { carrousel: 0.37, ekekoImg: 0.005, ekekoTxt1: 0.12, ekekoTxt2: -0.08 };
-        } else if (width >= 450) {
-            // Ajuste para móvil: Valores moderados para que no desaparezcan
-            f = { carrousel: 0.56, ekekoImg: 0.01, ekekoTxt1: 0.08, ekekoTxt2: -0.05 };
+            f = { heroTxt: 0.10, heroImg: -0.02, carrousel: 0.37, ekekoImg: 0.005, ekekoTxt1: 0.12, ekekoTxt2: -0.08 };
         } else if (width >= 320) {
-            // Ajuste para móvil: Valores moderados para que no desaparezcan
-            f = { carrousel: 0.41, ekekoImg: 0.01, ekekoTxt1: 0.08, ekekoTxt2: -0.05 };
+            f = { heroTxt: 0.1, heroImg: 0.05, carrousel: 0.41, ekekoImg: 0.01, ekekoTxt1: 0.08, ekekoTxt2: -0.05 };
         } else {
-            f = { carrousel: 0, ekekoImg: 0, ekekoTxt1: 0, ekekoTxt2: 0 };
+            f = { heroTxt: 0, heroImg: 0, carrousel: 0, ekekoImg: 0, ekekoTxt1: 0, ekekoTxt2: 0 };
         }
 
-        // Si el carrousel es mayor a 0, ejecutamos (esto evita errores en pantallas < 320px)
-        if (f.carrousel > 0) {
+        // --- EJECUCIÓN DEL MOVIMIENTO ---
+        if (width >= 320) {
             
-            // 1. WEBSITES (Velocidad constante)
+            // 1. HERO PARALLAX (Texto e Imagen)
+            const heroText = document.querySelector('.hero-text');
+            const heroImgWrapper = document.querySelector('.image-wrapper');
+            
+            if (heroText) {
+                heroText.style.transform = `translateY(${scrollY * f.heroTxt}px)`;
+            }
+            if (heroImgWrapper) {
+                // El factor negativo o positivo depende de si quieres que suba más lento o más rápido
+                heroImgWrapper.style.transform = `translateY(${scrollY * f.heroImg}px)`;
+            }
+
+            // 2. WEBSITES
             const webElements = document.querySelectorAll('#ceQueJaimeFaire, .websites, .websites1, .websites2, .websites3, .websites4');
             webElements.forEach(el => {
                 el.style.transform = `translateY(${scrollY * 0.1}px)`;
             });
 
-            // 2. CARROUSEL (Usa el factor del breakpoint)
+            // 3. CARROUSEL
             const carrousel = document.querySelector('.carrousel-words-container');
             if (carrousel) {
                 carrousel.style.transform = `translateY(${scrollY * f.carrousel}px)`;
             }
 
-            // 3. SECCIÓN EKEKO (Basado en la sección)
+            // 4. SECCIÓN EKEKO
             const sectionEkeko = document.querySelector('#ekeko');
             if (sectionEkeko) {
                 const sectionOffset = scrollY - sectionEkeko.offsetTop;
 
-                // Foto
                 document.querySelectorAll('.photo-ekeko').forEach(el => {
                     el.style.transform = `translateY(${sectionOffset * f.ekekoImg}px)`;
                 });
 
-                // Texto Izquierda (Normal + Mob)
                 document.querySelectorAll('.text-ekeko-1, .text-ekeko-1-mob').forEach(el => {
                     el.style.transform = `translateY(${sectionOffset * f.ekekoTxt1}px)`;
                 });
 
-                // Texto Derecha (Normal + Mob)
                 document.querySelectorAll('.text-ekeko, .text-ekeko-mob').forEach(el => {
                     el.style.transform = `translateY(${sectionOffset * f.ekekoTxt2}px)`;
                 });
             }
         } else {
-            // RESET
-            const toReset = document.querySelectorAll('#ceQueJaimeFaire, .websites, .websites1, .carrousel-words-container, .photo-ekeko, .text-ekeko-1, .text-ekeko-1-mob, .text-ekeko, .text-ekeko-mob');
+            // RESET TOTAL
+            const toReset = document.querySelectorAll('.hero-text, .image-wrapper, #ceQueJaimeFaire, .websites, .websites1, .carrousel-words-container, .photo-ekeko, .text-ekeko-1, .text-ekeko-1-mob, .text-ekeko, .text-ekeko-mob');
             toReset.forEach(el => el.style.transform = 'none');
         }
     });
