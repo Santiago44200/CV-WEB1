@@ -1804,7 +1804,10 @@ footer{
 
 .big-text-web{
     width: 100%;
-
+    height: 180vw;
+    max-width: 600px;
+    overflow: hidden;
+    transform: translateY(-30vw);
 }
 
 .big-text-web .websites,
@@ -1826,12 +1829,12 @@ footer{
 }
 
 .big-text-web .websites{
-    margin-top: -50vw;
+        transform: translateY(200px);
 }
 
 
 .carrousel-words-container{
-    margin-top: -230%;
+    margin-top: -180%;
 }
 .carrousel-words p{
     font-size: 5vw;
@@ -1850,6 +1853,8 @@ footer{
     width: 90%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    z-index: 3;
 }
 
 .section3 .container-left {
@@ -1884,7 +1889,8 @@ footer{
 
 .section3 .container-right {
     width: 100%;
-    display: grid;
+    display: flex;
+    align-items:center ;
 }
 
 .intro-text{
@@ -1906,7 +1912,18 @@ footer{
     
 }
 
-.tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
+.container-right .intro-text,
+.container-right .tools-card,
+.container-right .tech-card,
+.container-right .backend-card{
+    aspect-ratio: 1 / 1;
+    width: 97%;
+}
+
+
+.tools-card .card-color,
+.tech-card .card-color,
+.backend-card .card-color{
     padding: 10%;
 }
 
@@ -1932,6 +1949,9 @@ footer{
 .section4{
     width: 90%;
     margin-left: 5%;
+    z-index: 2;
+    max-width: 600px;
+    overflow: hidden;
 }
 
 .section4 .container-universities{
