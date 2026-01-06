@@ -28,6 +28,10 @@
     color: #450654;
 }
 
+*{
+    border: solid rgb(251, 53, 53) 1px;
+}
+
 @font-face{
  font-family: 'Mango Grotesque Web';
  src: url(../fonts/MangoGrotesque-ExtBdIta.ttf);
