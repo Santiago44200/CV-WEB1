@@ -28,8 +28,8 @@
     color: #450654;
 }
 
-*{
-    border: solid rgb(251, 53, 53) 1px;
+* {
+    outline: 1px solid red !important;
 }
 
 @font-face{
