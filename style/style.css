@@ -646,9 +646,11 @@ main > * {
 }
 
 .section3 .container-right {
-    width: 50%;
+width: 50%;
     display: flex;
     flex-direction: column;
+    /* CLAVE: Evita que Safari estire las cards al 100% de la sección */
+    align-items: center; 
     gap: 20vh;
     padding-bottom: 5vw;
 }
@@ -661,20 +663,35 @@ main > * {
 .tools-card,
 .tech-card,
 .backend-card {
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    padding: 20%;
-    
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    opacity: 0.2; /* Todas empiezan en 0.2 */
-    will-change: opacity, transform;
-    margin-top: 0vw;
-    margin-bottom: 0vw; /* Un margen para que se vea el desplazamiento */
 
+    /* 1. Geometría y Layout (Crucial para Safari) */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;        /* Evita el estiramiento vertical */
+    flex-shrink: 0;     /* Evita que Safari colapse la card */
+    box-sizing: border-box;
+    overflow: hidden;    /* Mantiene el contenido dentro de la relación 1:1 */
+    padding: 20%;
+
+    /* 2. Estado Inicial y Animación */
     opacity: 0.25;
+    transform: scale(1) translateZ(0); /* Escala base + Aceleración 3D */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: opacity, transform; /* Optimiza el rendimiento */
+    
+    /* 3. Rendimiento y Fixes de Safari */
+    will-change: transform, opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+    margin: 0;
 }
+
+
+.card-visible {
+    opacity: 0.9 !important;
+    transform: scale(1) !important;
+}
+
 
 .intro-text{
     padding: 19%;

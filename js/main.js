@@ -112,7 +112,8 @@ function initLenis() {
         wheelMultiplier: 0.8,
         gestureOrientation: 'vertical',
         normalizeWheel: true,
-        smoothWheel: true
+        smoothWheel: true,
+        smoothTouch: false, // <--- esto para iPhones
       });
 
       function raf(time) {
@@ -463,13 +464,9 @@ const observerOptions = {
 const observerCallback = (entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Cuando la card entra al área central
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "scale(1.02)";
+            entry.target.classList.add('card-visible');
         } else {
-            // Cuando sale del área (hacia arriba o hacia abajo)
-            entry.target.style.opacity = "0.25";
-            entry.target.style.transform = "scale(1)";
+            entry.target.classList.remove('card-visible');
         }
     });
 };
