@@ -825,7 +825,7 @@ width: 50%;
 
 .backend-card .card-color{
     position: absolute;
-    margin-top: -55%;
+    top: 24%;
     margin-left: 5%;
     width: 20vw;
     height: 20vw;
