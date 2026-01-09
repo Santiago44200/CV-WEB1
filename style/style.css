@@ -869,12 +869,12 @@ width: 50%;
 }
 
 .container-universities{
-    margin: 3% 0;
+    margin: 1.5% 0;
     padding-left: 10%;
 }
 
 hr{
-    border-color: #313131;
+    border-color: #474747;
     margin-left: 5%;
 }
 
@@ -1934,13 +1934,14 @@ footer{
 .section3 .container-right {
     width: 100%;
     display: flex;
-    align-items:center ;
+    align-items:center;
+    gap:60vw;
 }
 
 .intro-text{
     padding: 0;
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
 }
 
 .intro-text p{
@@ -1960,8 +1961,11 @@ footer{
 .container-right .tools-card,
 .container-right .tech-card,
 .container-right .backend-card{
-    aspect-ratio: 1 / 1;
     width: 97%;
+}
+
+.container-right .intro-text{
+    height: 60vw;
 }
 
 .container-right .tech-card .triangulo{
@@ -2017,7 +2021,6 @@ footer{
 }
 
 hr{
-    border-color: #313131;
     margin-left: 5%;
 }
 
