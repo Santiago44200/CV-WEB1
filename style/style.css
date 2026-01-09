@@ -647,7 +647,8 @@ width: 50%;
     flex-direction: column;
     /* CLAVE: Evita que Safari estire las cards al 100% de la sección */
     align-items: center; 
-    gap: 20vh;
+    justify-content: flex-start;
+    gap: 40vh;
     padding-bottom: 5vw;
 }
 
@@ -661,15 +662,15 @@ width: 50%;
 .backend-card {
 
     /* 1. Geometría y Layout (Crucial para Safari) */
-    width: 100%;
+    width: 70%;
     aspect-ratio: 1 / 1;
     height: auto;        /* Evita el estiramiento vertical */
     max-height: 100%;/* Evita que crezca más que su contenedor */
     flex-shrink: 0;     /* Evita que Safari colapse la card */
     flex-grow: 0; /* FUERZA a que no crezca para rellenar espacio */
+    flex: 0 0 auto;
     box-sizing: border-box;
     overflow: hidden;    /* Mantiene el contenido dentro de la relación 1:1 */
-    padding: 20%;
 
     /* 2. Estado Inicial y Animación */
     opacity: 0.25;
@@ -696,11 +697,10 @@ width: 50%;
 
 
 .intro-text{
-    padding: 19%;
+    margin-top: 5vw;
     display: flex;
     align-items: center;
     opacity: 1;
-    transform: scale(1.02);
 }
 
 .intro-text p{
@@ -760,10 +760,10 @@ width: 50%;
 
 .tech-card .triangulo{
     position: absolute;
-    top:-0.95%;
-    left:10.05%;
-    width: 90%;
-    height: 90%;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
     z-index: 4;
     background-image: linear-gradient(
         
@@ -782,6 +782,7 @@ width: 50%;
 .tech-card .card-color div{
     width: 100%;
     height: 100%;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -797,8 +798,8 @@ width: 50%;
     position: absolute;
     left: 57%;
     top:57%;
-    width: 20%;
-    height: 20%;
+    width: 35%;
+    height: 35%;
     border-radius: 50%;
     z-index: 5;
         background-image: linear-gradient(
@@ -825,12 +826,13 @@ width: 50%;
 
 .backend-card .card-color{
     position: absolute;
-    top: 24%;
-    margin-left: 5%;
-    width: 20vw;
-    height: 20vw;
+    top: 8%;
+    left: 8%;
+    width: 23vw;
+    height: 23vw;
     border-radius: 50%;
     z-index: -1;
+    flex-shrink: 0;
     background-image: linear-gradient(
         to top, 
         #141414 0%, 
