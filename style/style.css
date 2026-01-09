@@ -1,5 +1,4 @@
 /* Variables CSS para colores y tipografía */
-*{border: solid 1px red;}
 :root {
     --purple-color: #732689;
     /* Púrpura */
@@ -665,7 +664,9 @@ width: 50%;
     width: 100%;
     aspect-ratio: 1 / 1;
     height: auto;        /* Evita el estiramiento vertical */
+    max-height: 100%;/* Evita que crezca más que su contenedor */
     flex-shrink: 0;     /* Evita que Safari colapse la card */
+    flex-grow: 0; /* FUERZA a que no crezca para rellenar espacio */
     box-sizing: border-box;
     overflow: hidden;    /* Mantiene el contenido dentro de la relación 1:1 */
     padding: 20%;
@@ -683,6 +684,10 @@ width: 50%;
     margin: 0;
 }
 
+.tools-card, .tech-card, .backend-card {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
 
 .card-visible {
     opacity: 0.9 !important;
