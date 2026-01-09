@@ -150,24 +150,24 @@ function initActiveMenu() {
     
     const observerOptions = {
         root: null,
-        rootMargin: '-10% 0px -20% 0px', // Reducimos el margen inferior para que sea más sensible al subir
+        rootMargin: '-10% 0px -20% 0px', 
         threshold: 0
     };
 
     const callback = (entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            // Solo actuar si estamos cruzando y NO estamos en el puro inicio de la página
+            if (entry.isIntersecting && window.pageYOffset > 50) {
                 let id = entry.target.getAttribute('id');
                 
                 if (id === 'competences-trigger') id = 'competences';
                 if (id === 'web-section-container') id = 'ceQueJaimeFaire-anchor';
 
-                // LÓGICA DE CONTACTO
                 if (id === 'contact-trigger') {
                     if (window.innerWidth >= 950) {
                         id = 'contacte';
                     } else {
-                        return; // Ignorar trigger en móvil
+                        return;
                     }
                 }
 
@@ -177,14 +177,15 @@ function initActiveMenu() {
                         link.classList.add('nav-active');
                     }
                 });
+            } else if (window.pageYOffset <= 50) {
+                // SEGURO PARA EL HOME: Si estamos arriba de todo, quitar activos (o activar Home si tuvieras)
+                navLinks.forEach(link => link.classList.remove('nav-active'));
             }
         });
     };
 
     const observer = new IntersectionObserver(callback, observerOptions);
 
-    // --- CAMBIO CLAVE 1: Observar también el FOOTER para móvil ---
-    // Agregamos footer[id] a la lista de observación
     const sections = document.querySelectorAll('section[id]:not(#competences-trigger), footer[id]');
     sections.forEach(section => observer.observe(section));
 
@@ -200,28 +201,34 @@ function initActiveMenu() {
         if (el) observer.observe(el);
     });
 
-    // --- CAMBIO CLAVE 2: Ajuste del Seguro de Scroll ---
+    // --- SEGURO DE SCROLL CORREGIDO ---
     window.addEventListener('scroll', () => {
-    if (window.innerWidth >= 950) {
-        const scrollPosition = window.innerHeight + window.pageYOffset;
-        const scrollTotal = document.documentElement.scrollHeight;
-        
-        // 1. Si estamos en el puro final (Contacto)
-        if (scrollPosition >= scrollTotal - 10) {
-            navLinks.forEach(link => link.classList.remove('nav-active'));
-            const contactLink = document.querySelector('a[href="#contacte"]');
-            if (contactLink) contactLink.classList.add('nav-active');
-        } 
-        // 2. Si empezamos a subir y estamos en el área del margen (Ekeko)
-        else if (scrollPosition < scrollTotal - 10 && scrollPosition > scrollTotal - (window.innerWidth * 0.25)) {
-            // Este cálculo (window.innerWidth * 0.25) detecta tu margin-bottom de 25vw
-            navLinks.forEach(link => link.classList.remove('nav-active'));
-            const ekekoLink = document.querySelector('a[href="#ekeko"]');
-            if (ekekoLink) ekekoLink.classList.add('nav-active');
+        const scrollY = window.pageYOffset;
+
+        if (window.innerWidth >= 950) {
+            const scrollPosition = window.innerHeight + scrollY;
+            const scrollTotal = document.documentElement.scrollHeight;
+            
+            // Solo aplicar lógica de final de página si hemos bajado al menos 200px
+            if (scrollY > 200) {
+                // 1. Si estamos en el puro final (Contacto)
+                if (scrollPosition >= scrollTotal - 10) {
+                    navLinks.forEach(link => link.classList.remove('nav-active'));
+                    const contactLink = document.querySelector('a[href="#contacte"]');
+                    if (contactLink) contactLink.classList.add('nav-active');
+                } 
+                // 2. Si estamos en el área de Ekeko
+                else if (scrollPosition < scrollTotal - 10 && scrollPosition > scrollTotal - (window.innerWidth * 0.25)) {
+                    navLinks.forEach(link => link.classList.remove('nav-active'));
+                    const ekekoLink = document.querySelector('a[href="#ekeko"]');
+                    if (ekekoLink) ekekoLink.classList.add('nav-active');
+                }
+            } else {
+                // Si estamos muy arriba, nos aseguramos de que nada esté marcado
+                navLinks.forEach(link => link.classList.remove('nav-active'));
+            }
         }
-        // 3. En cualquier otro punto, dejamos que el IntersectionObserver trabaje solo
-    }
-});
+    });
 }
 /*===================================================*/
 /*===================================================*/

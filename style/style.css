@@ -178,8 +178,6 @@ body {
     transition: color 0.3s ease;
 }
 
-
-
 /* --- ESTILOS DEL BOTÓN DE LENGUAJE --- */
 .lang {
     display: flex;
@@ -315,7 +313,7 @@ main{
 
 main > * {
         pointer-events: auto;
-    }
+}
 
 .hero-container {
     width: 80%;
@@ -328,8 +326,6 @@ main > * {
     display: grid; 
     z-index: 10;
 }
-
-
 
 .hero-text,
 .image-wrapper {
@@ -364,6 +360,7 @@ main > * {
     height: 45vw;
     overflow: hidden;
 }
+
 .santiago-photo {
    /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
        pero nunca será más ancha que 30rem */
@@ -627,7 +624,6 @@ main > * {
     position: sticky;
     top: 120px; /* Se detendrá a 120px del borde superior */
     height: fit-content; /* Asegura que solo ocupe el espacio de su contenido */
-
 }
 
 .container-left h2{
@@ -664,13 +660,13 @@ width: 50%;
     /* 1. Geometría y Layout (Crucial para Safari) */
     width: 70%;
     aspect-ratio: 1 / 1;
-    height: auto;        /* Evita el estiramiento vertical */
-    max-height: 100%;/* Evita que crezca más que su contenedor */
+    height: auto;       /* Evita el estiramiento vertical */
+    max-height: 100%;   /* Evita que crezca más que su contenedor */
     flex-shrink: 0;     /* Evita que Safari colapse la card */
-    flex-grow: 0; /* FUERZA a que no crezca para rellenar espacio */
+    flex-grow: 0;       /* FUERZA a que no crezca para rellenar espacio */
     flex: 0 0 auto;
     box-sizing: border-box;
-    overflow: hidden;    /* Mantiene el contenido dentro de la relación 1:1 */
+    overflow: hidden;   /* Mantiene el contenido dentro de la relación 1:1 */
 
     /* 2. Estado Inicial y Animación */
     opacity: 0.25;
@@ -697,15 +693,18 @@ width: 50%;
 
 
 .intro-text{
-    margin-top: 5vw;
+    display: flex;
+    margin-top: 22vw;
     display: flex;
     align-items: center;
     opacity: 1;
+    align-items: flex-end;
 }
 
 .intro-text p{
     font-size: 1.8vw;
     font-style: italic;
+    text-align: center;
 }
 
 .tools-card p, .tech-card p, .backend-card p{
@@ -870,8 +869,13 @@ width: 50%;
 }
 
 .container-universities{
-    margin-top: 2%;
+    margin: 3% 0;
     padding-left: 10%;
+}
+
+hr{
+    border-color: #313131;
+    margin-left: 5%;
 }
 
 .section4 .year{
@@ -1999,10 +2003,24 @@ footer{
     overflow: hidden;
 }
 
+.mes-competences .mes{
+    margin-left: 6vw;
+}
+
+.mes-competences .competences{
+    margin-right: 6vw;
+}
+
 .section4 .container-universities{
     padding-left:5%;
     padding-right: 5%;
 }
+
+hr{
+    border-color: #313131;
+    margin-left: 5%;
+}
+
 
 .section4 h2{
     font-size: clamp(1.6rem, 7vw, 5rem) ;
