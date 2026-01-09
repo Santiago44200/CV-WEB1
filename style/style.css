@@ -351,7 +351,8 @@ main > * {
 
     /* CLAVE para centrar verticalmente: */
     align-items: flex-start; /* Asegura que el texto se alinee a la izquierda dentro del contenedor Flex */
-    justify-content: center; /* Centra todo el contenido (el bloque de texto) verticalmente */
+    justify-content:flex-start;
+    margin-top: 13vw;
     
     padding-left: 5%; 
 
@@ -359,6 +360,11 @@ main > * {
 }
 
 /* Estilo de la imagen de Santiago */
+
+.image-wrapper{
+    height: 45vw;
+    overflow: hidden;
+}
 .santiago-photo {
    /* Por ejemplo: La imagen ocupará el 40% del ancho del viewport, 
        pero nunca será más ancha que 30rem */
@@ -367,6 +373,8 @@ main > * {
     /* Ajusta según el diseño */
     display: flex;
     z-index: 10;
+    transform: translateY(-30px); 
+
     /* Aplicar un filtro de color o un pseudo-elemento para el degradado en la imagen */
 }
 
@@ -635,9 +643,11 @@ main > * {
 }
 
 .section3 .container-right {
-    width: 50%;
+width: 50%;
     display: flex;
     flex-direction: column;
+    /* CLAVE: Evita que Safari estire las cards al 100% de la sección */
+    align-items: center; 
     gap: 20vh;
     padding-bottom: 5vw;
 }
@@ -650,20 +660,35 @@ main > * {
 .tools-card,
 .tech-card,
 .backend-card {
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    padding: 20%;
-    
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    opacity: 0.2; /* Todas empiezan en 0.2 */
-    will-change: opacity, transform;
-    margin-top: 0vw;
-    margin-bottom: 0vw; /* Un margen para que se vea el desplazamiento */
 
+    /* 1. Geometría y Layout (Crucial para Safari) */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;        /* Evita el estiramiento vertical */
+    flex-shrink: 0;     /* Evita que Safari colapse la card */
+    box-sizing: border-box;
+    overflow: hidden;    /* Mantiene el contenido dentro de la relación 1:1 */
+    padding: 20%;
+
+    /* 2. Estado Inicial y Animación */
     opacity: 0.25;
+    transform: scale(1) translateZ(0); /* Escala base + Aceleración 3D */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: opacity, transform; /* Optimiza el rendimiento */
+    
+    /* 3. Rendimiento y Fixes de Safari */
+    will-change: transform, opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+    margin: 0;
 }
+
+
+.card-visible {
+    opacity: 0.9 !important;
+    transform: scale(1) !important;
+}
+
 
 .intro-text{
     padding: 19%;
@@ -943,9 +968,6 @@ main > * {
     text-transform: uppercase
 }
 
-
-
-
 /*----------------------------------------------------------*/
 /*--------------------------FOOTER--------------------------*/
 /*----------------------------------------------------------*/
@@ -1041,6 +1063,13 @@ footer{
 }
 
 @media (max-width: 1150px){
+.image-wrapper{
+    height: 47vw;
+}
+
+.section2{
+    margin-top: -4vw;
+}
 .carrousel-words-container{
     margin-top: -66%; /* Distancia personalizada para Proyectos */
 }
@@ -1203,6 +1232,7 @@ footer{
 
     .image-wrapper{
         padding-right: 3.1%;
+        height: 47vw;
     }
 
     .santiago-photo {
@@ -1237,7 +1267,7 @@ footer{
 
     .section2 {
         margin: auto;
-        margin-top: -10%;
+        margin-top: -5%;
     }
 
     /**/
@@ -1547,7 +1577,7 @@ footer{
 .photo-ekeko{
     width:50%;
     overflow: hidden;
-    margin: 20% 0;
+    margin-bottom: 15%;
     margin-top: 15%;
     margin-left: -4%;
 }
@@ -1564,6 +1594,7 @@ footer{
     font-size: 1.8vw;
     width:26vw;
 }
+
 .text-ekeko p{
     font-size: 5.1vw;
     line-height: 5.1vw;
@@ -1573,7 +1604,7 @@ footer{
     color: #FFFB8B;
     margin-right: 38%;
     margin-left: -40%;
-}
+ }
 
 
 /*----------------------------------------------------------*/
@@ -1785,6 +1816,14 @@ footer{
 /*----------------------------------------------------------*/
     
 
+.big-text-web{
+    width: 100%;
+    height: 180vw;
+    max-width: 600px;
+    overflow: hidden;
+    transform: translateY(-30vw);
+}
+
 .big-text-web .websites,
 .big-text-web .websites1,
 .big-text-web .websites2,
@@ -1804,12 +1843,12 @@ footer{
 }
 
 .big-text-web .websites{
-    margin-top: -50vw;
+        transform: translateY(200px);
 }
 
 
 .carrousel-words-container{
-    margin-top: -230%;
+    margin-top: -180%;
 }
 .carrousel-words p{
     font-size: 5vw;
@@ -1828,6 +1867,8 @@ footer{
     width: 90%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    z-index: 3;
 }
 
 .section3 .container-left {
@@ -1843,6 +1884,7 @@ footer{
 .container-left .mes-competences{
     width: 80%;
     margin-left: 10%;
+    overflow: hidden;
 }
 
 .container-left h2{
@@ -1852,7 +1894,7 @@ footer{
 
 .container-left .mes{
     padding-left: 0%;
-    margin-left: -66%;
+    margin-right: 70%;
 }
 
 .container-left .competences{
@@ -1861,7 +1903,8 @@ footer{
 
 .section3 .container-right {
     width: 100%;
-    display: grid;
+    display: flex;
+    align-items:center ;
 }
 
 .intro-text{
@@ -1883,7 +1926,18 @@ footer{
     
 }
 
-.tools-card .card-color, .tech-card .card-color, .backend-card .card-color{
+.container-right .intro-text,
+.container-right .tools-card,
+.container-right .tech-card,
+.container-right .backend-card{
+    aspect-ratio: 1 / 1;
+    width: 97%;
+}
+
+
+.tools-card .card-color,
+.tech-card .card-color,
+.backend-card .card-color{
     padding: 10%;
 }
 
@@ -1909,6 +1963,9 @@ footer{
 .section4{
     width: 90%;
     margin-left: 5%;
+    z-index: 2;
+    max-width: 600px;
+    overflow: hidden;
 }
 
 .section4 .container-universities{
