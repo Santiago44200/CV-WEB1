@@ -1,4 +1,5 @@
 /* Variables CSS para colores y tipografía */
+*{border: solid 1px red;}
 :root {
     --purple-color: #732689;
     /* Púrpura */
