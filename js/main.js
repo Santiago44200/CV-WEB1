@@ -13,7 +13,7 @@ const translations = {
         "competences": "compétences",
         "etudes": "études",
         "ekeko": "ekeko",
-        "contacte": "contacte",
+        "contacte": "contact",
         "bonjour": "BONJOUR !",
         "cest-santiago": "C'EST SANTIAGO",
         "developpeur-web-creatif-designer-ux": "DEVELOPPEUR WEB CREATIF<br>et DESIGNER UX/UI",
