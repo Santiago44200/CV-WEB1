@@ -1601,6 +1601,20 @@ footer{
 
 
 /*----------------------------------------------------------*/
+/*-------------------------- CURSOR ------------------------*/
+/*----------------------------------------------------------*/
+
+body, a, button, .carrousel-words-container {
+    cursor: auto !important; /* Vuelve la flecha/manito normal */
+  }
+
+  .cursor, .cursor-follower {
+    display: none !important; /* Se apaga el amarillo */
+  }
+}
+
+
+/*----------------------------------------------------------*/
 /*-------------- CARDS / COMPETENCES 768px -----------------*/
 /*----------------------------------------------------------*/
     .section3 .container-right {
