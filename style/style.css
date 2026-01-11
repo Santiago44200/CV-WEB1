@@ -1611,8 +1611,6 @@ body, a, button, .carrousel-words-container {
   .cursor, .cursor-follower {
     display: none !important; /* Se apaga el amarillo */
   }
-}
-
 
 /*----------------------------------------------------------*/
 /*-------------- CARDS / COMPETENCES 768px -----------------*/
@@ -1620,7 +1618,6 @@ body, a, button, .carrousel-words-container {
     .section3 .container-right {
         gap: 35vw;
     }
-
 
 /*----------------------------------------------------------*/
 /*---------------------------ETUDES 768px---------------------------*/
@@ -1746,8 +1743,6 @@ body, a, button, .carrousel-words-container {
     font-size: 1.1vw;
     line-height: 0.6vw;
 }
-
-} 
 
 
 /*------------------------------------*/
@@ -2311,6 +2306,3 @@ hr{
             margin-top: -165%;
         }
     }
-
-
-   
