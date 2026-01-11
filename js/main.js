@@ -614,6 +614,107 @@ document.querySelectorAll('a[href="#contacte"]').forEach(anchor => {
 
 /*===================================================*/
 /*===================================================*/
+/*===================    CURSOR    ==================*/
+/*===================================================*/
+/*===================================================*/
+
+// DOM
+const cursor = document.querySelector(".cursor");
+const cursorFollower = document.querySelector(".cursor-follower");
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+
+const isTouchLike = window.matchMedia("(hover: none), (pointer: coarse)")
+  .matches;
+
+// MOBILE MENU toggle
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!expanded));
+    menuToggle.classList.toggle("active");
+    mobileMenu?.classList.toggle("active");
+  });
+}
+
+// close mobile menu when clicking a link
+mobileMenu?.querySelectorAll("a").forEach((a) => {
+  a.addEventListener("click", () => {
+    menuToggle?.classList.remove("active");
+    menuToggle?.setAttribute("aria-expanded", "false");
+    mobileMenu.classList.remove("active");
+  });
+});
+
+// CURSOR (desktop only)
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+let followerX = 0, followerY = 0;
+
+function animateCursor() {
+  // Velocidad rápida (0.9 para el principal, 0.2 para el seguidor)
+  cursorX += (mouseX - cursorX) * 0.9;
+  cursorY += (mouseY - cursorY) * 0.9;
+  followerX += (mouseX - followerX) * 0.2;
+  followerY += (mouseY - followerY) * 0.2;
+
+  if (cursor) {
+    cursor.style.left = (cursorX - 10) + "px";
+    cursor.style.top = (cursorY - 10) + "px";
+  }
+  if (cursorFollower) {
+    cursorFollower.style.left = (followerX - 4) + "px";
+    cursorFollower.style.top = (followerY - 4) + "px";
+  }
+  requestAnimationFrame(animateCursor);
+}
+
+if (!isTouchLike) {
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  animateCursor();
+
+  // EFECTOS DE HOVER - Usamos delegación de eventos para evitar errores
+  document.addEventListener("mouseover", (e) => {
+    // 1. Si es sobre el carrusel (GIGANTE)
+    if (e.target.closest(".carrousel-words-container")) {
+        cursor?.classList.add("active-carrousel");
+        cursor?.classList.remove("active"); // quitamos la normal por si acaso
+    } 
+    // 2. Si es sobre links o botones (NORMAL)
+    else if (e.target.closest("a, button")) {
+        cursor?.classList.add("active");
+        cursor?.classList.remove("active-carrousel");
+    }
+  });
+
+  document.addEventListener("mouseout", (e) => {
+    if (e.target.closest(".carrousel-words-container")) {
+        cursor?.classList.remove("active-carrousel");
+    }
+    if (e.target.closest("a, button")) {
+        cursor?.classList.remove("active");
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*===================================================*/
+/*===================================================*/
 /*==============    CARGAR TODO EL DOM    ===========*/
 /*===================================================*/
 /*===================================================*/

@@ -19,12 +19,12 @@
 }
 
  ::selection {
-    background-color: #e09625; /* Amarillo muy claro */
+    background-color: #2EBFA5; /* Amarillo muy claro */
     color: #450654;
 }
 
 ::-moz-selection {
-    background-color: #e09625;
+    background-color: #2EBFA5;
     color: #450654;
 }
 
@@ -39,6 +39,55 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+
+/*=========== CURSOR ===========*/
+
+/* Importante: oculta el cursor real del sistema */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button {
+    cursor: none !important;
+  }
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--yellow);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transition: transform 0.1s ease, background-color 0.2s ease, opacity 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+/* Ocultamos la manito */
+.cursor.active {
+  transform: scale(2);
+  background-color: var(--yellow);
+}
+
+.carrousel-words-container {
+    cursor: none !important;
+}
+
+/* Estado gigante para el carrusel */
+.cursor.active-carrousel {
+    transform: scale(10) !important; 
+    background-color: var(--yellow);
+    border: none;
+    opacity: 1 !important;
+}
+
+/* Hide custom cursor on mobile/touch */
+@media (hover: none), (pointer: coarse), (max-width: 767px) {
+  .cursor,
+  .cursor-follower {
+    display: none !important;
+  }
 }
 
 body {
