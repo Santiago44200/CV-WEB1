@@ -76,7 +76,7 @@
 
 /* Estado gigante para el carrusel */
 .cursor.active-carrousel {
-    transform: scale(10) !important; 
+    transform: scale(20) !important; 
     background-color: var(--yellow);
     border: none;
     opacity: 1 !important;
